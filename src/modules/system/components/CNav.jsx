@@ -12,7 +12,7 @@ const CNav = () => {
   const { formatMessage } = useIntl();
   const handleLogout = () => {
     storage.clearLocalStorage();
-    history.push(`${process.env.PUBLIC_URL}${ROUTE_LOGIN}`);
+    history.push(`${process.env.PUBLIC_URL}`);
   };
 
   const menu = (
