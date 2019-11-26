@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@client/develop
+      uses: actions/checkout@v1
       
     - name: node install
       uses: actions/setup-node@v1
