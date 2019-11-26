@@ -1,11 +1,5 @@
 # CT_OBJ
 
-
-nvm use 12
-npm install
-npm run start
-
-
 ## 1. mongodb 安装与启动
 ```sh
 $ tar -zxvf mongodb-macos-x86_64-4.2.1.tgz
