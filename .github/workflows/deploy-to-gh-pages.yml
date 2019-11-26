@@ -10,9 +10,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@client/develop
     - name: node install
-      uses: actions/setup-node@client/develop
+      uses: actions/setup-go@v1.0.0
       with:
-        node-version: '12.x'
+        version: '12.x'
     - name: Install
       run: npm install
 
