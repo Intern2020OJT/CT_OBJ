@@ -1,33 +1,50 @@
 {
+  "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended"],
+  "plugins": ["jsx-a11y"],
   "env": {
-    "browser": false,
-    "node": true
+    "browser": true,
+    "node": true,
+    "jest": true
   },
   "globals": {
-    "__": "readonly"
+    "ga": true,
+    "$": true,
+    "I18n": true,
+    "describe": true,
+    "it": true,
+    "before": true,
+    "after": true,
+    "toJson": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:node/recommended",
-    "airbnb-base"
-  ],
   "rules": {
-    "max-len": ["error", { "code": 120 }],
-    "quotes": "off",
-    "no-multi-spaces": "off",
-    "no-underscore-dangle": "off",
-    "no-unused-expressions": "off",
-    "key-spacing": "off",
-    "array-bracket-spacing": "off",
-    "prefer-rest-params": "off",
+    "func-names": ["error", "never"],
+    "max-len": ["error", 120],
     "object-curly-newline": "off",
-    "prefer-destructuring": "off",
+    "arrow-parens": "off",
+    "comma-dangle": "off",
+    "operator-linebreak": "off",
+    "no-underscore-dangle": ["off", { "allowAfterSuper": true }],
+    "no-useless-constructor": ["off"],
+    "no-plusplus": ["off"],
+    "no-restricted-properties": ["off"],
+    "class-methods-use-this": ["off"],
+    "react/forbid-prop-types": ["off"],
+    "react/prefer-stateless-function": ["off"],
+    "react/jsx-props-no-spreading": ["off"],
+    "import/order":  ["error", {
+      "newlines-between": "always-and-inside-groups"
+    }],
+    "react/jsx-filename-extension":"off",
+    "import/no-named-as-default":"off",
+    "no-trailing-spaces":"off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/destructuring-assignment": "off",
     "arrow-body-style": "off",
-    "no-else-return": "off",
-    "no-plusplus": "off",
-    "no-param-reassign": "off",
-    "no-continue": "off",
-    "no-useless-catch": "off",
-    "consistent-return": "off"
+    "object-shorthand": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/no-noninteractive-element-interactions":"off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/jsx-wrap-multilines": "off"
   }
 }
