@@ -10,13 +10,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: node install
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-
-      - name: Install
-        run: npm install
-
-      - name: deploy
-        run: npm run deploy
+      - name: Build and Deploy
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.access_token }}
+          BRANCH: gh-pages
+          FOLDER: build
+          BUILD_SCRIPT: npm install && npm run build
