@@ -14,6 +14,7 @@ import './static/css/resetant.less';
 import './static/css/index.less';
 import './static/css/layout.less';
 import './static/css/login.less';
+import './static/css/home.less';
 
 import localZH from './locales/zh';
 import localEN from './locales/en';
