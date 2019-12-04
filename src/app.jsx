@@ -14,6 +14,7 @@ import './static/css/resetant.less';
 import './static/css/index.less';
 import './static/css/layout.less';
 import './static/css/login.less';
+import './static/css/classifyAnalyse.less';
 
 import localZH from './locales/zh';
 import localEN from './locales/en';
@@ -25,15 +26,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
-        storage.isAuthenticatedUser() ? (
-          <CDefaultLayout>
-            <Component {...props} />
-          </CDefaultLayout>
-        ) : (
-          <Redirect to={ROUTE_LOGIN} />
-        )
-      }
+      render={props => (storage.isAuthenticatedUser() ? (
+        <CDefaultLayout>
+          <Component {...props} />
+        </CDefaultLayout>
+      ) : (
+        <Redirect to={ROUTE_LOGIN} />
+      ))}
     />
   );
 };
