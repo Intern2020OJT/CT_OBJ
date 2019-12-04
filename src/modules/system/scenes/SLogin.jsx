@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import { useIntl, FormattedMessage } from 'react-intl';
 import { Form, Input, Button, Row, Icon, message } from 'antd';
 
-import { ROUTE_HOME, API_LOGIN } from '../../../utils/constants';
+import { ROUTE_HOME,ROUTE_HOMEZC, API_LOGIN } from '../../../utils/constants';
 import Storage from '../../../utils/storage';
 import { post } from '../../../utils/fetch';
 
@@ -29,7 +29,7 @@ const SLogin = props => {
         const result = await post(API_LOGIN, { name, pass });
         Storage.setToken(result.token);
         Storage.setUser(result.user);
-        props.history.push(ROUTE_HOME);
+        props.history.push(ROUTE_HOMEZC);
       } catch (error) {
         message.error(error.message);
       }
