@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SClassifyAnalyse from './SClassifyAnalyse/SClassifyAnalyse';
+import SClassifyAnalyse from './SAnalyseRows/SClassifyAnalyse/SClassifyAnalyse';
 
 const SAnalyse = () => {
   return (
