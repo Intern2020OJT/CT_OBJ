@@ -1,16 +1,16 @@
 import React from 'react';
 import { Card } from 'antd';
-import STimeTopTenBar from './STimeTopTenBar';
+import CTimeTopTenBar from './CTimeTopTenBar';
 
-const STimeTopTen = props => {
+const CTimeTopTen = props => {
   return (
     <Card
       style={{ width: '600px', height: '500px' }}
       title="平均对应时间Top10"
     >
-      <STimeTopTenBar data={props.data}/>
+      <CTimeTopTenBar data={props.data}/>
     </Card>
   );
 };
 
-export default STimeTopTen;
+export default CTimeTopTen;

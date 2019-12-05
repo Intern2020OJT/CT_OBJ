@@ -2,7 +2,7 @@ import React from 'react';
 import { Chart, Geom, Axis, Tooltip, Legend, } from 'bizcharts';
 import DataSet from '@antv/data-set';
 
-const SClassifyLablesAnalyseBar = () => {
+const CClassifyLablesAnalyseBar = () => {
   const lablesData = [
     {
       name: 'Open',
@@ -53,4 +53,4 @@ const SClassifyLablesAnalyseBar = () => {
   );
 };
 
-export default SClassifyLablesAnalyseBar;
+export default CClassifyLablesAnalyseBar;

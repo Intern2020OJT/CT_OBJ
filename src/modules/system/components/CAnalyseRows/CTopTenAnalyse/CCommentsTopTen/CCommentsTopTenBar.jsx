@@ -8,7 +8,7 @@ import {
 } from "bizcharts";
 import DataSet from "@antv/data-set";
 
-const SCommentsTopTenBar = props => {
+const CCommentsTopTenBar = props => {
     const data = props.data;
     const ds = new DataSet();
     const dv = ds.createView().source(data);
@@ -38,4 +38,4 @@ const SCommentsTopTenBar = props => {
 }
 
 
-export default SCommentsTopTenBar;
+export default CCommentsTopTenBar;

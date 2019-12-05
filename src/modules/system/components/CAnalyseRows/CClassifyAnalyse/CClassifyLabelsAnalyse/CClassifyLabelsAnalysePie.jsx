@@ -9,7 +9,7 @@ import {
 } from 'bizcharts';
 import DataSet from '@antv/data-set';
 
-const SClassifyLablesAnalysePie = () => {
+const CClassifyLablesAnalysePie = () => {
   const { DataView } = DataSet;
   const data = [
     {
@@ -152,4 +152,4 @@ const SClassifyLablesAnalysePie = () => {
   );
 };
 
-export default SClassifyLablesAnalysePie;
+export default CClassifyLablesAnalysePie;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card } from 'antd';
-import SCommentsTopTenBar from './SCommentsTopTenBar';
+import CCommentsTopTenBar from './CCommentsTopTenBar';
 
-const SCommentsTopTen = props => {
+const CCommentsTopTen = props => {
  
 
   return (
@@ -10,9 +10,9 @@ const SCommentsTopTen = props => {
       style={{ width: '600px', height: '500px' }}
       title="Comments数量Top10"
     >
-      <SCommentsTopTenBar data={props.data}/>
+      <CCommentsTopTenBar data={props.data}/>
     </Card>
   );
 };
 
-export default SCommentsTopTen;
+export default CCommentsTopTen;

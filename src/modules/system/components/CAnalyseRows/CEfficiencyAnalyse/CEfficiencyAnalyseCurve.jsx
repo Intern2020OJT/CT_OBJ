@@ -7,7 +7,7 @@ import {
     Legend
 } from "bizcharts";
 
-const SEfficiencyAnalyseCurve = () => {
+const CEfficiencyAnalyseCurve = () => {
     const data = [
         {
             month: "Jan",
@@ -115,4 +115,4 @@ const SEfficiencyAnalyseCurve = () => {
 }
 
 
-export default SEfficiencyAnalyseCurve;
+export default CEfficiencyAnalyseCurve;

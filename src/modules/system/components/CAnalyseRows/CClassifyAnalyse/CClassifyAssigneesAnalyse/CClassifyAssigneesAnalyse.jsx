@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Card } from 'antd';
 
-import SClassifyAssigneesAnalyseBar from './SClassifyAssigneesAnalyseBar';
-import SClassifyAssigneesAnalysePie from './SClassifyAssigneesAnalysePie';
+import CClassifyAssigneesAnalyseBar from './CClassifyAssigneesAnalyseBar';
+import CClassifyAssigneesAnalysePie from './CClassifyAssigneesAnalysePie';
 
-const SClassifyAssigneesAnalyse = () => {
+const CClassifyAssigneesAnalyse = () => {
   const [tabs, setState] = useState('bar');
   
   const tabList = [
@@ -19,8 +19,8 @@ const SClassifyAssigneesAnalyse = () => {
   ];
   
   const contentList = {
-    bar: <SClassifyAssigneesAnalyseBar />,
-    pie: <SClassifyAssigneesAnalysePie />,
+    bar: <CClassifyAssigneesAnalyseBar />,
+    pie: <CClassifyAssigneesAnalysePie />,
   };
 
   return (
@@ -38,4 +38,4 @@ const SClassifyAssigneesAnalyse = () => {
   );
 };
 
-export default SClassifyAssigneesAnalyse;
+export default CClassifyAssigneesAnalyse;

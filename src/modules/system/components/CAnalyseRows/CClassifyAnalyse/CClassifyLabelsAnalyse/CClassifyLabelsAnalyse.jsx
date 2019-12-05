@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Card } from 'antd';
 
-import SClassifyLablesAnalyseBar from './SClassifyLabelsAnalyseBar';
-import SClassifyLablesAnalysePie from './SClassifyLabelsAnalysePie';
+import CClassifyLablesAnalyseBar from './CClassifyLabelsAnalyseBar';
+import CClassifyLablesAnalysePie from './CClassifyLabelsAnalysePie';
 
-const SClassifyLablesAnalyse = () => {
+const CClassifyLablesAnalyse = () => {
   const [tabs, setState] = useState('bar');
   
   const tabList = [
@@ -19,8 +19,8 @@ const SClassifyLablesAnalyse = () => {
   ];
   
   const contentList = {
-    bar: <SClassifyLablesAnalyseBar />,
-    pie: <SClassifyLablesAnalysePie />,
+    bar: <CClassifyLablesAnalyseBar />,
+    pie: <CClassifyLablesAnalysePie />,
   };
 
   return (
@@ -38,4 +38,4 @@ const SClassifyLablesAnalyse = () => {
   );
 };
 
-export default SClassifyLablesAnalyse;
+export default CClassifyLablesAnalyse;

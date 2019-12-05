@@ -7,9 +7,12 @@ import {
     Coord,
 } from "bizcharts";
 import DataSet from "@antv/data-set";
+import {dataTimeSort} from '../../../../../../utils/topTenDataSort';
 
-const STimeTopTenBar = props => {
-    const data = props.data;
+const CTimeTopTenBar = props => {
+    console.log(props.data);
+    const data = dataTimeSort(props.data);
+    console.log(data);
     const ds = new DataSet();
     const dv = ds.createView().source(data);
     dv.source(data).transform({
@@ -38,4 +41,4 @@ const STimeTopTenBar = props => {
 }
 
 
-export default STimeTopTenBar;
+export default CTimeTopTenBar;
