@@ -2,27 +2,25 @@ import React from 'react';
 import { Chart, Geom, Axis, Tooltip, Legend, } from 'bizcharts';
 import DataSet from '@antv/data-set';
 
-const CClassifyLablesAnalyseBar = () => {
-  const lablesData = [
-    {
-      name: 'Open',
-      Bug: 18,
-      Todo: 28,
-      Doing: 39,
-      Done: 0,
-      Problem: 20,
-    },
-    {
-      name: 'Close',
-      Bug: 30,
-      Todo: 28,
-      Doing: 39,
-      Done: 50,
-      Problem: 20,
-    },
-  ];
+const CClassifyLablesAnalyseBar = props => {
+  const data = props.data;
+  var ldata = [];
+  var odata = {};
+  var cdata = {};
+  odata.name = 'Open';
+  cdata.name = 'Close';
+  for (var i = 0; i < data.length; i += 2) {
+    odata[data[i].type] = data[i].value;
+    cdata[data[i].type] = data[i+1].value;
+  }
+  ldata.push(odata);
+  ldata.push(cdata);
+  var fields = [];
+  for (var key in ldata[0]){
+    if(key!='name')fields.push(key);
+  }
   const lablesDataSet = new DataSet();
-  const lablesDataValue = lablesDataSet.createView().source(lablesData);
+  const lablesDataValue = lablesDataSet.createView().source(ldata);
   lablesDataValue.transform({
     type: 'fold',
     fields: ['Bug', 'Todo', 'Doing', 'Done', 'Problem'],
