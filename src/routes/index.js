@@ -5,6 +5,7 @@ const config      = require("../../config/app");
 const response    = require("../core/response");
 const log         = require("../core/logger");
 const ctrlUser    = require("../modules/system/controllers/ctrl_user");
+const ctrlIssues    = require("../modules/system/controllers/ctrl_issues");
 
 const appName  = config.name;
 
@@ -17,7 +18,15 @@ module.exports = (app) => {
       response.sendError(res, err);
     }
   });
-
+  app.get(`/${appName}/openingissues`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlIssues.openingissues(req);//模拟数据库取数据
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
   app.use(`/${appName}`, auth.authenticate, system);
 
   // catch 404 and forward to error handler
