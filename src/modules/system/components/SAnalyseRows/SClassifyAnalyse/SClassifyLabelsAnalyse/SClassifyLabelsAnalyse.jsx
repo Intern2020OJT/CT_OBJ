@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Card } from 'antd';
 
-import SClassifyLablesAnalyseBar from './SClassifyLablesAnalyseBar';
-import SClassifyLablesAnalysePie from './SClassifyLablesAnalysePie';
+import SClassifyLablesAnalyseBar from './SClassifyLabelsAnalyseBar';
+import SClassifyLablesAnalysePie from './SClassifyLabelsAnalysePie';
 
 const SClassifyLablesAnalyse = () => {
   const [tabs, setState] = useState('bar');
