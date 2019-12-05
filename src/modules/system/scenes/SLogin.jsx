@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import { useIntl, FormattedMessage } from 'react-intl';
 import { Form, Input, Button, Row, Icon, message } from 'antd';
 
-import { ROUTE_HOME, API_LOGIN } from '../../../utils/constants';
+import { ROUTE_HOME, API_LOGIN, ROUTE_ANALYSIS } from '../../../utils/constants';
 import Storage from '../../../utils/storage';
 import { post } from '../../../utils/fetch';
 
