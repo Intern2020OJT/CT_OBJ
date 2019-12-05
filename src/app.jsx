@@ -17,6 +17,8 @@ import './static/css/layout.less';
 import './static/css/login.less';
 import './static/css/classifyAnalyse.less';
 import './static/css/analysis.less';
+import './static/css/efficiencyAnalyse.less';
+import './static/css/toptenAnalyse.less';
 
 import localZH from './locales/zh';
 import localEN from './locales/en';

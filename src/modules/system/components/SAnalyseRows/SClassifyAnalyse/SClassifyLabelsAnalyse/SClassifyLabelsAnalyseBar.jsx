@@ -2,44 +2,46 @@ import React from 'react';
 import { Chart, Geom, Axis, Tooltip, Legend, } from 'bizcharts';
 import DataSet from '@antv/data-set';
 
-const SClassifyAssigneesAnalyseBar = () => {
+const SClassifyLablesAnalyseBar = () => {
   const lablesData = [
     {
       name: 'Open',
-      Proyang: 18,
-      AyaseEUmi: 28,
-      airoucat: 39,
-      Shanxiaolin: 81,
+      Bug: 18,
+      Todo: 28,
+      Doing: 39,
+      Done: 0,
+      Problem: 20,
     },
     {
       name: 'Close',
-      Proyang: 80,
-      AyaseEUmi: 55,
-      airoucat: 55,
-      Shanxiaolin: 36,
+      Bug: 30,
+      Todo: 28,
+      Doing: 39,
+      Done: 50,
+      Problem: 20,
     },
   ];
   const lablesDataSet = new DataSet();
   const lablesDataValue = lablesDataSet.createView().source(lablesData);
   lablesDataValue.transform({
     type: 'fold',
-    fields: ['Proyang', 'AyaseEUmi', 'airoucat', 'Shanxiaolin'],
+    fields: ['Bug', 'Todo', 'Doing', 'Done', 'Problem'],
     // 展开字段集
-    key: '成员',
+    key: 'Lables',
     // key字段
-    value: 'Issue承担量', // value字段
+    value: '数量', // value字段
   });
 
   return (
-    <div className="barLables">
+    <div className="barLabels">
       <Chart height={405} data={lablesDataValue} forceFit>
         <Legend position="top" dy={-20} />
-        <Axis name="成员" />
-        <Axis name="Issue承担量" />
+        <Axis name="Lables" />
+        <Axis name="数量" />
         <Tooltip />
         <Geom
           type="intervalStack"
-          position="成员*Issue承担量"
+          position="Lables*数量"
           color="name"
           style={{
             stroke: '#fff',
@@ -51,4 +53,4 @@ const SClassifyAssigneesAnalyseBar = () => {
   );
 };
 
-export default SClassifyAssigneesAnalyseBar;
+export default SClassifyLablesAnalyseBar;

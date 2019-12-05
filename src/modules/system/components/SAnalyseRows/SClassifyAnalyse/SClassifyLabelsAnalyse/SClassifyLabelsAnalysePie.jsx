@@ -86,7 +86,7 @@ const SClassifyLablesAnalysePie = () => {
     as: 'percent',
   });
   return (
-    <div className="pieLables">
+    <div className="pieLabels">
       <Chart
         width={600}
         height={460}

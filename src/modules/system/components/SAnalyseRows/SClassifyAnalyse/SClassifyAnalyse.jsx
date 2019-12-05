@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 
-import SClassifyLablesAnalyse from './SClassifyLablesAnalyse/SClassifyLablesAnalyse';
+import SClassifyLablesAnalyse from './SClassifyLabelsAnalyse/SClassifyLabelsAnalyse';
 import SClassifyAssigneesAnalyse from './SClassifyAssigneesAnalyse/SClassifyAssigneesAnalyse';
 
 const SClassifyAnalyse = () => {
