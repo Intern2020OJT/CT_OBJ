@@ -7,6 +7,7 @@ const SHome = () => {
     <div className="home">
       <SOverallAnalyse />
       <SAnalyse />
+    </div>
   );
 };
 
