@@ -25,15 +25,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
-        storage.isAuthenticatedUser() ? (
-          <CDefaultLayout>
-            <Component {...props} />
-          </CDefaultLayout>
-        ) : (
-          <Redirect to={ROUTE_LOGIN} />
-        )
-      }
+      render={props => (storage.isAuthenticatedUser() ? (
+        <CDefaultLayout>
+          <Component {...props} />
+        </CDefaultLayout>
+      ) : (
+        <Redirect to={ROUTE_LOGIN} />
+      ))}
     />
   );
 };
