@@ -9,60 +9,9 @@ import {
 } from 'bizcharts';
 import DataSet from '@antv/data-set';
 
-const SClassifyLablesAnalysePie = () => {
+const CClassifyLablesAnalysePie = props => {
   const { DataView } = DataSet;
-  const data = [
-    {
-      value: 18,
-      type: 'Bug',
-      name: 'BugOpen',
-    },
-    {
-      value: 30,
-      type: 'Bug',
-      name: 'BugClose',
-    },
-    {
-      value: 28,
-      type: 'Todo',
-      name: 'TodoOpen',
-    },
-    {
-      value: 28,
-      type: 'Todo',
-      name: 'TodoClose',
-    },
-    {
-      value: 39,
-      type: 'Doing',
-      name: 'DoingOpen',
-    },
-    {
-      value: 39,
-      type: 'Doing',
-      name: 'DoingClose',
-    },
-    {
-      value: 0,
-      type: 'Done',
-      name: 'DoneOpen',
-    },
-    {
-      value: 50,
-      type: 'Done',
-      name: 'DoneClose',
-    },
-    {
-      value: 20,
-      type: 'Problem',
-      name: 'ProblemOpen',
-    },
-    {
-      value: 20,
-      type: 'Problem',
-      name: 'ProblemClose',
-    },
-  ];
+  const data=props.data;
   const dv = new DataView();
   dv.source(data).transform({
     type: 'percent',
@@ -86,7 +35,7 @@ const SClassifyLablesAnalysePie = () => {
     as: 'percent',
   });
   return (
-    <div className="pieLables">
+    <div className="pieLabels">
       <Chart
         width={600}
         height={460}
@@ -152,4 +101,4 @@ const SClassifyLablesAnalysePie = () => {
   );
 };
 
-export default SClassifyLablesAnalysePie;
+export default CClassifyLablesAnalysePie;

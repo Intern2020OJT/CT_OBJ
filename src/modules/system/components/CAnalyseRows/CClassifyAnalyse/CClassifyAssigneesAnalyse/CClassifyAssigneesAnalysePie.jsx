@@ -9,50 +9,10 @@ import {
 } from 'bizcharts';
 import DataSet from '@antv/data-set';
 
-const SClassifyAssigneesAnalysePie = () => {
+const CClassifyAssigneesAnalysePie = props => {
   const { DataView } = DataSet;
-  const data = [
-    {
-      value: 18,
-      type: 'Proyang',
-      name: 'ProyangOpen',
-    },
-    {
-      value: 80,
-      type: 'Proyang',
-      name: 'ProyangClose',
-    },
-    {
-      value: 28,
-      type: 'AyaseEUmi',
-      name: 'AyaseEUmiOpen',
-    },
-    {
-      value: 55,
-      type: 'AyaseEUmi',
-      name: 'AyaseEUmiClose',
-    },
-    {
-      value: 39,
-      type: 'airoucat',
-      name: 'airoucatOpen',
-    },
-    {
-      value: 55,
-      type: 'airoucat',
-      name: 'airoucatClose',
-    },
-    {
-      value: 81,
-      type: 'Shanxiaolin',
-      name: 'ShanxiaolinOpen',
-    },
-    {
-      value: 36,
-      type: 'Shanxiaolin',
-      name: 'ShanxiaolinClose',
-    },
-  ];
+  const data = props.data;
+  console.log(props);
   const dv = new DataView();
   dv.source(data).transform({
     type: 'percent',
@@ -76,7 +36,7 @@ const SClassifyAssigneesAnalysePie = () => {
     as: 'percent',
   });
   return (
-    <div className="pieLables">
+    <div className="pieLabels">
       <Chart
         width={600}
         height={460}
@@ -142,4 +102,4 @@ const SClassifyAssigneesAnalysePie = () => {
   );
 };
 
-export default SClassifyAssigneesAnalysePie;
+export default CClassifyAssigneesAnalysePie;
