@@ -1,14 +1,12 @@
 import React from 'react';
-
 import SOverallAnalyse from './SOverallAnalyse';
-import SChart from './SChart';
+import SAnalyse from './SAnalyse';
 
 const SHome = () => {
   return (
-    <div>
+    <div className="home">
       <SOverallAnalyse />
-      <SChart />
-    </div>
+      <SAnalyse />
   );
 };
 

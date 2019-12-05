@@ -24,6 +24,7 @@
   },
   "homepage": "https://intern2020ojt.github.io/CT_OBJ",
   "dependencies": {
+    "@antv/data-set": "^0.10.2",
     "antd": "^3.25.3",
     "axios": "0.19.0",
     "bizcharts": "3.5.6",
