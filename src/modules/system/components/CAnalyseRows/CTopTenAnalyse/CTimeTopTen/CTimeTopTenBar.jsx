@@ -31,7 +31,7 @@ const CTimeTopTenBar = props => {
                 />
                 <Axis name="time" />
                 <Tooltip />
-                <Geom type="interval" position="id*time" color="issues" />
+                <Geom type="interval" position="id*time"  />
             </Chart>
         </div>
     );

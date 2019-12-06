@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, Geom, Axis, Tooltip, Legend, } from 'bizcharts';
+import { Chart, Geom, Axis, Tooltip, Legend,Label } from 'bizcharts';
 import DataSet from '@antv/data-set';
 
 const CClassifyAssigneesAnalyseBar = props => {
@@ -45,7 +45,9 @@ const CClassifyAssigneesAnalyseBar = props => {
             stroke: '#fff',
             lineWidth: 1,
           }}
-        />
+        >
+           <Label style={{top:30}} content={['Issue承担量']} />{' '}
+        </Geom>
       </Chart>
     </div>
   );

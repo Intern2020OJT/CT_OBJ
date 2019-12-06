@@ -68,7 +68,7 @@ const CTopTenAnalyse = () => {
         }
     ];
     return (
-        <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]} type="flex" justify="center">
+        <Row gutter={[10,150]} type="flex" justify="center">
             <Col>
                <CTimeTopTen data={data}/>
             </Col>

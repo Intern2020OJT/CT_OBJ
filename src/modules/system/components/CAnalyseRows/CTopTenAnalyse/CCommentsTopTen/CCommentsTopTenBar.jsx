@@ -5,6 +5,8 @@ import {
     Axis,
     Tooltip,
     Coord,
+    Label,
+    Legend
 } from "bizcharts";
 import DataSet from "@antv/data-set";
 
@@ -23,6 +25,7 @@ const CCommentsTopTenBar = props => {
         <div>
             <Chart height={500} data={dv} forceFit>
                 <Coord transpose />
+                <Legend />
                 <Axis
                     name="issues"
                     label={{
@@ -31,7 +34,9 @@ const CCommentsTopTenBar = props => {
                 />
                 <Axis name="comments" />
                 <Tooltip />
-                <Geom type="interval" position="id*comments" color="issues" />
+                <Geom type="interval" position="id*comments">
+                    <Label content={['issues']} />{' '}
+                </Geom>
             </Chart>
         </div>
     );

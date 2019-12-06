@@ -66,10 +66,10 @@ const CEfficiencyAnalyse = () => {
         }
     ];
     return (
-        <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]} type="flex" justify="center">
+        <Row gutter={[10, 15]} type="flex" justify="center">
             <Col>
                 <Card
-                    style={{ width: '1232px', height: '500px' }}
+                    style={{ width: '1210px', height: '500px' }}
                     title="平均对应时间分析"
                 >
                     <CEfficiencyAnalyseCurve data={data} />
