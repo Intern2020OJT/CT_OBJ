@@ -15,27 +15,25 @@ import './static/css/resetant.less';
 import './static/css/index.less';
 import './static/css/layout.less';
 import './static/css/login.less';
-//import './static/css/homeZC.less';
+// import './static/css/homeZC.less';
 
 import localZH from './locales/zh';
 import localEN from './locales/en';
 import localJA from './locales/ja';
 import storage from './utils/storage';
-import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_ERROR,ROUTE_HOMEZC } from './utils/constants';
+import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_ERROR, ROUTE_HOMEZC } from './utils/constants';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
-        storage.isAuthenticatedUser() ? (
-          <CDefaultLayout>
-            <Component {...props} />
-          </CDefaultLayout>
-        ) : (
-          <Redirect to={ROUTE_LOGIN} />
-        )
-      }
+      render={props => (storage.isAuthenticatedUser() ? (
+        <CDefaultLayout>
+          <Component {...props} />
+        </CDefaultLayout>
+      ) : (
+        <Redirect to={ROUTE_LOGIN} />
+      ))}
     />
   );
 };

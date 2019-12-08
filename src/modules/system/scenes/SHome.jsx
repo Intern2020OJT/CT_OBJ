@@ -2,7 +2,6 @@ import React from 'react';
 import { Chart, Geom, Axis, Tooltip, Legend } from 'bizcharts';
 
 const SHome = () => {
-
   // 数据源
   const data = [
     { genre: 'Sports', sold: 275, income: 2300 },
@@ -22,8 +21,8 @@ const SHome = () => {
     <div>
       <h1>Home</h1>
       <Chart width={600} height={400} data={data} scale={cols}>
-        <Axis name="genre" title/>
-        <Axis name="sold" title/>
+        <Axis name="genre" title />
+        <Axis name="sold" title />
         <Legend position="top" dy={-20} />
         <Tooltip />
         <Geom type="interval" position="genre*sold" color="genre" />
