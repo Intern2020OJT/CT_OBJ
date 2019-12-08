@@ -29,7 +29,7 @@ const SLogin = props => {
         const result = await post(API_LOGIN, { name, pass });
         Storage.setToken(result.token);
         Storage.setUser(result.user);
-        props.history.push(ROUTE_HOME);
+        props.history.push(ROUTE_ANALYSIS);
       } catch (error) {
         message.error(error.message);
       }

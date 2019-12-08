@@ -1,13 +1,8 @@
-import React from "react";
-import {
-    Chart,
-    Geom,
-    Axis,
-    Tooltip,
-    Legend
-} from "bizcharts";
+import React from 'react';
+import { Row, Col,Card } from 'antd';
+import CEfficiencyAnalyseCurve from './CEfficiencyAnalyseCurve';
 
-const SEfficiencyAnalyseCurve = () => {
+const CEfficiencyAnalyse = () => {
     const data = [
         {
             month: "Jan",
@@ -70,49 +65,19 @@ const SEfficiencyAnalyseCurve = () => {
             time: 9.6
         }
     ];
-    const cols = {
-        month: {
-            range: [0, 1]
-        }
-    };
     return (
-        <div className="curveEfficiency">
-            <Chart height={400} data={data} scale={cols} forceFit>
-                <Legend />
-                <Axis name="month" />
-                <Axis
-                    name="time"
-                    label={{
-                        formatter: val => `${val}小时`
-                    }}
-                />
-                <Tooltip
-                    crosshairs={{
-                        type: "y"
-                    }}
-                />
-                <Geom
-                    type="line"
-                    position="month*time"
-                    size={2}
-                    color={"item"}
-                    shape={"smooth"}
-                />
-                <Geom
-                    type="point"
-                    position="month*time"
-                    size={4}
-                    shape={"circle"}
-                    color={"item"}
-                    style={{
-                        stroke: "#fff",
-                        lineWidth: 1
-                    }}
-                />
-            </Chart>
-        </div>
+        <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]} type="flex" justify="center">
+            <Col>
+                <Card
+                    style={{ width: '1232px', height: '500px' }}
+                    title="平均对应时间分析"
+                >
+                    <CEfficiencyAnalyseCurve data={data} />
+                </Card>
+                
+            </Col>
+        </Row>
     );
-}
+};
 
-
-export default SEfficiencyAnalyseCurve;
+export default CEfficiencyAnalyse;

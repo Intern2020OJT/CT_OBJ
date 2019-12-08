@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row, Col} from 'antd';
-import STimeTopTen from './STimeTopTen/STimeTopTen';
-import SCommentsTopTen from './SCommentsTopTen/SCommentsTopTen';
+import CTimeTopTen from './CTimeTopTen/CTimeTopTen';
+import CCommentsTopTen from './CCommentsTopTen/CCommentsTopTen';
 
-const STopTenAnalyse = () => {
+const CTopTenAnalyse = () => {
     const data = [
         {
             id: "13",
@@ -69,14 +69,14 @@ const STopTenAnalyse = () => {
     ];
     return (
         <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]} type="flex" justify="center">
-            <Col span={8}>
-               <STimeTopTen data={data}/>
+            <Col>
+               <CTimeTopTen data={data}/>
             </Col>
-            <Col span={8}>
-               <SCommentsTopTen data={data}/>
+            <Col>
+               <CCommentsTopTen data={data}/>
             </Col>
         </Row>
     );
 };
 
-export default STopTenAnalyse;
+export default CTopTenAnalyse;

@@ -8,7 +8,7 @@ import {
 } from "bizcharts";
 import DataSet from "@antv/data-set";
 
-const STimeTopTenBar = props => {
+const CCommentsTopTenBar = props => {
     const data = props.data;
     const ds = new DataSet();
     const dv = ds.createView().source(data);
@@ -16,7 +16,7 @@ const STimeTopTenBar = props => {
         type: "sort",
         callback(a, b) {
             // 排序依据，和原生js的排序callback一致
-            return a.time - b.time > 0;
+            return a.comments - b.comments > 0;
         }
     });
     return (
@@ -29,13 +29,13 @@ const STimeTopTenBar = props => {
                         offset: 12
                     }}
                 />
-                <Axis name="time" />
+                <Axis name="comments" />
                 <Tooltip />
-                <Geom type="interval" position="id*time" color="issues" />
+                <Geom type="interval" position="id*comments" color="issues" />
             </Chart>
         </div>
     );
 }
 
 
-export default STimeTopTenBar;
+export default CCommentsTopTenBar;
