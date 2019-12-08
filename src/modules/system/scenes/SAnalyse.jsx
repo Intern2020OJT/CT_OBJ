@@ -1,8 +1,7 @@
 import React from 'react';
-import SClassifyAnalyse from '../components/SAnalyseRows/SClassifyAnalyse/SClassifyAnalyse';
-import SEfficiencyAnalyse from '../components/SAnalyseRows/SEfficiencyAnalyse/SEfficiencyAnalyse';
-import STopTenAnalyse from '../components/SAnalyseRows/STopTenAnalyse/STopTenAnalyse';
 
+import COverallAnalyse from '../components/COverallAnalyse/COverallAnalyse';
+import CSearchCondition from '../components/CSearchCondition/CSearchCondition';
 import CClassifyAnalyse from '../components/CAnalyseRows/CClassifyAnalyse/CClassifyAnalyse';
 import CEfficiencyAnalyse from '../components/CAnalyseRows/CEfficiencyAnalyse/CEfficiencyAnalyse';
 import CTopTenAnalyse from '../components/CAnalyseRows/CTopTenAnalyse/CTopTenAnalyse';
@@ -10,6 +9,8 @@ import CTopTenAnalyse from '../components/CAnalyseRows/CTopTenAnalyse/CTopTenAna
 const SAnalyse = () => {
   return (
     <div className="Analyse">
+      <COverallAnalyse />
+      <CSearchCondition />
       <CClassifyAnalyse />
       <CEfficiencyAnalyse/>
       <CTopTenAnalyse/>

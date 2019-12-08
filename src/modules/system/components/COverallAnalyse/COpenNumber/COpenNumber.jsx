@@ -1,17 +1,17 @@
 import React from 'react';
 import { Statistic,Card } from 'antd';
 
-const CTotal = () => {
+const COpenNumber = () => {
     return (
-        <Card title="总数">
+        <Card title="Open 数">
             <br/>
             <Statistic  
                 style={{ width: '283px', height: '80px' }}
                 valueStyle={{textAlign:'center',fontSize:30}}     
-                value={1128}//待修改 
+                value={12}//待修改 
             />
         </Card>
     )
 }
 
-export default CTotal;
+export default COpenNumber;
