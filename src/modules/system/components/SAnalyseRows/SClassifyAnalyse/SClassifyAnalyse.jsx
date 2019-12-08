@@ -8,10 +8,10 @@ const SClassifyAnalyse = () => {
   return (
     
     <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]} type="flex" justify="center">
-      <Col span={8}>
+      <Col>
         <SClassifyLablesAnalyse />
       </Col>
-      <Col span={8}>
+      <Col>
         <SClassifyAssigneesAnalyse />
       </Col>
     </Row>
