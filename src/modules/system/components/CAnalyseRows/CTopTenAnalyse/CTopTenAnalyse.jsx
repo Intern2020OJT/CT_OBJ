@@ -6,63 +6,63 @@ import CCommentsTopTen from './CCommentsTopTen/CCommentsTopTen';
 const CTopTenAnalyse = () => {
     const data = [
         {
-            id: "13",
-            issues: "某某功能开发1",
+            shortName: "某某...发1",
+            fullName: "某某功能开发1",
             time: 15,
             comments: 13
         },
         {
-            id: "14",
-            issues: "某某功能开发2",
+            shortName: "某某...发2",
+            fullName: "某某功能开发2",
             time: 16,
             comments: 19
             
         },
         {
-            id: "15",
-            issues: "某某功能开发3",
+            shortName: "某某...发3",
+            fullName: "某某功能开发3",
             time: 8,
             comments: 24
         },
         {
-            id: "16",
-            issues: "某某功能开发4",
+            shortName: "某某...发4",
+            fullName: "某某功能开发4",
             time: 25,
             comments: 55
         },
         {
-            id: "17",
-            issues: "某某功能开发5",
+            shortName: "某某...发5",
+            fullName: "某某功能开发5",
             time: 6,
             comments: 30
         },
         {
-            id: "18",
-            issues: "某某功能开发6",
+            shortName: "某某...发6",
+            fullName: "某某功能开发6",
             time: 13,
             comments: 8
         },
         {
-            id: "19",
-            issues: "某某功能开发7",
+            shortName: "某某...发7",
+            fullName: "某某功能开发7",
             time: 20,
             comments: 12
         },
         {
-            id: "20",
-            issues: "某某功能开发8",
+            shortName: "某某...发8",
+            fullName: "某某功能开发8",
             time: 25,
             comments: 25
         },
         {
-            id: "21",
-            issues: "某某功能开发9",
+            shortName: "某某...发9",
+            fullName: "某某功能开发9",
             time: 69,
             comments: 21
         },
         {
-            id: "22",
-            issues: "某某功能开发10",
+            shortName: "某某...发10",
+            fullName: "某某功能开发10",
             time: 55,
             comments: 22
         }

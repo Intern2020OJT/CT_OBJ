@@ -5,8 +5,7 @@ import {
     Axis,
     Tooltip,
     Coord,
-    Label,
-    Legend
+    Label
 } from "bizcharts";
 import DataSet from "@antv/data-set";
 
@@ -25,20 +24,29 @@ const CCommentsTopTenBar = props => {
         <div>
             <Chart height={500} data={dv} forceFit>
                 <Coord transpose />
-                <Legend />
                 <Axis
-                    name="issues"
+                    name='shortName'
                     label={{
                         offset: 12
                     }}
                 />
                 <Axis name="comments" />
-                <Tooltip />
-                <Geom type="interval" position="id*comments">
-                    <Label content={['issues']} />{' '}
+                <Tooltip/>
+                <Geom
+                    type="interval"
+                    position="shortName*comments"
+                    tooltip={['fullName*comments', (fullName, comments) => {
+                        return {
+                          //自定义 tooltip 上显示的 title 显示内容等。
+                          name: fullName,
+                          title: fullName,
+                          value: comments
+                        };
+                      }]}>
+                    <Label offset={3} content={['comments']} />{''}
                 </Geom>
             </Chart>
-        </div>
+        </div >
     );
 }
 

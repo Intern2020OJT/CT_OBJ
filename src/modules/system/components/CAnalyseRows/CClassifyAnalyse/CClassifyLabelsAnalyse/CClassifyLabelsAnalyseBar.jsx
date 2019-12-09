@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, Geom, Axis, Tooltip, Legend, } from 'bizcharts';
+import { Chart, Geom, Axis, Tooltip, Legend,Label } from 'bizcharts';
 import DataSet from '@antv/data-set';
 
 const CClassifyLablesAnalyseBar = props => {
@@ -27,7 +27,7 @@ const CClassifyLablesAnalyseBar = props => {
     // 展开字段集
     key: 'Lables',
     // key字段
-    value: '数量', // value字段
+    value: 'count', // value字段
   });
 
   return (
@@ -35,17 +35,30 @@ const CClassifyLablesAnalyseBar = props => {
       <Chart height={405} data={lablesDataValue} forceFit>
         <Legend position="top" dy={-20} />
         <Axis name="Lables" />
-        <Axis name="数量" />
+        <Axis name="count" />
         <Tooltip />
         <Geom
           type="intervalStack"
-          position="Lables*数量"
+          position="Lables*count"
           color="name"
           style={{
             stroke: '#fff',
             lineWidth: 1,
           }}
-        />
+        >
+          <Label
+            offset={0}
+            position="middle"
+            content={['count']}
+            formatter={(text, item, index) => {
+              // text 为每条记录 x 属性的值
+              // item 为映射后的每条数据记录，是一个对象，可以从里面获取你想要的数据信息
+              // index 为每条记录的索引
+              console.log(text);
+              if(text!='0')return text;
+              else return undefined;
+            }} />{''}
+        </Geom>
       </Chart>
     </div>
   );

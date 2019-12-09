@@ -8,7 +8,7 @@ const CCommentsTopTen = props => {
   return (
     <Card
       style={{ width: '600px', height: '500px' }}
-      title="Comments数量Top10"
+      title="Comments数量Top10 (个)"
     >
       <CCommentsTopTenBar data={props.data}/>
     </Card>

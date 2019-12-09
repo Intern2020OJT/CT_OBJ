@@ -6,7 +6,7 @@ const CTimeTopTen = props => {
   return (
     <Card
       style={{ width: '600px', height: '500px' }}
-      title="平均对应时间Top10"
+      title="平均对应时间Top10 (小时)"
     >
       <CTimeTopTenBar data={props.data}/>
     </Card>
