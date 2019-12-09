@@ -8,8 +8,8 @@ const CAverageTime = () => {
             <Statistic  
                 style={{ width: '283px', height: '80px' }}
                 valueStyle={{textAlign:'center',fontSize:30}}     
-                value={12} //待修改
-                precision={1}
+                value={12.191} //待修改
+                precision={2}
                 suffix={<span style={{fontSize:25}}> h</span>}
             />
         </Card>
