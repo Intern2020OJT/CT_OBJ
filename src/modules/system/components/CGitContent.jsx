@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Card,Radio } from 'antd';
+import { Card,Radio,Checkbox } from 'antd';
 
 import '../../../static/css/CGitContent.less';
 
 function CGitContent() {
   return (
     <div className="divContaner">
-      <Radio className="radioRight"></Radio>
+      <Checkbox className="radioRight"></Checkbox>
       <div className="divBlock">
         <label>this is git production</label>
       </div>
