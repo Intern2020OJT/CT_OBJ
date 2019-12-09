@@ -7,7 +7,7 @@ import { Form, Input, Button, Row, Col, Icon, message } from 'antd';
 import '../../../static/css/homeZC.less';
 import renderEmpty from 'antd/lib/config-provider/renderEmpty';
 
-function CContentBody() {
+function CContentBody(props) {
   const [componentArray, setComponentArray] = useState(3);
   const receiveComponentArrayChange = () => {
     var i = componentArray;
@@ -20,19 +20,19 @@ function CContentBody() {
     <Row gutter={[16, 20]}>
 
       <Col className="gutter-row" span={6}>
-        <div className="gutter-box"><CGitContent></CGitContent> </div>
+        <div className="gutter-box"><CGitContent CheckboxState={props.CheckboxState}></CGitContent> </div>
       </Col>
       <Col className="gutter-row" span={6}>
-        <div className="gutter-box"><CGitContent></CGitContent> </div>
+        <div className="gutter-box"><CGitContent CheckboxState={props.CheckboxState}></CGitContent> </div>
       </Col>
       <Col className="gutter-row" span={6}>
-        <div className="gutter-box"><CGitContent></CGitContent> </div>
+        <div className="gutter-box"><CGitContent CheckboxState={props.CheckboxState}></CGitContent> </div>
       </Col>
       <Col className="gutter-row" span={6}>
-        <div className="gutter-box"><CGitContent></CGitContent> </div>
+        <div className="gutter-box"><CGitContent CheckboxState={props.CheckboxState}></CGitContent> </div>
       </Col>
       <Col className="gutter-row" span={6}>
-        <div className="gutter-box"><CGitContent></CGitContent> </div>
+        <div className="gutter-box"><CGitContent CheckboxState={props.CheckboxState}></CGitContent> </div>
       </Col>
 
       <Col className="gutter-row" span={6}>
