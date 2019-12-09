@@ -18,11 +18,12 @@ const CEfficiencyAnalyseCurve = props => {
     <div className="curveEfficiency">
       <Chart height={400} data={data} scale={cols} forceFit>
         <Legend />
-        <Axis name="month" />
+        <Axis name="month" label={{ textStyle: { fontSize: 15 } }}/>
         <Axis
           name="time"
           label={{
-            formatter: val => `${val}小时`
+            formatter: val => `${val}小时`,
+            textStyle: { fontSize: 15 }
           }}
         />
         <Tooltip

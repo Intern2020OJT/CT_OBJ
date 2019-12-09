@@ -23,6 +23,12 @@ const CTimeTopTenBar = props => {
       return a.time - b.time > 0;
     }
   });
+
+  const itemTpl= '<li data-index={index}>'
+  + '<div style="float:left;font-size:14px;">{value}<div>'
+  + '<div><div style="float:right">{otherMessage}<div><div>'
+  + '</li>'
+
   return (
     <div>
       <Chart height={500} data={dv} forceFit>
@@ -30,24 +36,25 @@ const CTimeTopTenBar = props => {
         <Axis
           name="shortName"
           label={{
-            offset: 12
+            offset: 12,
+            textStyle: { fontSize: 15 }
           }}
         />
-        <Axis name="time" />
-        <Tooltip />
+        <Axis name="time" label={{ textStyle: { fontSize: 15 } }}/>
+        <Tooltip enterable="true" itemTpl={itemTpl}/>
         <Geom
           type="interval"
           position="shortName*time"
           tooltip={['fullName*time', (fullName, time) => {
             return {
-              // 自定义 tooltip 上显示的 title 显示内容等。
-              name: fullName,
-              title: fullName,
-              value: time
+              //此处baidu可替换为issues的url
+              title:`<div style="font-size:15px;color:#3aa1ff">${fullName}</div>`,
+              value:`对应时间: ${time}小时`,
+              otherMessage:`<a href="https://www.baidu.com>">详情</a>`
             };
           }]}
         >
-          <Label offset={3} content={['time']} />{''}
+          <Label offset={3} content={['time']} fontSize={15} />{''}
         </Geom>
       </Chart>
     </div>
