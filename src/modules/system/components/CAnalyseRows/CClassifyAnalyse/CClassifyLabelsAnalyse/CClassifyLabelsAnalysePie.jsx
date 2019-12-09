@@ -11,7 +11,7 @@ import DataSet from '@antv/data-set';
 
 const CClassifyLablesAnalysePie = props => {
   const { DataView } = DataSet;
-  const data = props.data;
+  const { data } = props;
   const dv = new DataView();
   dv.source(data).transform({
     type: 'percent',
@@ -74,7 +74,8 @@ const CClassifyLablesAnalysePie = props => {
             offset={-10}
             textStyle={{
               fontSize: '15'
-            }} />
+            }}
+          />
         </Geom>
         <View data={dv1} scale={cols}>
           <Coord type="theta" radius={0.75} innerRadius={0.5 / 0.75} />
@@ -102,7 +103,8 @@ const CClassifyLablesAnalysePie = props => {
               content="name"
               textStyle={{
                 fontSize: '15'
-              }} />
+              }}
+            />
           </Geom>
         </View>
       </Chart>

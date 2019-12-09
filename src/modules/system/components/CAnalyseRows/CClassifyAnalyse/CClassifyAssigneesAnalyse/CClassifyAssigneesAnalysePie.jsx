@@ -11,7 +11,7 @@ import DataSet from '@antv/data-set';
 
 const CClassifyAssigneesAnalysePie = props => {
   const { DataView } = DataSet;
-  const data = props.data;
+  const { data } = props;
   console.log(props);
   const dv = new DataView();
   dv.source(data).transform({
@@ -75,7 +75,8 @@ const CClassifyAssigneesAnalysePie = props => {
             offset={-3}
             textStyle={{
               fontSize: '15'
-            }} />
+            }}
+          />
         </Geom>
         <View data={dv1} scale={cols}>
           <Coord type="theta" radius={0.75} innerRadius={0.5 / 0.75} />
@@ -103,7 +104,8 @@ const CClassifyAssigneesAnalysePie = props => {
               content="name"
               textStyle={{
                 fontSize: '15'
-              }} />
+              }}
+            />
           </Geom>
         </View>
       </Chart>

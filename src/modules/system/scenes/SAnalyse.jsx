@@ -8,8 +8,8 @@ const SAnalyse = () => {
   return (
     <div className="Analyse">
       <CClassifyAnalyse />
-      <CEfficiencyAnalyse/>
-      <CTopTenAnalyse/>
+      <CEfficiencyAnalyse />
+      <CTopTenAnalyse />
     </div>
   );
 };

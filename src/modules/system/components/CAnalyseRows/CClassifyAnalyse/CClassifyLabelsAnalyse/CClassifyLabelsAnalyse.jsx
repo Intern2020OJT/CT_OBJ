@@ -72,20 +72,20 @@ const CClassifyLablesAnalyse = () => {
   ];
   
   const contentList = {
-    bar: <CClassifyLablesAnalyseBar data={data}/>,
-    pie: <CClassifyLablesAnalysePie data={data}/>,
+    bar: <CClassifyLablesAnalyseBar data={data} />,
+    pie: <CClassifyLablesAnalysePie data={data} />,
   };
 
   return (
     <Card
       style={{ width: '600px', height: '500px' }}
-      //title="Lables分析"
+      // title="Lables分析"
       tabList={tabList}
       activeTabKey={tabs}
       onTabChange={key => {
         setState(key);
       }}
-    ><p style={{fontSize:15,margin:20}}>Lables分析</p>
+    ><p style={{ fontSize: 18, margin: 20 }}>Lables分析</p>
       {contentList[tabs]}
     </Card>
   );

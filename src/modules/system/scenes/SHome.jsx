@@ -1,4 +1,5 @@
 import React from 'react';
+
 import SAnalyse from './SAnalyse';
 
 const SHome = () => {
