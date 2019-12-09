@@ -14,39 +14,15 @@ const SHomeZC = () => {
     <div>
       <nav>
         <ul>
-          <li><a>??</a></li>
-          <li><a>??</a></li>
+          <li><a>更新</a></li>
+          <li><a>多选</a></li>
         </ul>
       </nav>
 
       <div className="contentBody">
         <div>
-          <Row gutter={[16, 20]}>
-            <Col className="gutter-row" span={6}>
-              <div className="gutter-box"><CGitContent></CGitContent> </div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div className="gutter-box"><CGitContent></CGitContent> </div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div className="gutter-box"><CGitContent></CGitContent> </div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div className="gutter-box"><CGitContent></CGitContent> </div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div className="gutter-box"><CGitContent></CGitContent> </div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div className="gutter-box"><CGitContent></CGitContent> </div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div className="gutter-box"><CGitContent></CGitContent> </div>
-            </Col>
-            <Col className="gutter-row" span={6}>
-              <div className="gutter-box"><CGitAddModal></CGitAddModal> </div>
-            </Col>
-          </Row>
+          <CContentBody></CContentBody>
+          
         </div>
       </div>
 

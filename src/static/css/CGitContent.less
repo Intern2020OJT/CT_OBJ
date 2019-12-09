@@ -1,15 +1,24 @@
 .divContaner
 {
+    position: relative;
     width: 300px;
-    background: chocolate;
+    height: 160px;
+    background: white;
     margin-left:28.32px ;
+    border:1px solid;
+    box-shadow: 2px 2px 8px #888888;
+    margin-top: 10px;
+    text-align: center;
+    transition:width ,heght,box-shadow ;
+    border-radius: 3px;
 }
+
 .divBlock
 {
-    height: 160px;
-    width: 260px;
-    margin-left: 20px;
     
+    width: 260px;
+    text-align: center;
+    margin-left: 20px;
     word-break:keep-all;/* 不换行 */
     white-space:nowrap;/* 不换行 */
     overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
@@ -19,4 +28,11 @@
 {
     font-size: 30px;
     line-height: 90px;
+    user-select: none;
+}
+.radioRight
+{
+    z-index: 100;
+    position:absolute;
+    right: 0;
 }

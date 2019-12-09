@@ -4,6 +4,9 @@ import { Form, Input, Modal, Button, Row, Col, Icon, message } from 'antd';
 import '../../../static/css/CGitAddModal.less';
 import '../../../static/css/CGitContent.less';
 
+//import { AddGitContent } from '../../../utils/AddGitContent';
+import { addGitContent } from '../../../utils/addGitContent';
+
 function CGitAddModal(props) {
     const [loading, setloading] = useState(false);
     const [visible, setvisible] = useState(false);
@@ -13,12 +16,10 @@ function CGitAddModal(props) {
 
     const handleOk = () => {
         setloading(true);
-        /* setTimeout(() => {
-             setvisible(false);
-             setloading(false);
-         }, 3000);*/
+        props.inAdd();
         setvisible(false);
         setloading(false);
+
     };
 
     const handleCancel = () => {
@@ -36,23 +37,21 @@ function CGitAddModal(props) {
             <Modal
 
                 visible={visible}
-                title="Title"
+                title="导入issues"
 
                 onCancel={handleCancel}
                 footer={[
                     <Button key="back" onClick={handleCancel}>
-                        Return
+                        返回
                      </Button>,
-                    <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
-                        Submit
+                    <Button key="submit" type="primary" loading={loading} onClick={function (event) { handleOk() }}>
+                        导入
                     </Button>,
                 ]}
             >
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+                <div>
+                    <span>git url:</span><input className='gitIntrosInput'></input>
+                </div>
             </Modal>
         </div>
     );
