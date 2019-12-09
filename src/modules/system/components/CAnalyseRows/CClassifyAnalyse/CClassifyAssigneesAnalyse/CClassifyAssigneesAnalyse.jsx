@@ -72,13 +72,13 @@ const CClassifyAssigneesAnalyse = () => {
   return (
     <Card
       style={{ width: '600px', height: '500px' }}
-      title="担当者分析"
+      //title="担当者分析"
       tabList={tabList}
       activeTabKey={tabs}
       onTabChange={key => {
         setState(key);
       }}
-    >
+    ><p style={{fontSize:15,margin:20}}>担当者分析</p>
       {contentList[tabs]}
     </Card>
   );

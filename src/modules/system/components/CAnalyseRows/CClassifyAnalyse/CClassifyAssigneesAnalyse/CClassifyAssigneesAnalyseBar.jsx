@@ -33,9 +33,9 @@ const CClassifyAssigneesAnalyseBar = props => {
   return (
     <div className="barLabels">
       <Chart height={405} data={dv} forceFit>
-        <Legend position="top" dy={-20} />
-        <Axis name="member" />
-        <Axis name="assigness" />
+        <Legend position="bottom" dy={-20} />
+        <Axis name="member" label={{textStyle:{fontSize:15}}}/>
+        <Axis name="assigness" label={{textStyle:{fontSize:15}}}/>
         <Tooltip />
         <Geom
           type="intervalStack"
@@ -50,11 +50,14 @@ const CClassifyAssigneesAnalyseBar = props => {
             offset={0}
             position="middle"
             content={['assigness']}
+            textStyle={{
+              fill:'white',
+              fontSize:'15'
+            }}
             formatter={(text, item, index) => {
               // text 为每条记录 x 属性的值
               // item 为映射后的每条数据记录，是一个对象，可以从里面获取你想要的数据信息
               // index 为每条记录的索引
-              console.log(text);
               if(text!='0')return text;
               else return undefined;
             }} />{''}

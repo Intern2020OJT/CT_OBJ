@@ -55,16 +55,16 @@ const CTopTenAnalyse = () => {
             comments: 25
         },
         {
-            shortName: "某某...发9",
-            fullName: "某某功能开发9",
-            time: 69,
-            comments: 21
-        },
-        {
             shortName: "某某...发10",
             fullName: "某某功能开发10",
             time: 55,
             comments: 22
+        },
+        {
+            shortName: "某某...发9",
+            fullName: "某某功能开发9",
+            time: 69,
+            comments: 21
         }
     ];
     return (

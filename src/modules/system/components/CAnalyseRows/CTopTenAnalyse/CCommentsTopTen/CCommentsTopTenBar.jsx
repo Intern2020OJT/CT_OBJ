@@ -11,8 +11,10 @@ import DataSet from "@antv/data-set";
 
 const CCommentsTopTenBar = props => {
     const data = props.data;
+    //强制排序
+    const sortData = data.sort((c,b) => {return (c.comments>b.comments)?1:-1});
     const ds = new DataSet();
-    const dv = ds.createView().source(data);
+    const dv = ds.createView().source(sortData);
     dv.source(data).transform({
         type: "sort",
         callback(a, b) {
@@ -20,6 +22,7 @@ const CCommentsTopTenBar = props => {
             return a.comments - b.comments > 0;
         }
     });
+    console.log(dv);
     return (
         <div>
             <Chart height={500} data={dv} forceFit>

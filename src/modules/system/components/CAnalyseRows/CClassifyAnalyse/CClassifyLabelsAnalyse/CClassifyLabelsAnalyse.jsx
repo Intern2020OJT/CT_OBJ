@@ -79,13 +79,13 @@ const CClassifyLablesAnalyse = () => {
   return (
     <Card
       style={{ width: '600px', height: '500px' }}
-      title="Lables分析"
+      //title="Lables分析"
       tabList={tabList}
       activeTabKey={tabs}
       onTabChange={key => {
         setState(key);
       }}
-    >
+    ><p style={{fontSize:15,margin:20}}>Lables分析</p>
       {contentList[tabs]}
     </Card>
   );

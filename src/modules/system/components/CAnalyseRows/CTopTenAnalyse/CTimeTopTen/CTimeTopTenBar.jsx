@@ -12,8 +12,10 @@ import DataSet from "@antv/data-set";
 
 const CTimeTopTenBar = props => {
     const data = props.data;
+    //强制排序
+    const sortData = data.sort((c,b) => {return (c.time>b.time)?1:-1});
     const ds = new DataSet();
-    const dv = ds.createView().source(data);
+    const dv = ds.createView().source(sortData);
     dv.source(data).transform({
         type: "sort",
         callback(a, b) {

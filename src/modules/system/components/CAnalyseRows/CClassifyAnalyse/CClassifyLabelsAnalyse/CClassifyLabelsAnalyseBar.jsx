@@ -33,9 +33,9 @@ const CClassifyLablesAnalyseBar = props => {
   return (
     <div className="barLabels">
       <Chart height={405} data={lablesDataValue} forceFit>
-        <Legend position="top" dy={-20} />
-        <Axis name="Lables" />
-        <Axis name="count" />
+        <Legend position="bottom" dy={-20} />
+        <Axis name="Lables" label={{textStyle:{fontSize:15}}}/>
+        <Axis name="count" label={{textStyle:{fontSize:15}}}/>
         <Tooltip />
         <Geom
           type="intervalStack"
@@ -43,18 +43,21 @@ const CClassifyLablesAnalyseBar = props => {
           color="name"
           style={{
             stroke: '#fff',
-            lineWidth: 1,
+            lineWidth: 1
           }}
         >
           <Label
             offset={0}
             position="middle"
             content={['count']}
+            textStyle={{
+              fill:'white',
+              fontSize:'15'
+            }}
             formatter={(text, item, index) => {
               // text 为每条记录 x 属性的值
               // item 为映射后的每条数据记录，是一个对象，可以从里面获取你想要的数据信息
               // index 为每条记录的索引
-              console.log(text);
               if(text!='0')return text;
               else return undefined;
             }} />{''}

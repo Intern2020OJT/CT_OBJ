@@ -70,7 +70,12 @@ const CClassifyAssigneesAnalysePie = props => {
           }}
           select={false}
         >
-          <Label content="type" offset={-10} />
+          <Label
+            content="type"
+            offset={-3}
+            textStyle={{
+              fontSize: '15'
+            }} />
         </Geom>
         <View data={dv1} scale={cols}>
           <Coord type="theta" radius={0.75} innerRadius={0.5 / 0.75} />
@@ -94,7 +99,11 @@ const CClassifyAssigneesAnalysePie = props => {
             }}
             select={false}
           >
-            <Label content="name" />
+            <Label
+              content="name"
+              textStyle={{
+                fontSize: '15'
+              }} />
           </Geom>
         </View>
       </Chart>
