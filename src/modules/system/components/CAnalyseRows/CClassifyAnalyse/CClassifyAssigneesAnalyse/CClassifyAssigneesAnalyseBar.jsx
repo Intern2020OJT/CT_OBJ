@@ -38,7 +38,6 @@ const CClassifyAssigneesAnalyseBar = props => {
   }).transform({
     type: "map",
     callback: obj => {
-      console.log(obj);
       const key = obj.name;
       let type;
       if (
