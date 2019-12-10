@@ -10,3 +10,4 @@ export const API_GETASSIGNEES = '/getAssignees';
 export const API_GETEFFICIENCY = '/getEfficiency';
 export const API_GETTIMETOPTEN = '/getTimeTopTen';
 export const API_GETCOMMENTSTOPTEN = '/getCommentsTopTen';
+export const API_OPENINGISSUES = '/openingissues';
