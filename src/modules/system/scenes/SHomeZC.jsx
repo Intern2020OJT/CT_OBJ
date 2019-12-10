@@ -10,28 +10,26 @@ import '../../../static/css/homeZC.less';
 
 
 const SHomeZC = () => {
-  var styleVisibility={
+  var styleVisibility = {
     //visibility:"hidden"
-    display:"none"
+    display: "none"
   }
   const [ableCheckboxState, setableCheckboxState] = useState("hidden");
   const ableCheckbox = () => {
-    if (ableCheckboxState === "hidden")
-      {
-        setableCheckboxState("visible");
-        //console.log("1"+ableCheckboxState)
-        document.getElementById("selectesA").innerHTML="取消"
-        document.getElementById("submitA").style.display="block"
-      }
-      else
-      {
-        setableCheckboxState("hidden");
-        document.getElementById("selectesA").innerHTML="多选"
-        document.getElementById("submitA").style.display="none"
-       // console.log("2"+ableCheckboxState)
-      }
+    if (ableCheckboxState === "hidden") {
+      setableCheckboxState("visible");
+      //console.log("1"+ableCheckboxState)
+      document.getElementById("selectesA").innerHTML = "取消"
+      document.getElementById("submitA").style.display = "block"
+    }
+    else {
+      setableCheckboxState("hidden");
+      document.getElementById("selectesA").innerHTML = "多选"
+      document.getElementById("submitA").style.display = "none"
+      // console.log("2"+ableCheckboxState)
+    }
 
-    
+
   }
   return (
     <div>
