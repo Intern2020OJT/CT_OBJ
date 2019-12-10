@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Card} from 'antd';
-import CCbaroneright from './CCbaroneright'
-const CCcardoneright = () => {
+import CCbartwo from './CCbartwo'
+const CCcardtwo = () => {
   const data = [
     {
       name: 'AllIssues',
@@ -22,12 +22,12 @@ const CCcardoneright = () => {
         } 
       ];
       const contentList = {
-        bar: <CCbaroneright data={data}/>,
+        bar: <CCbartwo data={data}/>,
       };
     
       return (
         <Card
-          style={{ width: '600px', height: '500px' }}
+          style={{ width: '1200px', height: '500px' }}
           title="多项目issuesOppen分析"
           tabList={tabList}
           // activeTabKey={tabs}
@@ -39,4 +39,4 @@ const CCcardoneright = () => {
         </Card>
       );
     };
-export default CCcardoneright;
+export default CCcardtwo;

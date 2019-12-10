@@ -30,10 +30,10 @@ const CCpieoneright = props => {
     <div>
       <Chart
         height={400}
-        white={400}
+        white={1200}
         data={dv}
         scale={cols}
-        padding={[80, 100, 80, 80]}
+        padding={[0, 0, 0, 0]}
         forceFit
       >
         <Coord type="theta" radius={0.75} />

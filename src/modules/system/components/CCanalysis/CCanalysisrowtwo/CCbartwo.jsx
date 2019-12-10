@@ -15,11 +15,11 @@ const CCbaroneright = props => {
     value: '数量' // value字段
   });
   return (
-    <Chart height={400} width={400} data={dv} forceFit>
+    <Chart height={400} width={1200} data={dv} forceFit>
       {<Legend position="bottom" dy={-20} />/* 控制颜色解释位置.下面写法颜色解释位于下方<Legend/> */}
       <Axis name="项目" title={{textStyle:{fontSize: '12',
     textAlign: 'center',
-    fill: '#111',
+    fill: '#111',//控制横纵坐标标题颜色深浅
     }}} />
       <Axis name="数量" title={{textStyle:{fontSize: '12',
     textAlign: 'center',

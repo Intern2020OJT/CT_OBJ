@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Chart, Geom, Axis, Tooltip, Legend,Label } from 'bizcharts';
  
-const CCbaroneleft = props => {
+const CCbarone = props => {
 
    const data = props.data;
 
@@ -13,7 +13,7 @@ const CCbaroneleft = props => {
 
   return (
 
-    <Chart width={400} height={400} data={data} forceFit scale={cols}>
+    <Chart width={1200} height={400} data={data} forceFit scale={cols}>
       <Legend position="bottom" dy={-20} />
       <Tooltip />
       <Axis name="sold"  title={{textStyle:{fontSize: '12',
@@ -42,4 +42,4 @@ const CCbaroneleft = props => {
 
   );
 };
-export default CCbaroneleft;
+export default CCbarone;
