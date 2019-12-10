@@ -1,0 +1,4 @@
+[2019-12-05T23:43:31.202] [INFO] access - ::ffff:127.0.0.1 - - "OPTIONS /issues/openingissues HTTP/1.1" 204 0 "http://localhost:5000/analysis" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0"
+[2019-12-05T23:43:31.212] [INFO] access - ::ffff:127.0.0.1 - - "GET /issues/openingissues HTTP/1.1" 200 235 "http://localhost:5000/analysis" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0"
+[2019-12-05T23:43:31.215] [INFO] access - ::ffff:127.0.0.1 - - "OPTIONS /issues/openingissues HTTP/1.1" 204 0 "http://localhost:5000/analysis" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0"
+[2019-12-05T23:43:31.221] [INFO] access - ::ffff:127.0.0.1 - - "GET /issues/openingissues HTTP/1.1" 200 235 "http://localhost:5000/analysis" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0"

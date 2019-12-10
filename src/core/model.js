@@ -10,12 +10,14 @@ const { COMMON_DB_C_ERROR, COMMON_DB_R_ERROR, COMMON_DB_U_ERROR, COMMON_DB_D_ERR
 class Model {
   constructor(code, name, scheme) {
     const conn = db.createConnection(code);
-    this.m = conn.model(name, scheme);
+    this.m = conn.model(name, scheme);//创建新的模型
+    //this.m Model { User } Model { Token }
+     
   }
 
   async create(obj) {
     try {
-      // eslint-disable-next-line new-cap
+      // eslint-disable-next-line new-cap  save更新或者插入取决于obj是否存在
       return await new this.m(obj).save();
     } catch (err) {
       throw new createError.InternalServerError(__(COMMON_DB_C_ERROR));
@@ -74,6 +76,7 @@ class Model {
 
   async getOne(condition, projection = "") {
     try {
+      //findOne() mongodb查询语句，查到第一个对象则停止 exec()如果查询匹配返回一个结果数组，否则返回空
       return await this.m.findOne(condition, projection).exec();
     } catch (err) {
       throw new createError.InternalServerError(__(COMMON_DB_R_ERROR));
@@ -103,8 +106,6 @@ class Model {
       throw new createError.InternalServerError(__(COMMON_DB_R_ERROR));
     }
   }
-
-
   async distinct(field, condition) {
     try {
       return await this.m.distinct(field, condition);

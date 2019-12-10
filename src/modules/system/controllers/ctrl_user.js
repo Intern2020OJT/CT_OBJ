@@ -30,14 +30,14 @@ exports.simpleLogin = async (req) => {
   const { name, pass } = req.body;
 
   try {
-    // 1. check param
+    // 1. check param 检查参数
     loginValidate(req.body);
 
     const sha256Pass = helper.sha256(pass);
     const condition = { name, valid: VALID };
     const projection = "email name password";
 
-    // 2. get user info
+    // 2. get user info 获取用户信息
     const user = await ModelUser.getOne(condition, projection);
     if (!user || user.password !== sha256Pass) {
       throw new createError.BadRequest(__(MODULES_USER_LOGIN_ERROR));
@@ -47,7 +47,7 @@ exports.simpleLogin = async (req) => {
     const obj  = { user: {}, token: "" };
     obj.user = user;
 
-    // 3. create token
+    // 3. create token 创建身份令牌
     const tokenObj = await Token.create(obj.user);
     obj.token = tokenObj.token;
 
