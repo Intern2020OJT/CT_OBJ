@@ -1,5 +1,5 @@
 import React from "react";
-import { Chart, Geom, Axis, Tooltip} from "bizcharts";
+import { Chart, Geom, Axis, Tooltip, Label} from "bizcharts";
 
 const CCpolythree = props => {
   
@@ -41,7 +41,9 @@ const CCpolythree = props => {
               stroke: "#fff",
               lineWidth: 1
             }}
-          />
+          >
+           <Label content={['people']} />{' '}
+          </Geom>
         </Chart>
       </div>
     );
