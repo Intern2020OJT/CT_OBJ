@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col, Card } from 'antd';
 
 import CEfficiencyAnalyseCurve from './CEfficiencyAnalyseCurve';
@@ -15,16 +15,18 @@ const CEfficiencyAnalyse = () => {
     fetchData();
   }, []);
   return (
-    <Row gutter={[10, 15]} type="flex" justify="center">
-      <Col>
-        <Card
-          style={{ width: '1210px', height: '500px' }}
-        ><p style={{ fontSize: 18, margin: 20 }}>平均对应时间分析</p>
-          <CEfficiencyAnalyseCurve data={data} />
-        </Card>
-                
-      </Col>
-    </Row>
+    <div style={{ padding: '10px' }}>
+      <Row gutter={[10, 15]} type="flex" justify="center">
+        <Col>
+          <Card
+            style={{ width: '1220px', height: '500px' }}
+          ><p style={{ fontSize: 18, margin: 20 }}>平均对应时间分析</p>
+            <CEfficiencyAnalyseCurve data={data} />
+          </Card>
+
+        </Col>
+      </Row>
+    </div>
   );
 };
 
