@@ -9,6 +9,7 @@ import SLogin from './modules/system/scenes/SLogin';
 import SHome from './modules/system/scenes/SHome';
 import SInternalServerError from './modules/system/scenes/SInternalServerError';
 import SNotFound from './modules/system/scenes/SNotFound';
+import SHomeZC from './modules/system/scenes/SHomeZC';
 import SCanalysis from './modules/system/scenes/SCanalysis';
 
 import './static/css/resetant.less';
@@ -24,7 +25,7 @@ import localZH from './locales/zh';
 import localEN from './locales/en';
 import localJA from './locales/ja';
 import storage from './utils/storage';
-import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_ERROR, ROUTE_ANALYSIS } from './utils/constants';
+import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_ERROR, ROUTE_HOMEZC,ROUTE_ANALYSIS } from './utils/constants';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
@@ -49,7 +50,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => (!storage.isAuthenticatedUser() ? <Component {...props} /> : <Redirect to={ROUTE_HOME} />)}
+      render={props => (!storage.isAuthenticatedUser() ? <Component {...props} /> : <Redirect to={ROUTE_HOMEZC} />)}
     />
   );
 };
@@ -84,6 +85,7 @@ const App = () => {
         <Switch>
           <PublicRoute path="/" exact component={SLogin} />
           <PublicRoute path={ROUTE_LOGIN} component={SLogin} />
+          <PrivateRoute path={ROUTE_HOMEZC} component={SHomeZC} />
           <PrivateRoute path={ROUTE_ANALYSIS} component={SCanalysis} />
           <PrivateRoute path={ROUTE_HOME} component={SHome} />
           <Route path={ROUTE_ERROR} exact component={SInternalServerError} />
