@@ -4,7 +4,6 @@ import { Menu, Dropdown, Icon, Row, Col } from 'antd';
 import { useIntl } from 'react-intl';
 
 import storage from '../../../utils/storage';
-import { ROUTE_LOGIN } from '../../../utils/constants';
 
 const history = createHistory({ forceRefresh: true });
 
