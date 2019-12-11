@@ -12,8 +12,8 @@ const SAnalyse = () => {
       <COverallAnalyse />
       <CSearchCondition />
       <CClassifyAnalyse />
-      <CEfficiencyAnalyse/>
-      <CTopTenAnalyse/>
+      <CEfficiencyAnalyse />
+      <CTopTenAnalyse />
     </div>
   );
 };

@@ -11,7 +11,7 @@ import DataSet from '@antv/data-set';
 
 const CClassifyAssigneesAnalysePie = props => {
   const { DataView } = DataSet;
-  const data = props.data;
+  const { data } = props;
   console.log(props);
   const dv = new DataView();
   dv.source(data).transform({
@@ -42,7 +42,7 @@ const CClassifyAssigneesAnalysePie = props => {
         height={460}
         data={dv}
         scale={cols}
-        padding={[80, 100, 80, 80]}
+        padding={[0, 80, 80, 80]}
         forceFit
       >
         <Coord type="theta" radius={0.5} />
@@ -70,7 +70,13 @@ const CClassifyAssigneesAnalysePie = props => {
           }}
           select={false}
         >
-          <Label content="type" offset={-10} />
+          <Label
+            content="type"
+            offset={-3}
+            textStyle={{
+              fontSize: '15'
+            }}
+          />
         </Geom>
         <View data={dv1} scale={cols}>
           <Coord type="theta" radius={0.75} innerRadius={0.5 / 0.75} />
@@ -94,7 +100,12 @@ const CClassifyAssigneesAnalysePie = props => {
             }}
             select={false}
           >
-            <Label content="name" />
+            <Label
+              content="name"
+              textStyle={{
+                fontSize: '15'
+              }}
+            />
           </Geom>
         </View>
       </Chart>
