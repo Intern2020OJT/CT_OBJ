@@ -5,6 +5,10 @@ const config      = require("../../config/app");
 const response    = require("../core/response");
 const log         = require("../core/logger");
 const ctrlUser    = require("../modules/system/controllers/ctrl_user");
+const ctrlIssues    = require("../modules/system/controllers/ctrl_issues");
+const ctrlClassify = require("../modules/system/controllers/ctrl_classify");
+const ctrlEffiency = require("../modules/system/controllers/ctrl_efficiency");
+const ctrlTopTen = require("../modules/system/controllers/ctrl_topten");
 
 const appName  = config.name;
 
@@ -17,7 +21,69 @@ module.exports = (app) => {
       response.sendError(res, err);
     }
   });
-
+  app.get(`/${appName}/openingissues`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlIssues.openingissues(req);//模拟数据库取数据
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  //以下由杨欣禹使用
+  /***************************************************/
+  //Labels分析
+  app.get(`/${appName}/getLabels`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlClassify.getLables(req);//模拟数据库取数据
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  //Assiginees分析
+  app.get(`/${appName}/getAssignees`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlClassify.getAssignees(req);//模拟数据库取数据
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  //效率分析
+  app.get(`/${appName}/getEfficiency`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlEffiency.getEfficiency(req);//模拟数据库取数据
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  //时间top10
+  app.get(`/${appName}/getTimeTopTen`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlTopTen.getTimeTopTen(req);//模拟数据库取数据
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  //comments top10
+  app.get(`/${appName}/getCommentsTopTen`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlTopTen.getCommentsTopTen(req);//模拟数据库取数据
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  //以上由杨欣禹使用
+  /******************************************/
   app.use(`/${appName}`, auth.authenticate, system);
 
   // catch 404 and forward to error handler
