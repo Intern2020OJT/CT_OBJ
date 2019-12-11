@@ -11,6 +11,7 @@ const ctrlEffiency = require("../modules/system/controllers/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_topten");
 const ctrlIntrosGit =require("../modules/system/controllers/ctrl_introsgit");
 
+
 const appName  = config.name;
 
 module.exports = (app) => {
@@ -89,7 +90,7 @@ module.exports = (app) => {
   app.get(`/${appName}/introsgit`, async (req,res) => {
     try {
       // console.log(1)
-      const result = await ctrlIntrosGit.introsGit(req);//模拟数据库取数据
+      const result = await ctrlIntrosGit.introsGit(req);
       response.sendSuccess(res, result);//返回数据
     } catch (err) {
       response.sendError(res,err);
