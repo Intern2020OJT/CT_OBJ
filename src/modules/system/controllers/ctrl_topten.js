@@ -1,6 +1,7 @@
 const log = require("../../../core/logger"); 
 exports.getTimeTopTen = async (req) => {
     log.info("getTimeTopTen");
+    console.log(req.query);//得到客户端传来的参数
     try{
         const data = [
             {
