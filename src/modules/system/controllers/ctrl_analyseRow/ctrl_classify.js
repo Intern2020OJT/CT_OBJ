@@ -1,4 +1,4 @@
-const log = require("../../../core/logger"); 
+const log = require("../../../../core/logger"); 
 exports.getLables = async (req) => {
     log.info("get labels");
     try{

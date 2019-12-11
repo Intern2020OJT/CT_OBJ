@@ -1,4 +1,4 @@
-const log = require("../../../core/logger");
+const log = require("../../../../core/logger");
 exports.getEfficiency = async (req) => {
     log.info("getEfficiency");
     try {
