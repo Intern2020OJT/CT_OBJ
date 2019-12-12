@@ -9,6 +9,9 @@ const ctrlIssues    = require("../modules/system/controllers/ctrl_issues");
 const ctrlClassify = require("../modules/system/controllers/ctrl_classify");
 const ctrlEffiency = require("../modules/system/controllers/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_topten");
+const ctrlIntrosGit =require("../modules/system/controllers/ctrl_introsgit");
+const ctrlIntrosGitS =require("../modules/system/controllers/ctrl_introsgitS");
+
 
 const appName  = config.name;
 
@@ -76,7 +79,7 @@ module.exports = (app) => {
   app.get(`/${appName}/getCommentsTopTen`, async (req,res) => {
     try {
       // console.log(1)
-      const result = await ctrlTopTen.getCommentsTopTen(req);//模拟数据库取数据
+      const result = await ctrlTopTen.getTimeTopTen(req);//模拟数据库取数据
       response.sendSuccess(res, result);//返回数据
     } catch (err) {
       response.sendError(res,err);
@@ -84,8 +87,29 @@ module.exports = (app) => {
   }); 
   //以上由杨欣禹使用
   /******************************************/
-  app.use(`/${appName}`, auth.authenticate, system);
+  //zc
+  app.get(`/${appName}/introsgit`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlIntrosGit.introsGit(req);
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  app.get(`/${appName}/introsgits`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlIntrosGitS.introsGits(req);
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  //注意位置，若置于最底会报错
 
+  app.use(`/${appName}`, auth.authenticate, system);
+  
   // catch 404 and forward to error handler
   app.all("*", (req, res) => {
     response.sendError(res, new createError.NotFound("Not Found."));
@@ -96,4 +120,8 @@ module.exports = (app) => {
     log.error(err);
     response.sendError(res, new createError.InternalServerError("Internal Server Error."));
   });
+
+  
 };
+
+
