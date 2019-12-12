@@ -1,6 +1,7 @@
 // client router
 export const ROUTE_LOGIN = '/login';
 export const ROUTE_HOME = '/home';
+export const ROUTE_HOMEZC = '/homezc';
 export const ROUTE_ERROR = '/error';
 export const ROUTE_ANALYSIS = '/analysis';
 // api list
