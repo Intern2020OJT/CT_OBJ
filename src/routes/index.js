@@ -5,7 +5,6 @@ const config      = require("../../config/app");
 const response    = require("../core/response");
 const log         = require("../core/logger");
 const ctrlUser    = require("../modules/system/controllers/ctrl_user");
-<<<<<<< HEAD
 const ctrlCanalysis = require("../modules/system/controllers/ctrl_canalysis");
 const ctrlClassify = require("../modules/system/controllers/ctrl_classify");
 const ctrlEffiency = require("../modules/system/controllers/ctrl_efficiency");
@@ -13,12 +12,6 @@ const ctrlTopTen = require("../modules/system/controllers/ctrl_topten");
 const ctrlIntrosGit =require("../modules/system/controllers/ctrl_introsgit");
 const ctrlIntrosGitS =require("../modules/system/controllers/ctrl_introsgitS");
 
-=======
-const ctrlIssues    = require("../modules/system/controllers/ctrl_issues");
-const ctrlClassify = require("../modules/system/controllers/ctrl_analyseRow/ctrl_classify");
-const ctrlEffiency = require("../modules/system/controllers/ctrl_analyseRow/ctrl_efficiency");
-const ctrlTopTen = require("../modules/system/controllers/ctrl_analyseRow/ctrl_topten");
->>>>>>> server/yxy
 
 const appName  = config.name;
 
