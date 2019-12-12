@@ -5,7 +5,7 @@ const config      = require("../../config/app");
 const response    = require("../core/response");
 const log         = require("../core/logger");
 const ctrlUser    = require("../modules/system/controllers/ctrl_user");
-const ctrlIssues    = require("../modules/system/controllers/ctrl_issues");
+const ctrlCanalysis = require("../modules/system/controllers/ctrl_canalysis");
 const ctrlClassify = require("../modules/system/controllers/ctrl_classify");
 const ctrlEffiency = require("../modules/system/controllers/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_topten");
@@ -106,6 +106,67 @@ module.exports = (app) => {
       response.sendError(res,err);
     }
   }); 
+  //sxl
+  app.get(`/${appName}/cardone`, async (req, res) => {
+    try {
+      const result = await ctrlCanalysis.canalysis(req);
+      const data = []
+      for (var i = 0; i < result.length; i++) {   
+           
+        for (var d = 0; d < result[i].issues.length; d++) {
+          if (result[i].issues[d].state == "close") {
+            datestart =new Date(result[i].issues[d].create_at).getTime()
+            dateclose =new Date(result[i].issues[d].close_at).getTime()
+            date = (dateclose - datestart) / 3600000
+            
+            time = date / result[i].issues.length   
+          }
+        }
+        
+        var data1 = { "name": result[i].name, "time": time }
+        data.push(data1)
+         
+      }
+      
+      response.sendSuccess(res, data);
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+  app.get(`/${appName}/cardtwo`, async (req, res) => {
+    try {
+      const result = await ctrlCanalysis.canalysis(req);
+      const data1 = {}
+      const data2 = {}
+      const data = []
+      
+      for (let i = 0; i < result.length; i++) {
+        data1[result[i].name] = result[i].openissues;
+        data2[result[i].name] = result[i].issues.length;
+      }
+      data1['name'] = 'openissues'
+      data2['name'] = 'allissues'
+      data.push(data1)
+      data.push(data2)
+      
+      response.sendSuccess(res, data);
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+  app.get(`/${appName}/cardthree`, async (req, res) => {
+    try {
+      const result = await ctrlCanalysis.canalysis(req);
+      var data = []
+      for (let i = 0; i < result.length; i++) {
+        const odata = { "name": result[i].name, "people": result[i].people }
+        data.push(odata)
+      }
+      response.sendSuccess(res, data);
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
   //注意位置，若置于最底会报错
 
   app.use(`/${appName}`, auth.authenticate, system);
