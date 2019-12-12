@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Chart, Geom, Axis, Tooltip, Legend,Label } from 'bizcharts';
  
 const CCbarone = props => {
-
-   const data = props.data;
-
+   const odata = props.data;
+   const data = []
+   for (let i=0;i<odata.length;i++)
+  {
+    var Odata={"genre":odata[i].name,"sold":odata[i].time};
+	  data.push(Odata);
+  } 
+   console.log(data)
   //定义度量
   const cols = {
     sold: { alias: 'issueOpen平均时间(/h)' },

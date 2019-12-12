@@ -1,9 +1,14 @@
 import React from "react";
 import { Chart, Geom, Axis, Tooltip, Label} from "bizcharts";
 
-const CCpolythree = props => {
-  
-    const data = props.data;
+const CCpolythree = props => {  
+    const odata = props.data;
+    const data = []
+    for(let i = 0;i<odata.length;i++)
+    {
+       const data1={"project":odata[i].name,"people":odata[i].people}
+       data.push(data1)
+    }
     const cols = {
       people: {
         min: 0,
@@ -42,7 +47,7 @@ const CCpolythree = props => {
               lineWidth: 1
             }}
           >
-           <Label content={['people']} />{' '}
+           <Label content={['people']}  offset={-10} />{' '}
           </Geom>
         </Chart>
       </div>

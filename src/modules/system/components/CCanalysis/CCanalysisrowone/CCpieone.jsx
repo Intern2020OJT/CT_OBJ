@@ -6,7 +6,7 @@ const CCpieoneright = props => {
   const data = [];
   for (let i=0;i<odata.length;i++)
   {
-    var Odata={"item":odata[i].genre,"count":odata[i].sold};
+    var Odata={"item":odata[i].name,"count":odata[i].time};
 	  data.push(Odata);
   } 
   const { DataView } = DataSet;

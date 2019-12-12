@@ -3,16 +3,17 @@ import { Card } from 'antd';
 import CCbarone from './CCbarone'
 import CCpieone from './CCpieone'
 import { get } from '../../../../../utils/fetch';
-import { API_OPENINGISSUES } from '../../../../../utils/constants';
+import { API_CARDONE } from '../../../../../utils/constants';
 const CCcardone = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await get(API_OPENINGISSUES);
+      const data = await get(API_CARDONE);
       setData(data);
     }
     fetchData();
   }, []);
+   console.log(data)
   const [tabs, setState] = useState('bar');
   const tabList = [
     {
