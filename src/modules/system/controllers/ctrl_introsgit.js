@@ -98,7 +98,23 @@ const introsDataFromGitLabels = async (url, type) => {
         throw err
     }
 }
-
+const introsDataFromGitLan = async (url, type) => {
+    var url = BASE_URL + url + '/languages';
+    var method = type;
+    var options = {
+        method,
+        url,
+    };
+    try {
+        const response = await fetch(options);
+        return response.data;
+    }
+    catch (err) {
+        log.info("getAssignees err")
+        log.err(err)
+        throw err
+    }
+}
 
 
 exports.introsGit = async (req) => {
@@ -114,9 +130,11 @@ exports.introsGit = async (req) => {
         "name": null,
         "labels": null,
         "issues": null,
+        "languages": null
     }
     var saveDataFromLabels = [];//项目所有labels
     var saveDataFromIssues = [];
+    var saveDataFromLan;
 
     try {
         var midUrl = pullUrl;
@@ -125,9 +143,11 @@ exports.introsGit = async (req) => {
         var midData = await introsDataFromGit(midUrl, 'get');
         saveDataFromLabels = await introsDataFromGitLabels(midUrl, 'get');
         saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
+        saveDataFromLan = await introsDataFromGitLan(midUrl, 'get');
         saveDataFromLabelsAndIssues.issues = saveDataFromIssues;
         saveDataFromLabelsAndIssues.labels = saveDataFromLabels;
         saveDataFromLabelsAndIssues.name = midData.name;
+        saveDataFromLabelsAndIssues.languages=saveDataFromLan;
 
         return saveDataFromLabelsAndIssues
         //return saveDataFromLabels
