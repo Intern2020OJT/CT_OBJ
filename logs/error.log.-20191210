@@ -1,0 +1,7 @@
+[2019-12-10T12:30:33.653] [ERROR] error - ReferenceError: name is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_modul.js] [14]
+[2019-12-10T12:31:42.043] [ERROR] error - ReferenceError: name is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_modul.js] [16]
+[2019-12-10T12:33:32.391] [ERROR] error - ReferenceError: name is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_modul.js] [16]
+[2019-12-10T12:35:23.163] [ERROR] error - ReferenceError: name is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_modul.js] [18]
+[2019-12-10T12:40:59.281] [ERROR] error - InternalServerError: 检索失败。 [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_modul.js] [18]
+[2019-12-10T14:00:24.420] [ERROR] error - ReferenceError: wang is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_modul.js] [13]
+[2019-12-10T15:50:42.844] [ERROR] error - TypeError: ModelUser.getList1 is not a function [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_cardtwo.js] [12]

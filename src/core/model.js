@@ -10,8 +10,7 @@ const { COMMON_DB_C_ERROR, COMMON_DB_R_ERROR, COMMON_DB_U_ERROR, COMMON_DB_D_ERR
 class Model {
   constructor(code, name, scheme) {
     const conn = db.createConnection(code);
-    this.m = conn.model(name, scheme);//创建新的模型
-    //this.m Model { User } Model { Token }
+    this.m = conn.model(name, scheme); 
      
   }
 

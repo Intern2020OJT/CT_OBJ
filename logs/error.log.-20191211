@@ -1,0 +1,7 @@
+[2019-12-11T14:18:07.454] [ERROR] error - InternalServerError: 检索失败。 [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_cardtwo.js] [14]
+[2019-12-11T16:47:51.482] [ERROR] error - InternalServerError: 检索失败。 [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_cardone.js] [24]
+[2019-12-11T19:40:33.947] [ERROR] error - ReferenceError: projection is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_canalysis.js] [24]
+[2019-12-11T19:42:32.508] [ERROR] error - ReferenceError: projection is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_canalysis.js] [24]
+[2019-12-11T19:43:34.568] [ERROR] error - ReferenceError: projection is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_canalysis.js] [24]
+[2019-12-11T19:47:00.513] [ERROR] error - ReferenceError: projection is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_canalysis.js] [24]
+[2019-12-11T19:50:02.377] [ERROR] error - ReferenceError: projection is not defined [] [169.254.240.113] [C:\Users\sxl\CT_SERVER1\src\modules\system\controllers\ctrl_canalysis.js] [24]

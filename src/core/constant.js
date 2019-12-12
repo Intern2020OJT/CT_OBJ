@@ -9,7 +9,8 @@ exports.INVALID = 0;
 
 // db database
 exports.DB_NAME_ISSUE          = "issue";
-
+exports.DB_NAME_TEST          = "TEST";
 // db collection
 exports.SCHEMA_USER            = "User";
 exports.SCHEMA_TOKEN           = "Token";
+exports.SCHEMA_SXL           = "Sxl";
