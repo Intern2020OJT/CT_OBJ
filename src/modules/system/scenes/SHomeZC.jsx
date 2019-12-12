@@ -40,7 +40,6 @@ const SHomeZC = () => {
           <li><a id="submitA" style={styleVisibility}>确认</a></li>
         </ul>
       </nav>
-
       <div className="contentBody">
         <div>
           <CContentBody CheckboxState={ableCheckboxState}></CContentBody>
