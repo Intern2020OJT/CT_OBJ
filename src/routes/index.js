@@ -10,6 +10,7 @@ const ctrlClassify = require("../modules/system/controllers/ctrl_classify");
 const ctrlEffiency = require("../modules/system/controllers/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_topten");
 const ctrlIntrosGit =require("../modules/system/controllers/ctrl_introsgit");
+const ctrlIntrosGitS =require("../modules/system/controllers/ctrl_introsgitS");
 
 
 const appName  = config.name;
@@ -96,7 +97,15 @@ module.exports = (app) => {
       response.sendError(res,err);
     }
   }); 
-
+  app.get(`/${appName}/introsgits`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlIntrosGitS.introsGits(req);
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
   //注意位置，若置于最底会报错
 
   app.use(`/${appName}`, auth.authenticate, system);

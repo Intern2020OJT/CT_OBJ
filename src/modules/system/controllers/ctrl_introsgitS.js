@@ -39,21 +39,11 @@ const introsDataFromGitIssues = async (url, type) => {
         var introsData = response.data;
         for (var i = 0; introsData[i] != undefined; i++) {
             var saveDataFromIssue = {
-                "title": null,
-                "html_url": null,
-                "labels": null,
                 "state": null,
-                "assignees": null,
-                "comments": null,
                 "created_at": null,
                 "closed_at": null
             }//循环外不知为何会产生覆盖
-            saveDataFromIssue.assignees = introsData[i].assignees
-            saveDataFromIssue.title = introsData[i].title
-            saveDataFromIssue.html_url = introsData[i].html_url
-            saveDataFromIssue.labels = introsData[i].labels
             saveDataFromIssue.state = introsData[i].state
-            saveDataFromIssue.comments = introsData[i].comments
             saveDataFromIssue.created_at = introsData[i].created_at
             saveDataFromIssue.closed_at = introsData[i].closed_at
             saveDataFromIssues.push(saveDataFromIssue)
@@ -101,21 +91,18 @@ const introsDataFromGitLabels =async (url, type) => {
 
 
 
-exports.introsGit = async (req) => {
-    //var params = url.parse(req.url, true).query;
+exports.introsGits = async (req) => {
     var params = req.url.split("/");
-   // console.log(params)
     lastUrl = params;
-   // console.log(lastUrl)
     var userName = lastUrl[5];//用户名
     var recieveRepo = lastUrl[6];//仓库名
     var pullUrl = userName + '/' + recieveRepo;//防止链接深入，只取用户与仓库
-    var saveDataFromLabelsAndIssues = {
+    var saveDataFromIssuesData = {
         "name": null,
-        "labels": null,
         "issues": null,
+        "openissues":null,
+        "watchers":null,  
     }
-    var saveDataFromLabels = [];//项目所有labels
     var saveDataFromIssues = [];
 
     try {
@@ -123,13 +110,13 @@ exports.introsGit = async (req) => {
         console.log(midUrl)
 
         var midData =await introsDataFromGit(midUrl, 'get');
-        saveDataFromLabels =await introsDataFromGitLabels(midUrl, 'get');
         saveDataFromIssues =await introsDataFromGitIssues(midUrl, 'get');
-        saveDataFromLabelsAndIssues.issues = saveDataFromIssues;
-        saveDataFromLabelsAndIssues.labels = saveDataFromLabels;
-        saveDataFromLabelsAndIssues.name = midData.name;
+        saveDataFromIssuesData.issues = saveDataFromIssues;
+        saveDataFromIssuesData.name = midData.name;
+        saveDataFromIssuesData.openissues=midData.open_issues;
+        saveDataFromIssuesData.watchers=midData.watchers;
         
-        return saveDataFromLabelsAndIssues
+        return saveDataFromIssuesData
         //return saveDataFromLabels
     }
     catch (err) {
