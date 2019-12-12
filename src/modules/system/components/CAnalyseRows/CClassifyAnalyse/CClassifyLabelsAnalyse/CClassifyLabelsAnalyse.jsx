@@ -19,7 +19,7 @@ const CClassifyLablesAnalyse = () => {
     fetchData();
   }, []);
 
-  
+  console.log(data);
   const tabList = [
     {
       key: 'bar',

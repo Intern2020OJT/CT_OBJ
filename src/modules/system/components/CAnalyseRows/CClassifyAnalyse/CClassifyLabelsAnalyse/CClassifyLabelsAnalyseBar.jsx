@@ -28,7 +28,7 @@ const CClassifyLablesAnalyseBar = props => {
   const lablesDataValue = lablesDataSet.createView().source(ldata);
   lablesDataValue.transform({
     type: 'fold',
-    fields: ['Bug', 'Todo', 'Doing', 'Done', 'Problem'],
+    fields: fields,
     // 展开字段集
     key: 'Lables',
     // key字段
