@@ -2,8 +2,19 @@
 //顶部些许细节
 nav
 {
-    width: 100%;
+    //position: fixed;
+    //width: 100%;
     background: #cedddf;
+    position: fixed;
+    /* top: 0; */
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    display: block;
+    height: 35px;
+    //background-color: #13c2c2;
+    padding-left: 24px;
+    padding-right: 0;
     
 }
 ul
@@ -54,10 +65,14 @@ ul li a
     min-width:96%;
     //min-width: 1536px;
     margin-left: 2%;
-    //margin-top: 10px;
+    margin-top: 40px;
     min-height: 600px;
-    border-top:1px solid;
+    //border-top:1px solid;
     display:inline-flex;
     float: left;
     //background: #b9b9c1;
+}
+.contentBody>div>div
+{
+    min-width: 1250px;
 }

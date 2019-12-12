@@ -5,25 +5,30 @@ import { Card, Radio, Checkbox } from 'antd';
 import '../../../static/css/CGitContent.less';
 
 function CGitContent(props) {
-  var styleVisibilityH={
-    visibility:"hidden"
+  var styleVisibilityH = {
+    visibility: "hidden"
     //display:"none"
   }
-  var styleVisibilityV={
-    visibility:"visible"
+  var styleVisibilityV = {
+    visibility: "visible"
     //display:"none"
   }
-  const lastCheckboxState=props.CheckboxState;
+  const setText = () => {
+    //console.log(props.ContentName.name)
+    //document.getElementById("programContext").innerHTML=props.ContentName.name
+    //return props.ContentName.name
+  }
+  const lastCheckboxState = props.CheckboxState;
   return (
 
     <div className="divContaner">
       {
         //props.CheckboxState?(<Checkbox className="radioRight" style={styleVisibilityV}></Checkbox>):(<Checkbox className="radioRight" style={styleVisibilityH}></Checkbox>)
-        lastCheckboxState=="visible" && <Checkbox className="radioRight" style={styleVisibilityV}></Checkbox>
+        lastCheckboxState == "visible" && <Checkbox className="radioRight" style={styleVisibilityV}></Checkbox>
       }
-      
+
       <div className="divBlock">
-        <label>this is git production</label>
+    <label id="programContext">{props.ContentName.name}</label>
       </div>
     </div>
   );
