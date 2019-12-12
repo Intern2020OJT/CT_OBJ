@@ -41,7 +41,7 @@ const introsDataFromGitIssues = async (url, type) => {
             var saveDataFromIssue = {
                 "state": null,
                 "created_at": null,
-                "closed_at": null
+                "closed_at": null,
             }//循环外不知为何会产生覆盖
             saveDataFromIssue.state = introsData[i].state
             saveDataFromIssue.created_at = introsData[i].created_at
@@ -57,37 +57,7 @@ const introsDataFromGitIssues = async (url, type) => {
         throw err
     }
 }
-const introsDataFromGitLabels =async (url, type) => {
-    var url = BASE_URL + url + '/labels';
-    var method = type;
-    var options = {
-        method,
-        url,
-    };
-    var saveDataFromLabel = {
-        "name": null
-    }
-    var saveDataFromLabels = [];
-    try {
-        const response =await fetch(options);
-        var introsData = response.data;
-        for (var i = 0; introsData[i] != undefined; i++) {
-            var saveDataFromLabel = {
-                "name": introsData[i].name
-            }
-            //saveDataFromLabels[i].name = introsData[i].name
-            //saveDataFromLabels.push();
-            saveDataFromLabels.push(saveDataFromLabel)
-        }
-        console.log("saveDataFromLabels:"+saveDataFromLabels);
-        return saveDataFromLabels;
-    }
-    catch (err) {
-        log.info("getAssignees err")
-        log.err(err)
-        throw err
-    }
-}
+
 
 
 
