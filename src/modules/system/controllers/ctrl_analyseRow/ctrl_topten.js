@@ -1,153 +1,75 @@
-const log = require("../../../../core/logger"); 
+const log = require("../../../../core/logger");
+const ModelAnalyseRows = require("../../models/mod_analyseRows");
+
+const dataDevide = async (analyserows) => {
+  const data = [];
+  for (var i = 0; i < analyserows.length; i++) {
+    const dataItem = {};
+    const createdat = new Date(analyserows[i].createdat);
+    const closedat = new Date(analyserows[i].closedat);
+    dataItem.fullName = analyserows[i].title;//month比实际月份少1
+    if (dataItem.fullName.length >= 5) {
+      dataItem.shortName = dataItem.fullName.substr(0, 2) + "..."+dataItem.fullName.substr(dataItem.fullName.length-2, 2);
+    }
+    else {
+      dataItem.shortName = dataItem.fullName
+    }
+    dataItem.time = +((closedat.getTime() - createdat.getTime()) / 3600000).toFixed(2);
+    dataItem.comments = analyserows[i].comments;
+    data.push(dataItem);
+  }
+  return data;
+}
+const dataSort = async (needSort, type) => {
+  if (type === 'time') {
+    const sortData = needSort.sort((c, b) => { return (c.time > b.time) ? 1 : -1; });
+    return sortData;
+  }
+  else if (type === 'comments') {
+    const sortData = needSort.sort((c, b) => { return (c.comments > b.comments) ? 1 : -1; });
+    return sortData;
+  }
+}
+const dataBeTen = async (data) =>{
+  if(data.length>10){
+    const beten =[];
+    for(var i=0;i<data.length&&i<10;i++){
+      beten.push(data[i]);
+    }
+    return beten;
+  }
+  else return data;
+}
+
 exports.getTimeTopTen = async (req) => {
-    log.info("getTimeTopTen");
-    console.log(req.query);//得到客户端传来的参数
-    try{
-        const data = [
-            {
-              shortName: '某某...发1',
-              fullName: '某某功能开发1',
-              time: 15,
-              comments: 13
-            },
-            {
-              shortName: '某某...发2',
-              fullName: '某某功能开发2',
-              time: 16,
-              comments: 19
-                    
-            },
-            {
-              shortName: '某某...发3',
-              fullName: '某某功能开发3',
-              time: 8,
-              comments: 24
-            },
-            {
-              shortName: '某某...发4',
-              fullName: '某某功能开发4',
-              time: 25,
-              comments: 55
-            },
-            {
-              shortName: '某某...发5',
-              fullName: '某某功能开发5',
-              time: 6,
-              comments: 30
-            },
-            {
-              shortName: '某某...发6',
-              fullName: '某某功能开发6',
-              time: 13,
-              comments: 8
-            },
-            {
-              shortName: '某某...发7',
-              fullName: '某某功能开发7',
-              time: 20,
-              comments: 12
-            },
-            {
-              shortName: '某某...发8',
-              fullName: '某某功能开发8',
-              time: 25,
-              comments: 25
-            },
-            {
-              shortName: '某某...发10',
-              fullName: '某某功能开发10',
-              time: 55,
-              comments: 22
-            },
-            {
-              shortName: '某某...发9',
-              fullName: '某某功能开发9',
-              time: 69,
-              comments: 21
-            }
-          ];
-        res =data;
-        return (res);
-      }
-    catch(err){
-      log.info("getTimeTopTen err")
-      log.err(err)
-      throw err
-    }
+  log.info("getTimeTopTen");
+  console.log(req.query);//得到客户端传来的参数
+
+  try {
+    const analyserows = await ModelAnalyseRows.getList({ state: "close" });
+    const devideData = await dataDevide(analyserows);
+    const data = await dataSort(devideData, 'time');
+    res = await dataBeTen(data);
+    return (res);
   }
-  exports.getCommentsTopTen = async (req) => {
-    log.info("getCommentsTopTen");
-    try{
-        const data = [
-            {
-              shortName: '某某...发1',
-              fullName: '某某功能开发1',
-              time: 15,
-              comments: 13
-            },
-            {
-              shortName: '某某...发2',
-              fullName: '某某功能开发2',
-              time: 16,
-              comments: 19
-                    
-            },
-            {
-              shortName: '某某...发3',
-              fullName: '某某功能开发3',
-              time: 8,
-              comments: 24
-            },
-            {
-              shortName: '某某...发4',
-              fullName: '某某功能开发4',
-              time: 25,
-              comments: 55
-            },
-            {
-              shortName: '某某...发5',
-              fullName: '某某功能开发5',
-              time: 6,
-              comments: 30
-            },
-            {
-              shortName: '某某...发6',
-              fullName: '某某功能开发6',
-              time: 13,
-              comments: 8
-            },
-            {
-              shortName: '某某...发7',
-              fullName: '某某功能开发7',
-              time: 20,
-              comments: 12
-            },
-            {
-              shortName: '某某...发8',
-              fullName: '某某功能开发8',
-              time: 25,
-              comments: 25
-            },
-            {
-              shortName: '某某...发10',
-              fullName: '某某功能开发10',
-              time: 55,
-              comments: 22
-            },
-            {
-              shortName: '某某...发9',
-              fullName: '某某功能开发9',
-              time: 69,
-              comments: 21
-            }
-          ];
-        res =data;
-        return (res);
-      }
-    catch(err){
-      log.info("getCommentsTopTen err")
-      log.err(err)
-      throw err
-    }
+  catch (err) {
+    log.info("getTimeTopTen err")
+    log.err(err)
+    throw err
   }
- 
+}
+exports.getCommentsTopTen = async (req) => {
+  log.info("getCommentsTopTen");
+  try {
+    const analyserows = await ModelAnalyseRows.getList({ state: "close" });
+    const devideData = await dataDevide(analyserows);
+    const data = await dataSort(devideData, 'comments');
+    res = await dataBeTen(data);
+    return (res);
+  }
+  catch (err) {
+    log.info("getCommentsTopTen err")
+    log.err(err)
+    throw err
+  }
+}

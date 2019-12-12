@@ -13,3 +13,4 @@ exports.DB_NAME_ISSUE          = "issue";
 // db collection
 exports.SCHEMA_USER            = "User";
 exports.SCHEMA_TOKEN           = "Token";
+exports.SCHEMA_ANALYSEROW      = "analyseRow";
