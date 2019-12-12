@@ -84,6 +84,87 @@ module.exports = (app) => {
   }); 
   //以上由杨欣禹使用
   /******************************************/
+  //zc
+  app.get(`/${appName}/introsgit`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlIntrosGit.introsGit(req);
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  app.get(`/${appName}/introsgits`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlIntrosGitS.introsGits(req);
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  //sxl
+  app.get(`/${appName}/cardone`, async (req, res) => {
+    try {
+      const result = await ctrlCanalysis.canalysis(req);
+      const data = []
+      for (var i = 0; i < result.length; i++) {   
+           
+        for (var d = 0; d < result[i].issues.length; d++) {
+          if (result[i].issues[d].state == "close") {
+            datestart =new Date(result[i].issues[d].create_at).getTime()
+            dateclose =new Date(result[i].issues[d].close_at).getTime()
+            date = (dateclose - datestart) / 3600000
+            
+            time = date / result[i].issues.length   
+          }
+        }
+        
+        var data1 = { "name": result[i].name, "time": time }
+        data.push(data1)
+         
+      }
+      
+      response.sendSuccess(res, data);
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+  app.get(`/${appName}/cardtwo`, async (req, res) => {
+    try {
+      const result = await ctrlCanalysis.canalysis(req);
+      const data1 = {}
+      const data2 = {}
+      const data = []
+      
+      for (let i = 0; i < result.length; i++) {
+        data1[result[i].name] = result[i].openissues;
+        data2[result[i].name] = result[i].issues.length;
+      }
+      data1['name'] = 'openissues'
+      data2['name'] = 'allissues'
+      data.push(data1)
+      data.push(data2)
+      
+      response.sendSuccess(res, data);
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+  app.get(`/${appName}/cardthree`, async (req, res) => {
+    try {
+      const result = await ctrlCanalysis.canalysis(req);
+      var data = []
+      for (let i = 0; i < result.length; i++) {
+        const odata = { "name": result[i].name, "people": result[i].people }
+        data.push(odata)
+      }
+      response.sendSuccess(res, data);
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+  //注意位置，若置于最底会报错
   app.use(`/${appName}`, auth.authenticate, system);
 
   // catch 404 and forward to error handler
