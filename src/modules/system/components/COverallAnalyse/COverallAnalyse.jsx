@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Card } from 'antd';
 import CTotal from './CTotal/CTotal'
 import CAverageTime from './CAverageTime/CAverageTime'
 import CRetentionRate from './CRetentionRate/CRetentionRate'
@@ -8,12 +8,18 @@ import COpenNumber from './COpenNumber/COpenNumber'
 
 const COverallAnalyse = () => {
   return (
-    <div style={{ padding: '10px' }}>
-      <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]} type="flex" justify="center">
-        <Col><CTotal /></Col>
-        <Col><CAverageTime /></Col>
-        <Col><CRetentionRate /></Col>
-        <Col><COpenNumber /></Col>
+    <div style={{ padding: '10px' ,margin:'10px'}}>
+      <Row gutter={[20, 15]} type="flex" justify="center">
+        <Card style={{ width: '1220px', height: '210px'}}>
+          <div style={{ paddingTop: '20px' ,paddingBottom:'10px'}}>
+            <Row gutter={[20, 15]} type="flex" justify="center">
+              <Col><CTotal /></Col>
+              <Col><CAverageTime /></Col>
+              <Col><CRetentionRate /></Col>
+              <Col><COpenNumber /></Col>
+            </Row>
+          </div>
+        </Card>
       </Row>
     </div>
   );

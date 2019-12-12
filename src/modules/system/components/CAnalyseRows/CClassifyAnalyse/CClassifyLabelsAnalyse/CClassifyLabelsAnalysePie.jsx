@@ -41,7 +41,7 @@ const CClassifyLablesAnalysePie = props => {
         height={460}
         data={dv}
         scale={cols}
-        padding={[80, 100, 80, 80]}
+        padding={[0, 80, 80, 80]}
         forceFit
       >
         <Coord type="theta" radius={0.5} />

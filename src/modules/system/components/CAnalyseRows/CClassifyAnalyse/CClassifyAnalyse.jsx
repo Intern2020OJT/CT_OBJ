@@ -6,15 +6,16 @@ import CClassifyAssigneesAnalyse from './CClassifyAssigneesAnalyse/CClassifyAssi
 
 const CClassifyAnalyse = () => {
   return (
-    
-    <Row gutter={[10, 15]} type="flex" justify="center">
-      <Col>
-        <CClassifyLablesAnalyse />
-      </Col>
-      <Col>
-        <CClassifyAssigneesAnalyse />
-      </Col>
-    </Row>
+    <div style={{ padding: '10px' }}>
+      <Row gutter={[20, 15]} type="flex" justify="center">
+        <Col>
+          <CClassifyLablesAnalyse />
+        </Col>
+        <Col>
+          <CClassifyAssigneesAnalyse />
+        </Col>
+      </Row>
+    </div>
   );
 };
 

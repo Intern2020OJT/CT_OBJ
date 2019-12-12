@@ -1,56 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Card } from 'antd';
 
 import CClassifyAssigneesAnalyseBar from './CClassifyAssigneesAnalyseBar';
 import CClassifyAssigneesAnalysePie from './CClassifyAssigneesAnalysePie';
+import { API_GETASSIGNEES } from '../../../../../../utils/constants';
+
+import { get } from '../../../../../../utils/fetch';
 
 const CClassifyAssigneesAnalyse = () => {
-  const data = [
-    {
-      value: 18,
-      type: 'Proyang',
-      name: 'ProyangOpen',
-    },
-    {
-      value: 80,
-      type: 'Proyang',
-      name: 'ProyangClose',
-    },
-    {
-      value: 28,
-      type: 'AyaseEUmi',
-      name: 'AyaseEUmiOpen',
-    },
-    {
-      value: 55,
-      type: 'AyaseEUmi',
-      name: 'AyaseEUmiClose',
-    },
-    {
-      value: 39,
-      type: 'airoucat',
-      name: 'airoucatOpen',
-    },
-    {
-      value: 55,
-      type: 'airoucat',
-      name: 'airoucatClose',
-    },
-    {
-      value: 81,
-      type: 'Shanxiaolin',
-      name: 'ShanxiaolinOpen',
-    },
-    {
-      value: 36,
-      type: 'Shanxiaolin',
-      name: 'ShanxiaolinClose',
-    },
-  ];
-
 
   const [tabs, setState] = useState('bar');
-  
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await get(API_GETASSIGNEES);
+      setData(data);
+    }
+    fetchData();
+  }, []);
+
+
   const tabList = [
     {
       key: 'bar',
