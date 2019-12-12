@@ -32,10 +32,10 @@ const introsDataFromGitIssues = async (url, type) => {
         method,
         url,
     };
-    
+
     var saveDataFromIssues = [];
     try {
-        const response =await fetch(options);
+        const response = await fetch(options);
         var introsData = response.data;
         for (var i = 0; introsData[i] != undefined; i++) {
             var saveDataFromIssue = {
@@ -58,7 +58,7 @@ const introsDataFromGitIssues = async (url, type) => {
             saveDataFromIssue.closed_at = introsData[i].closed_at
             saveDataFromIssues.push(saveDataFromIssue)
         }
-        console.log("saveDataFromIssues"+saveDataFromIssues);
+        console.log("saveDataFromIssues" + saveDataFromIssues);
         return saveDataFromIssues;
     }
     catch (err) {
@@ -67,7 +67,7 @@ const introsDataFromGitIssues = async (url, type) => {
         throw err
     }
 }
-const introsDataFromGitLabels =async (url, type) => {
+const introsDataFromGitLabels = async (url, type) => {
     var url = BASE_URL + url + '/labels';
     var method = type;
     var options = {
@@ -79,7 +79,7 @@ const introsDataFromGitLabels =async (url, type) => {
     }
     var saveDataFromLabels = [];
     try {
-        const response =await fetch(options);
+        const response = await fetch(options);
         var introsData = response.data;
         for (var i = 0; introsData[i] != undefined; i++) {
             var saveDataFromLabel = {
@@ -89,7 +89,7 @@ const introsDataFromGitLabels =async (url, type) => {
             //saveDataFromLabels.push();
             saveDataFromLabels.push(saveDataFromLabel)
         }
-        console.log("saveDataFromLabels:"+saveDataFromLabels);
+        console.log("saveDataFromLabels:" + saveDataFromLabels);
         return saveDataFromLabels;
     }
     catch (err) {
@@ -104,11 +104,11 @@ const introsDataFromGitLabels =async (url, type) => {
 exports.introsGit = async (req) => {
     //var params = url.parse(req.url, true).query;
     var params = req.url.split("/");
-   // console.log(params)
+    // console.log(params)
     lastUrl = params;
-   // console.log(lastUrl)
+    // console.log(lastUrl)
     var userName = lastUrl[5];//用户名
-    var recieveRepo = lastUrl[6];//仓库名
+    var recieveRepo = lastUrl[6];//仓库名 //或需进行防错处理
     var pullUrl = userName + '/' + recieveRepo;//防止链接深入，只取用户与仓库
     var saveDataFromLabelsAndIssues = {
         "name": null,
@@ -122,13 +122,13 @@ exports.introsGit = async (req) => {
         var midUrl = pullUrl;
         console.log(midUrl)
 
-        var midData =await introsDataFromGit(midUrl, 'get');
-        saveDataFromLabels =await introsDataFromGitLabels(midUrl, 'get');
-        saveDataFromIssues =await introsDataFromGitIssues(midUrl, 'get');
+        var midData = await introsDataFromGit(midUrl, 'get');
+        saveDataFromLabels = await introsDataFromGitLabels(midUrl, 'get');
+        saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
         saveDataFromLabelsAndIssues.issues = saveDataFromIssues;
         saveDataFromLabelsAndIssues.labels = saveDataFromLabels;
         saveDataFromLabelsAndIssues.name = midData.name;
-        
+
         return saveDataFromLabelsAndIssues
         //return saveDataFromLabels
     }
