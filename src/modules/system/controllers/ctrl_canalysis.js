@@ -1,15 +1,15 @@
 const log         = require("../../../core/logger");
 const ModelTest    = require("../models/mod_canalysis");
 // 存数据用的
-// exports.creatcanalysis = async () => {
-//   try {
-//     await Promise.all(test.map(async (record) => {
-//       await ModelTest.create({...record});
-//     }));
-//      } catch (err) {
-//     throw err;
-//   }
-// };
+exports.creatcanalysis = async (props) => {
+  try {
+    await Promise.all(props.map(async (record) => {
+      await ModelTest.create({...record});
+    }));
+     } catch (err) {
+    throw err;
+  }
+};
 exports.canalysis = async() => {
   log.info("get canalysis start.");
   try {

@@ -11,7 +11,7 @@ const ctrlEffiency = require("../modules/system/controllers/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_topten");
 const ctrlIntrosGit =require("../modules/system/controllers/ctrl_introsgit");
 const ctrlIntrosGitS =require("../modules/system/controllers/ctrl_introsgitS");
-
+const {test} = require("../tool/test");
 
 const appName  = config.name;
 
@@ -163,6 +163,14 @@ module.exports = (app) => {
         data.push(odata)
       }
       response.sendSuccess(res, data);
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+  app.get(`/${appName}/creatdata`, async (req, res) => {
+    try {
+      await ctrlCanalysis.creatcanalysis(test)
+      response.sendSuccess(res, 'ok');
     } catch (err) {
       response.sendError(res, err);
     }
