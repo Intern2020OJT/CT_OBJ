@@ -1,11 +1,11 @@
 const helper          = require("../core/helper");
 
-const { users }           = require("./introsData");
+const { introsData }           = require("./introsData");
 const ModelIntrosData       = require("../modules/system/models/mod_introsData");
 
 const importUser = async () => {
   try {
-    await Promise.all(users.map(async (record) => {
+    await Promise.all(introsData.map(async (record) => {
       const newRecord = {
         password:         helper.sha256(record.password),
         valid:            1,
