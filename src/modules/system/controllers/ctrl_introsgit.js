@@ -6,14 +6,13 @@ const BASE_URL = 'https://api.github.com/repos/'
 
 
 const introsDataFromGit = async (url, type) => {
-    var url = BASE_URL + url;
-    var method = type;
-    var options = {
-        method,
-        url,
-    };
     try {
-
+        var url = BASE_URL + url;
+        var method = type;
+        var options = {
+            method,
+            url,
+        };
         var response = await fetch(options);
         var introsData = response.data;
         //console.log(introsData);
@@ -25,40 +24,86 @@ const introsDataFromGit = async (url, type) => {
         throw err
     }
 }
-const introsDataFromGitIssues = async (url, type) => {
-    var url = BASE_URL + url + '/issues';
-    var method = type;
-    var options = {
-        method,
-        url,
-    };
+const introsDataFromGitIssues = async (Url, type) => {
 
-    var saveDataFromIssues = [];
     try {
-        const response = await fetch(options);
-        var introsData = response.data;
-        for (var i = 0; introsData[i] != undefined; i++) {
-            var saveDataFromIssue = {
-                "title": null,
-                "html_url": null,
-                "labels": null,
-                "state": null,
-                "assignees": null,
-                "comments": null,
-                "created_at": null,
-                "closed_at": null
-            }//循环外不知为何会产生覆盖
-            saveDataFromIssue.assignees = introsData[i].assignees
-            saveDataFromIssue.title = introsData[i].title
-            saveDataFromIssue.html_url = introsData[i].html_url
-            saveDataFromIssue.labels = introsData[i].labels
-            saveDataFromIssue.state = introsData[i].state
-            saveDataFromIssue.comments = introsData[i].comments
-            saveDataFromIssue.created_at = introsData[i].created_at
-            saveDataFromIssue.closed_at = introsData[i].closed_at
-            saveDataFromIssues.push(saveDataFromIssue)
+        var response
+        var pageNum = 1
+        var saveDataFromIssues = [];
+        var method = type;
+        do {
+            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=open';
+            pageNum++
+            var options = {
+                method,
+                url,
+            };
+            var response = await fetch(options);
+            if (response.data.length !== []) {
+                var introsData = response.data;
+                for (var i = 0; introsData[i] != undefined; i++) {
+                    var saveDataFromIssue = {
+                        "title": null,
+                        "html_url": null,
+                        "labels": null,
+                        "state": null,
+                        "assignees": null,
+                        "comments": null,
+                        "created_at": null,
+                        "closed_at": null
+                    }//循环外不知为何会产生覆盖
+                    saveDataFromIssue.assignees = introsData[i].assignees
+                    saveDataFromIssue.title = introsData[i].title
+                    saveDataFromIssue.html_url = introsData[i].html_url
+                    saveDataFromIssue.labels = introsData[i].labels
+                    saveDataFromIssue.state = introsData[i].state
+                    saveDataFromIssue.comments = introsData[i].comments
+                    saveDataFromIssue.created_at = introsData[i].created_at
+                    saveDataFromIssue.closed_at = introsData[i].closed_at
+                    saveDataFromIssues.push(saveDataFromIssue)
+                }
+            }
+            url='';//奇怪
+            //console.log("saveDataFromIssues" + saveDataFromIssues);
         }
-        console.log("saveDataFromIssues" + saveDataFromIssues);
+        while (response.data.length !== [])
+        
+        do {
+            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=closed';//默认只有open，故需二次并指定
+            pageNum++
+            var options = {
+                method,
+                url,
+            };
+            var response = await fetch(options);
+            if (response.data.length !== []) {
+                var introsData = response.data;
+                for (var i = 0; introsData[i] != undefined; i++) {
+                    var saveDataFromIssue = {
+                        "title": null,
+                        "html_url": null,
+                        "labels": null,
+                        "state": null,
+                        "assignees": null,
+                        "comments": null,
+                        "created_at": null,
+                        "closed_at": null
+                    }//循环外不知为何会产生覆盖
+                    saveDataFromIssue.assignees = introsData[i].assignees
+                    saveDataFromIssue.title = introsData[i].title
+                    saveDataFromIssue.html_url = introsData[i].html_url
+                    saveDataFromIssue.labels = introsData[i].labels
+                    saveDataFromIssue.state = introsData[i].state
+                    saveDataFromIssue.comments = introsData[i].comments
+                    saveDataFromIssue.created_at = introsData[i].created_at
+                    saveDataFromIssue.closed_at = introsData[i].closed_at
+                    saveDataFromIssues.push(saveDataFromIssue)
+                }
+            }
+            url='';
+            //console.log("saveDataFromIssues" + saveDataFromIssues);
+        }
+        while (response.data.length !== [])
         return saveDataFromIssues;
     }
     catch (err) {
@@ -147,7 +192,7 @@ exports.introsGit = async (req) => {
         saveDataFromLabelsAndIssues.issues = saveDataFromIssues;
         saveDataFromLabelsAndIssues.labels = saveDataFromLabels;
         saveDataFromLabelsAndIssues.name = midData.name;
-        saveDataFromLabelsAndIssues.languages=saveDataFromLan;
+        saveDataFromLabelsAndIssues.languages = saveDataFromLan;
 
         return saveDataFromLabelsAndIssues
         //return saveDataFromLabels

@@ -8,6 +8,12 @@ const { DB_NAME_ISSUE, SCHEMA_ANALYSEROW } = constant;
 const { Schema } = mongoose;
 const { Mixed }   = Schema.Types;
 
+
+
+
+
+
+
 const AnalyseRow = new Schema({
   htmlurl:              { type: String, description: "html-url" },
   title:                { type: String, description: "title" },
@@ -17,7 +23,7 @@ const AnalyseRow = new Schema({
   comments:             { type: Number, description: "comments" },
   createdat:            { type: String, description: "createdat" },
   closedat:             { type: String, description: "closedat" }
-});
+
 
 const ModelAnalyseRows = new Model(DB_NAME_ISSUE, SCHEMA_ANALYSEROW, AnalyseRow);
 
