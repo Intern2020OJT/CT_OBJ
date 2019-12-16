@@ -10,6 +10,7 @@ const ctrlClassify = require("../modules/system/controllers/ctrl_analyseRow/ctrl
 const ctrlEffiency = require("../modules/system/controllers/ctrl_analyseRow/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_analyseRow/ctrl_topten");
 const ctrlIntrosGit =require("../modules/system/controllers/ctrl_introsgit");
+const ctrlHomegetDBData=require("../modules/system/controllers/ctrl_HomegetDBData");
 const ctrlIntrosGitS =require("../modules/system/controllers/ctrl_introsgitS");
 const {test} = require("../tool/test");
 
@@ -92,6 +93,15 @@ module.exports = (app) => {
     try {
       // console.log(1)
       const result = await ctrlIntrosGit.introsGit(req);
+      response.sendSuccess(res, result);//返回数据
+    } catch (err) {
+      response.sendError(res,err);
+    }
+  }); 
+  app.get(`/${appName}/HomegetDBData`, async (req,res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlHomegetDBData.HomegetDBData(req);
       response.sendSuccess(res, result);//返回数据
     } catch (err) {
       response.sendError(res,err);

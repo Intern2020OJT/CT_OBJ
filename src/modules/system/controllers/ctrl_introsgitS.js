@@ -1,6 +1,7 @@
 const log = require("../../../core/logger");
 var CreateIntrosDataDB = require("./ctrl_allDataIntros")
 var CreateIssuesIntrosDataDB = require("./ctrl_issuesDataIntros");
+const fs = require('fs');
 
 var fetch = require("axios");
 
@@ -9,7 +10,7 @@ const BASE_URL = 'https://api.github.com/repos/'
 
 
 const introsDataFromGit = async (url, type) => {
-    var url = BASE_URL + url;
+    var url = BASE_URL + url + '?client_id=9230c9a4e40cad3ec24f&client_secret=7cf2d4d28372ba9ed246d8eaca195169a261d815';
     var method = type;
     var options = {
         method,
@@ -31,11 +32,13 @@ const introsDataFromGit = async (url, type) => {
 const introsDataFromGitIssues = async (Url, type) => {
 
     var saveDataFromIssues = [];
-    var pageNum=1
-    var method=type
+    var pageNum = 1
+    var method = type
+    var introsDataOpen = [];
+    var introsDataClosed = []
     try {
         do {
-            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=open&access_token=OAUTH-TOKEN';//默认只有open，故需二次并指定
+            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=open&client_id=9230c9a4e40cad3ec24f&client_secret=7cf2d4d28372ba9ed246d8eaca195169a261d815';//默认只有open，故需二次并指定
             pageNum++
             var options = {
                 method,
@@ -43,26 +46,18 @@ const introsDataFromGitIssues = async (Url, type) => {
             };
             var response = await fetch(options);
             if (response.data.length !== 0) {
-                var introsDataOpen = response.data;
-                /*for (var i = 0; introsData[i] != undefined; i++) {
-                    var saveDataFromIssue = {
-                        "state": null,
-                        "created_at": null,
-                        "closed_at": null,
-                    }//循环外不知为何会产生覆盖
-                    saveDataFromIssue.state = introsData[i].state
-                    saveDataFromIssue.created_at = introsData[i].created_at
-                    saveDataFromIssue.closed_at = introsData[i].closed_at
-                    saveDataFromIssues.push(saveDataFromIssue)
-                }*/
+                for (var i = 0; i < response.data.length; i++)
+                    introsDataOpen.push(response.data[i]);
+
+
             }
             url = '';
             //console.log("saveDataFromIssues" + saveDataFromIssues);
         }
         while (response.data.length !== 0)
-        pageNum=1
+        pageNum = 1
         do {
-            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=closed';//默认只有open，故需二次并指定
+            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=closed&client_id=9230c9a4e40cad3ec24f&client_secret=7cf2d4d28372ba9ed246d8eaca195169a261d815';//默认只有open，故需二次并指定
             pageNum++
             var options = {
                 method,
@@ -70,28 +65,18 @@ const introsDataFromGitIssues = async (Url, type) => {
             };
             var response = await fetch(options);
             if (response.data.length !== 0) {
-                var introsDataClosed = response.data;
-                /*for (var i = 0; introsData[i] != undefined; i++) {
-                    var saveDataFromIssue = {
-                        "state": null,
-                        "created_at": null,
-                        "closed_at": null,
-                    }//循环外不知为何会产生覆盖
-                    saveDataFromIssue.state = introsData[i].state
-                    saveDataFromIssue.created_at = introsData[i].created_at
-                    saveDataFromIssue.closed_at = introsData[i].closed_at
-                    saveDataFromIssues.push(saveDataFromIssue)
-                }*/
+                for (var i = 0; i < response.data.length; i++)
+                    introsDataClosed.push(response.data[i]);
             }
             url = '';
             //console.log("saveDataFromIssues" + saveDataFromIssues);
         }
         while (response.data.length !== 0)
-        for(var i=0;i<introsDataOpen.length;i++)
-        saveDataFromIssues.push(introsDataOpen[i]);
-        for(var j=0;j<introsDataClosed.length;j++)
-        saveDataFromIssues.push(introsDataClosed[j]);
-        
+        for (var i = 0; i < introsDataOpen.length; i++)
+            saveDataFromIssues.push(introsDataOpen[i]);
+        for (var j = 0; j < introsDataClosed.length; j++)
+            saveDataFromIssues.push(introsDataClosed[j]);
+
         return saveDataFromIssues;
     }
     catch (err) {
@@ -101,7 +86,7 @@ const introsDataFromGitIssues = async (Url, type) => {
     }
 }
 const introsDataFromGitLabels = async (url, type) => {
-    var url = BASE_URL + url + '/labels';
+    var url = BASE_URL + url + '/labels?client_id=9230c9a4e40cad3ec24f&client_secret=7cf2d4d28372ba9ed246d8eaca195169a261d815';
     var method = type;
     var options = {
         method,
@@ -127,7 +112,7 @@ const introsDataFromGitLabels = async (url, type) => {
     }
 }
 const introsDataFromGitLan = async (url, type) => {
-    var url = BASE_URL + url + '/languages';
+    var url = BASE_URL + url + '/languages?client_id=9230c9a4e40cad3ec24f&client_secret=7cf2d4d28372ba9ed246d8eaca195169a261d815';
     var method = type;
     var options = {
         method,
@@ -162,7 +147,7 @@ exports.introsGits = async (req) => {
             var saveDataFromIssues = [];
             var midUrl = pullUrl;
             var saveDatafromIntros = []
-            var saveDataFromGit 
+            var saveDataFromGit
             var saveDataFromLabels
             var saveDataFromIssues
             var saveDataFromLan
@@ -173,23 +158,24 @@ exports.introsGits = async (req) => {
             saveDataFromLabels = await introsDataFromGitLabels(midUrl, 'get');
             saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
             saveDataFromLan = await introsDataFromGitLan(midUrl, 'get');
-            saveDataFromGit.labels=saveDataFromLabels;
-            saveDataFromGit.language=saveDataFromLan;
+            saveDataFromGit.labels = saveDataFromLabels;
+            saveDataFromGit.language = saveDataFromLan;
             saveDatafromIntros.push(saveDataFromGit)
-            for(var i=0;i<saveDataFromIssues.length;i++)
-            {
-                saveDataFromIssues[i].name=saveDataFromGit.name
-                saveDataFromIssues[i].full_name=saveDataFromGit.full_name
+            for (var i = 0; i < saveDataFromIssues.length; i++) {
+                saveDataFromIssues[i].name = saveDataFromGit.name
+                saveDataFromIssues[i].full_name = saveDataFromGit.full_name
             }
-            MYNeedData.name=saveDataFromGit.name
-            MYNeedData.full_name=saveDataFromGit.full_name
-            MYNeedData.lan=saveDataFromLan
-            
-            
+            MYNeedData = {
+                "name": saveDataFromGit.name,
+                "full_name": saveDataFromGit.full_name,
+                "lan": saveDataFromLan
+            }
             await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
             await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
             //return MYNeedData;
-            return saveDataFromIssues
+
+            return saveDatafromIntros
+
         }
     }
     catch (err) {
