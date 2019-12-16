@@ -28,14 +28,20 @@ const CCanalysisbar = () => {
   return (
     <Chart height={400} width={400} data={dv} forceFit>
       {<Legend position="bottom" dy={-20} />/* 控制颜色解释位置.下面写法颜色解释位于下方<Legend/> */}
-      <Axis name="项目" title={{textStyle:{fontSize: '12',
-    textAlign: 'center',
-    fill: '#111',
-    }}} />
-      <Axis name="数量" title={{textStyle:{fontSize: '12',
-    textAlign: 'center',
-    fill: '#111',
-    }}} />
+      <Axis
+        name="项目"
+        title={{ textStyle: { fontSize: '12',
+          textAlign: 'center',
+          fill: '#111',
+        } }}
+      />
+      <Axis
+        name="数量"
+        title={{ textStyle: { fontSize: '12',
+          textAlign: 'center',
+          fill: '#111',
+        } }}
+      />
       <Tooltip />
       <Geom
         type="intervalStack"
@@ -43,7 +49,7 @@ const CCanalysisbar = () => {
         color="name"
       >
         <Label
-          position='middle'
+          position="middle"
           content={['数量']}
           offset={0} // 设置坐标轴文本 lamiddlebel 距离坐标轴线的距离
           textStyle={{

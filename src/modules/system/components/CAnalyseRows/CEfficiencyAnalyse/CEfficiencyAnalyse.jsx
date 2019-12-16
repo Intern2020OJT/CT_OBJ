@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card } from 'antd';
 
-import CEfficiencyAnalyseCurve from './CEfficiencyAnalyseCurve';
 import { API_GETEFFICIENCY } from '../../../../../utils/constants';
 
 import { get } from '../../../../../utils/fetch';
+
+import CEfficiencyAnalyseCurve from './CEfficiencyAnalyseCurve';
+
 const CEfficiencyAnalyse = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const data = await get(API_GETEFFICIENCY);
       setData(data);
-    }
+    };
     fetchData();
   }, []);
   return (

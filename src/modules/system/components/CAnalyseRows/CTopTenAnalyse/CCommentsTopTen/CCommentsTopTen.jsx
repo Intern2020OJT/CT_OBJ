@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 
-import CCommentsTopTenBar from './CCommentsTopTenBar';
 import { API_GETCOMMENTSTOPTEN } from '../../../../../../utils/constants';
 
 import { get } from '../../../../../../utils/fetch';
+
+import CCommentsTopTenBar from './CCommentsTopTenBar';
+
 const CCommentsTopTen = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const data = await get(API_GETCOMMENTSTOPTEN);
       setData(data);
-    }
+    };
     fetchData();
   }, []);
   return (

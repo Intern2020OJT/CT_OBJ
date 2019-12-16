@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
-import {Card} from 'antd';
-import CCbaroneright from './CCbaroneright'
+import React, { useState } from 'react';
+import { Card } from 'antd';
+
+import CCbaroneright from './CCbaroneright';
+
 const CCcardoneright = () => {
   const data = [
     {
@@ -14,29 +16,25 @@ const CCcardoneright = () => {
       project2: 300
     },
   ];
-      const [tabs, setState] = useState('bar');
-      const tabList = [
-        {
-          key: 'bar',
-          tab: '柱状图',
-        } 
-      ];
-      const contentList = {
-        bar: <CCbaroneright data={data}/>,
-      };
+  const [tabs, setState] = useState('bar');
+  const tabList = [
+    {
+      key: 'bar',
+      tab: '柱状图',
+    } 
+  ];
+  const contentList = {
+    bar: <CCbaroneright data={data} />,
+  };
     
-      return (
-        <Card
-          style={{ width: '600px', height: '500px' }}
-          title="多项目issuesOppen分析"
-          tabList={tabList}
-          // activeTabKey={tabs}
-          // onTabChange={key => {
-          //   setState(key);
-          // }}
-        >
-          {contentList[tabs]}
-        </Card>
-      );
-    };
+  return (
+    <Card
+      style={{ width: '600px', height: '500px' }}
+      title="多项目issuesOppen分析"
+      tabList={tabList}
+    >
+      {contentList[tabs]}
+    </Card>
+  );
+};
 export default CCcardoneright;

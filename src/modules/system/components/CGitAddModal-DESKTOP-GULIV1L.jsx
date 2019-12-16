@@ -17,12 +17,17 @@ function CGitAddModal(props) {
   const handleOk = () => {
     // setTimeout(() => {
 
-    let IntrosData;
+    const IntrosData = {
+      IntrosData1, IntrosData1,
+    };
+    let IntrosData1;
+    let IntrosData2;
     const BaseUrl = `${process.env.REACT_APP_API_URL}`;
     const Url = `${BaseUrl}/introsgit?${document.getElementById('inputUrl').value}`;
-    $.ajax({
+    var ajaxTimeoutTest = $.ajax({
       url: Url,
       type: 'get',
+      timeout: 1000,
       async: false,
       dataType: 'json',
       success: function (data) {
@@ -30,12 +35,19 @@ function CGitAddModal(props) {
       },
       error: function (err) {
         console.log(err);
+      },
+      complete: function (XMLHttpRequest, status) { // 请求完成后最终执行参数
+        if (status == 'timeout') { // 超时,status还有success,error等值的情况
+          ajaxTimeoutTest.ajax.abort(); // 取消请求
+          alert('超时');
+        }
       }
     });
     const Url2 = `${BaseUrl}/introsgits?${document.getElementById('inputUrl').value}`;
-    $.ajax({
+    var ajaxTimeoutTest2 = $.ajax({
       url: Url2,
       type: 'get',
+      timeout: 1000,
       async: false,
       dataType: 'json',
       success: function (data) {
@@ -43,6 +55,12 @@ function CGitAddModal(props) {
       },
       error: function (err) {
         console.log(err);
+      },
+      complete: function (XMLHttpRequest, status) { // 请求完成后最终执行参数
+        if (status == 'timeout') { // 超时,status还有success,error等值的情况
+          ajaxTimeoutTest2.ajax.abort(); // 取消请求
+          alert('超时');
+        }
       }
     });
     IntrosData.IntrosData1 = IntrosData1;

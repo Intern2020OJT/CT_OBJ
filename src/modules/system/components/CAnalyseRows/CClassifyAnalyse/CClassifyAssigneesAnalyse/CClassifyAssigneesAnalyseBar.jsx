@@ -7,7 +7,7 @@ const CClassifyAssigneesAnalyseBar = props => {
   const ldata = [];
   const odata = {};
   const cdata = {};
-  const addData ={};
+  const addData = {};
   odata.name = 'Open';
   cdata.name = 'Close';
   addData.name = 'All';
@@ -19,7 +19,6 @@ const CClassifyAssigneesAnalyseBar = props => {
   ldata.push(addData);
   ldata.push(odata);
   ldata.push(cdata);
-
 
 
   const fields = [];
@@ -36,16 +35,16 @@ const CClassifyAssigneesAnalyseBar = props => {
     // key字段
     value: 'assigness', // value字段
   }).transform({
-    type: "map",
+    type: 'map',
     callback: obj => {
       const key = obj.name;
       let type;
       if (
-        key === "All"
+        key === 'All'
       ) {
-        type = "a";
-      }  else {
-        type = "b";
+        type = 'a';
+      } else {
+        type = 'b';
       }
       obj.type = type;
       return obj;
@@ -55,7 +54,7 @@ const CClassifyAssigneesAnalyseBar = props => {
   return (
     <div className="barLabels">
       <Chart height={405} data={dv} forceFit>
-        <Legend position="bottom" dy={-20} marker="hollowDiamond" textStyle={{fontSize:'15'}}/>
+        <Legend position="bottom" dy={-20} marker="hollowDiamond" textStyle={{ fontSize: '15' }} />
         <Axis name="member" label={{ textStyle: { fontSize: 15 } }} />
         <Axis name="assigness" label={{ textStyle: { fontSize: 15 } }} />
         <Tooltip />
@@ -69,13 +68,13 @@ const CClassifyAssigneesAnalyseBar = props => {
           }}
           adjust={[
             {
-              type: "dodge",
-              dodgeBy: "type",
+              type: 'dodge',
+              dodgeBy: 'type',
               // 按照 type 字段进行分组
               marginRatio: 0 // 分组中各个柱子之间不留空隙
             },
             {
-              type: "stack"
+              type: 'stack'
             }
           ]}
         >

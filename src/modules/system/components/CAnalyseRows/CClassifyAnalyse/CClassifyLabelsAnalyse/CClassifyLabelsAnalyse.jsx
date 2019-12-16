@@ -1,11 +1,13 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from 'antd';
 
-import CClassifyLablesAnalyseBar from './CClassifyLabelsAnalyseBar';
-import CClassifyLablesAnalysePie from './CClassifyLabelsAnalysePie';
 import { API_GETLABELS } from '../../../../../../utils/constants';
 
 import { get } from '../../../../../../utils/fetch';
+
+import CClassifyLablesAnalyseBar from './CClassifyLabelsAnalyseBar';
+import CClassifyLablesAnalysePie from './CClassifyLabelsAnalysePie';
+
 
 const CClassifyLablesAnalyse = () => {
   const [tabs, setState] = useState('bar');
@@ -15,7 +17,7 @@ const CClassifyLablesAnalyse = () => {
     const fetchData = async () => {
       const data = await get(API_GETLABELS);
       setData(data);
-    }
+    };
     fetchData();
   }, []);
 

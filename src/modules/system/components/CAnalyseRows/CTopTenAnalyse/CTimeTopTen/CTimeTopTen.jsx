@@ -1,17 +1,19 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 
-import CTimeTopTenBar from './CTimeTopTenBar';
 import { API_GETTIMETOPTEN } from '../../../../../../utils/constants';
 
 import { get } from '../../../../../../utils/fetch';
+
+import CTimeTopTenBar from './CTimeTopTenBar';
+
 const CTimeTopTen = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const data = await get(API_GETTIMETOPTEN);
       setData(data);
-    }
+    };
     fetchData();
   }, []);
   return (
