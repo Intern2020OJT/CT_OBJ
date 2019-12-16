@@ -18,6 +18,11 @@ exports.test = [
                 close_at: '2019-10-15T04:62:22Z'
             },
         ],
+        lanuage:{
+            "c++":2048,
+            "html":1024,
+            "c#":1024
+        },
         "openissues": 120,
         "watchers": 5,
     },
@@ -40,6 +45,11 @@ exports.test = [
                 close_at: '2019-10-15T03:02:22Z'
             },
         ],
+        lanuage:{
+            "java":2048,
+            "html":1024,
+            "c":1024
+        },
         "openissues": 150,
         "watchers": 3,
     },
@@ -62,6 +72,11 @@ exports.test = [
                 close_at: '2019-10-15T03:32:22Z'
             },
         ],
+        "lanuage":[
+            {"c++":1024},
+            {"c#":512},
+            {"c":512},
+        ], 
         "openissues": 160,
         "watchers": 1,
     },

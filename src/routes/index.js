@@ -147,8 +147,7 @@ module.exports = (app) => {
       data1['name'] = 'openissues'
       data2['name'] = 'allissues'
       data.push(data1)
-      data.push(data2)
-      
+      data.push(data2)     
       response.sendSuccess(res, data);
     } catch (err) {
       response.sendError(res, err);
@@ -159,7 +158,13 @@ module.exports = (app) => {
       const result = await ctrlCanalysis.canalysis(req);
       var data = []
       for (let i = 0; i < result.length; i++) {
-        const odata = { "name": result[i].name, "people": result[i].people }
+        // total = 0
+        // for (let d = 0; d< result[i].lanuage.length;d++)
+        // {
+        //   total+=result[i].lanuage[d]
+        // }
+        // percent=(result[i].lanuage[0])/total
+        const odata = { "name": result[i].name, "people":result[i].people}
         data.push(odata)
       }
       response.sendSuccess(res, data);
