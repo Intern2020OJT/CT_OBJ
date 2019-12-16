@@ -1,6 +1,5 @@
 const log         = require("../../../core/logger");
 const ModelTest    = require("../models/mod_canalysis");
-const saveDataFromIssuesData = require("./ctrl_introsgitS")
 exports.creatcanalysis = async (test) => {
   try {
     //log(test)

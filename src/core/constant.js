@@ -14,3 +14,4 @@ exports.DB_NAME_ISSUE          = "issue";
 exports.SCHEMA_USER            = "User";
 exports.SCHEMA_TOKEN           = "Token";
 exports.SCHEMA_SXL           = "sxl";
+exports.SCHEMA_INTROSDATA      ="introsData"

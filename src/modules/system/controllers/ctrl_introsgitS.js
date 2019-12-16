@@ -1,5 +1,5 @@
 const log = require("../../../core/logger");
-var creatcanalysis = require("./ctrl_canalysis")
+var CreateIntrosDataDB = require("./ctrl_allDataIntros")
 
 var fetch = require("axios");
 
@@ -27,30 +27,62 @@ const introsDataFromGit = async (url, type) => {
         throw err
     }
 }
-const introsDataFromGitIssues = async (url, type) => {
-    var url = BASE_URL + url + '/issues';
-    var method = type;
-    var options = {
-        method,
-        url,
-    };
+const introsDataFromGitIssues = async (Url, type) => {
 
     var saveDataFromIssues = [];
     try {
-        const response = await fetch(options);
-        var introsData = response.data;
-        for (var i = 0; introsData[i] != undefined; i++) {
-            var saveDataFromIssue = {
-                "state": null,
-                "created_at": null,
-                "closed_at": null,
-            }//循环外不知为何会产生覆盖
-            saveDataFromIssue.state = introsData[i].state
-            saveDataFromIssue.created_at = introsData[i].created_at
-            saveDataFromIssue.closed_at = introsData[i].closed_at
-            saveDataFromIssues.push(saveDataFromIssue)
+        do {
+            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=open';//默认只有open，故需二次并指定
+            pageNum++
+            var options = {
+                method,
+                url,
+            };
+            var response = await fetch(options);
+            if (response.data.length !== []) {
+                var introsData = response.data;
+                for (var i = 0; introsData[i] != undefined; i++) {
+                    var saveDataFromIssue = {
+                        "state": null,
+                        "created_at": null,
+                        "closed_at": null,
+                    }//循环外不知为何会产生覆盖
+                    saveDataFromIssue.state = introsData[i].state
+                    saveDataFromIssue.created_at = introsData[i].created_at
+                    saveDataFromIssue.closed_at = introsData[i].closed_at
+                    saveDataFromIssues.push(saveDataFromIssue)
+                }
+            }
+            url = '';
+            //console.log("saveDataFromIssues" + saveDataFromIssues);
         }
-        console.log("saveDataFromIssues" + saveDataFromIssues);
+        while (response.data.length !== [])
+        do {
+            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=closed';//默认只有open，故需二次并指定
+            pageNum++
+            var options = {
+                method,
+                url,
+            };
+            var response = await fetch(options);
+            if (response.data.length !== []) {
+                var introsData = response.data;
+                for (var i = 0; introsData[i] != undefined; i++) {
+                    var saveDataFromIssue = {
+                        "state": null,
+                        "created_at": null,
+                        "closed_at": null,
+                    }//循环外不知为何会产生覆盖
+                    saveDataFromIssue.state = introsData[i].state
+                    saveDataFromIssue.created_at = introsData[i].created_at
+                    saveDataFromIssue.closed_at = introsData[i].closed_at
+                    saveDataFromIssues.push(saveDataFromIssue)
+                }
+            }
+            url = '';
+            //console.log("saveDataFromIssues" + saveDataFromIssues);
+        }
+        while (response.data.length !== [])
         return saveDataFromIssues;
     }
     catch (err) {
@@ -77,18 +109,19 @@ exports.introsGits = async (req) => {
             }
             var saveDataFromIssues = [];
             var midUrl = pullUrl;
-            var saveDatafromIntros=[]
+            var saveDatafromIntros = []
+            var midData 
             console.log(midUrl)
 
-            var midData = await introsDataFromGit(midUrl, 'get');
-            saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
-            saveDataFromIssuesData.issues = saveDataFromIssues;
-            saveDataFromIssuesData.name = midData.name;
-            saveDataFromIssuesData.openissues = midData.open_issues;
-            saveDataFromIssuesData.watchers = midData.watchers;
-            saveDatafromIntros.push(saveDataFromIssuesData)
-            await creatcanalysis.creatcanalysis(saveDatafromIntros);
-            return saveDataFromIssuesData
+            midData = await introsDataFromGit(midUrl, 'get');
+            //saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
+            //saveDataFromIssuesData.issues = saveDataFromIssues;
+            //saveDataFromIssuesData.name = midData.name;
+            //saveDataFromIssuesData.openissues = midData.open_issues;
+            //saveDataFromIssuesData.watchers = midData.watchers;
+            saveDatafromIntros.push(midData)
+            await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
+            return saveDataFromIssuesData;
             //return saveDataFromLabels
         }
     }
