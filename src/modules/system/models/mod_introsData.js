@@ -47,7 +47,6 @@ const Token = new Schema({
     subscribers_count:      { type: Mixed, description: "subscribers_count" },
     organization:           { type: Mixed, description: "organization" },
     labels:                 { type: Mixed, description: "labels" },
-    issues:                 { type: Mixed, description: "issues" },
     language:               { type: Mixed, description: "language" },
 });
 
