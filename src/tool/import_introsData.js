@@ -1,7 +1,7 @@
 const helper          = require("../core/helper");
 
 const { introsData }           = require("./introsData");
-const ModelIntrosData       = require("../modules/system/models/mod_introsData");
+const   ModelIntros    = require("../modules/system/models/mod_introsData");
 
 const importUser = async () => {
   try {
@@ -12,7 +12,7 @@ const importUser = async () => {
         createdAt:        new Date(),
         updatedAt:        new Date(),
       };
-      await ModelIntrosData.create({ ...record, ...newRecord });
+      await  ModelIntros.create({ ...record, ...newRecord });
     }));
   } catch (err) {
     throw err;

@@ -12,7 +12,33 @@ class Model {
     const conn = db.createConnection(code);
     this.m = conn.model(name, scheme);
   }
-
+  // async mapReduce(condition, projection) {
+  //   try {
+  //     var mapFunction1 = function() {
+  //       emit(this.name, this.issues);
+  //   };
+  //   var reduceFunction1 = function(keyCustId, values) {
+  //     Array.sum(keyCustId)
+  //     for(let i=0;i<values.length;i++)
+  //     {
+  //       if (values[i].state == "close") {
+  //         datestart =new Date(values[i].create_at).getTime()
+  //         dateclose =new Date(values[i].close_at).getTime()
+  //         date = (dateclose - datestart) / 3600000     
+  //         time = date / keyCustId  
+  //       }
+  //     }
+  //     return time;
+  // };
+  //     return await new this.m.mapReduce(
+  //       mapFunction1,
+  //       reduceFunction1,
+  //       { out: "ok" }
+  //     );
+  //   } catch (err) {
+  //     throw new createError.InternalServerError(__(COMMON_DB_C_ERROR));
+  //   }
+  // }
   async create(obj) {
     try {
       // eslint-disable-next-line new-cap
@@ -21,33 +47,7 @@ class Model {
       throw new createError.InternalServerError(__(COMMON_DB_C_ERROR));
     }
   }
-  async mapReduce(obj) {
-    try {
-      var mapFunction1 = function() {
-        emit(this.name, this.issues);
-    };
-    var reduceFunction1 = function(keyCustId, values) {
-      for(let i=0;i<values.length;i++)
-      {
-        if (values[i].state == "close") {
-          datestart =new Date(values[i].create_at).getTime()
-          dateclose =new Date(values[i].close_at).getTime()
-          date = (dateclose - datestart) / 3600000
-          
-          time = date / result[i].issues.length   
-        }
-      }
-      return Array.sum(values);
-  };
-      return await new this.m.mapReduce(
-        mapFunction1,
-        reduceFunction1,
-        { out: "ok" }
-      );
-    } catch (err) {
-      throw new createError.InternalServerError(__(COMMON_DB_C_ERROR));
-    }
-  }
+   
 
   async remove(id, obj = {}) {
     try {

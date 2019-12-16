@@ -1,21 +1,21 @@
 const log         = require("../../../core/logger");
 const ModelTest    = require("../models/mod_canalysis");
 const ModelIntros    = require("../models/mod_introsData");
+//存数据 
 exports.creatcanalysis = async (test) => {
-  try {
-    //log(test)
+  try {    
     await Promise.all(test.map(async (record) => {
-
       await ModelTest.create({...record});
     }));
      } catch (err) {
     throw err;
   }
 };
-exports.canalysis = async() => {
+//取数据
+exports.canalysis = async(prop) => {
   log.info("get canalysis start.");
   try {
-    const id = {}
+    const id = {"name":prop}
     const projection = {}
     const message = await ModelIntros.getList(id,projection);    
     return message;
