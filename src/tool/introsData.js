@@ -1,4 +1,4 @@
-exports.introsData[
+exports.introsData=[
     {
         "url": "https://api.github.com/repos/Intern2020OJT/CT_OBJ/issues/67",
         "repository_url": "https://api.github.com/repos/Intern2020OJT/CT_OBJ",

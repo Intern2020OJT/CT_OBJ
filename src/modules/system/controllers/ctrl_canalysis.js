@@ -1,6 +1,6 @@
 const log         = require("../../../core/logger");
 const ModelTest    = require("../models/mod_canalysis");
-
+const ModelIntros    = require("../models/mod_introsData");
 exports.creatcanalysis = async (test) => {
   try {
     //log(test)
@@ -16,8 +16,8 @@ exports.canalysis = async() => {
   log.info("get canalysis start.");
   try {
     const id = {}
-    const projection = {_id:0,valid:0,__v:0}
-    const message = await ModelTest.getList(id,projection);    
+    const projection = {}
+    const message = await ModelIntros.getList(id,projection);    
     return message;
   } catch (err) {
     log.info("get canalysis start.");
