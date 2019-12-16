@@ -35,7 +35,7 @@ const introsDataFromGitIssues = async (Url, type) => {
     var method=type
     try {
         do {
-            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=open';//默认只有open，故需二次并指定
+            var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=open&access_token=OAUTH-TOKEN';//默认只有open，故需二次并指定
             pageNum++
             var options = {
                 method,
