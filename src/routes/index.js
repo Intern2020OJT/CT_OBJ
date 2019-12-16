@@ -181,6 +181,7 @@ module.exports = (app) => {
     }
   });
   //注意位置，若置于最底会报错
+  app.use(`/${appName}`, auth.authenticate, system);
 
   app.use(`/${appName}`, auth.authenticate, system);
   
