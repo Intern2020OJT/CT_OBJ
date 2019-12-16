@@ -1,9 +1,11 @@
 const log         = require("../../../core/logger");
 const ModelTest    = require("../models/mod_canalysis");
+
 exports.creatcanalysis = async (test) => {
   try {
     //log(test)
     await Promise.all(test.map(async (record) => {
+
       await ModelTest.create({...record});
     }));
      } catch (err) {
