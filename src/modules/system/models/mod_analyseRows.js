@@ -23,7 +23,7 @@ const AnalyseRow = new Schema({
   comments:             { type: Number, description: "comments" },
   createdat:            { type: String, description: "createdat" },
   closedat:             { type: String, description: "closedat" }
-
+})
 
 const ModelAnalyseRows = new Model(DB_NAME_ISSUE, SCHEMA_ANALYSEROW, AnalyseRow);
 

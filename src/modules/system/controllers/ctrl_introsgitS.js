@@ -1,5 +1,6 @@
 const log = require("../../../core/logger");
 var CreateIntrosDataDB = require("./ctrl_allDataIntros")
+var CreateIssuesIntrosDataDB = require("./ctrl_issuesDataIntros");
 
 var fetch = require("axios");
 
@@ -86,7 +87,11 @@ const introsDataFromGitIssues = async (Url, type) => {
             //console.log("saveDataFromIssues" + saveDataFromIssues);
         }
         while (response.data.length !== 0)
-        saveDataFromIssues=introsDataOpen+introsDataClosed;
+        for(var i=0;i<introsDataOpen.length;i++)
+        saveDataFromIssues.push(introsDataOpen[i]);
+        for(var j=0;j<introsDataClosed.length;j++)
+        saveDataFromIssues.push(introsDataClosed[j]);
+        
         return saveDataFromIssues;
     }
     catch (err) {
@@ -161,23 +166,30 @@ exports.introsGits = async (req) => {
             var saveDataFromLabels
             var saveDataFromIssues
             var saveDataFromLan
+            var MYNeedData
             console.log(midUrl)
 
             saveDataFromGit = await introsDataFromGit(midUrl, 'get');
             saveDataFromLabels = await introsDataFromGitLabels(midUrl, 'get');
             saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
             saveDataFromLan = await introsDataFromGitLan(midUrl, 'get');
-            saveDataFromGit[labels]=saveDataFromLabels;
-            saveDataFromGit[issues]=saveDataFromIssues;
-            saveDataFromGit[language]=saveDataFromLan;
-            //saveDataFromIssuesData.issues = saveDataFromIssues;
-            //saveDataFromIssuesData.name = saveDataFromGit.name;
-            //saveDataFromIssuesData.openissues = saveDataFromGit.open_issues;
-            //saveDataFromIssuesData.watchers = saveDataFromGit.watchers;
+            saveDataFromGit.labels=saveDataFromLabels;
+            saveDataFromGit.language=saveDataFromLan;
             saveDatafromIntros.push(saveDataFromGit)
+            for(var i=0;i<saveDataFromIssues.length;i++)
+            {
+                saveDataFromIssues[i].name=saveDataFromGit.name
+                saveDataFromIssues[i].full_name=saveDataFromGit.full_name
+            }
+            MYNeedData.name=saveDataFromGit.name
+            MYNeedData.full_name=saveDataFromGit.full_name
+            MYNeedData.lan=saveDataFromLan
+            
+            
             await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
-            return saveDatafromIntros;
-            //return saveDataFromLabels
+            await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
+            return MYNeedData;
+            //return saveDataFromIssues
         }
     }
     catch (err) {
