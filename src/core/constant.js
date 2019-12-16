@@ -15,6 +15,7 @@ exports.SCHEMA_USER            = "User";
 exports.SCHEMA_TOKEN           = "Token";
 
 exports.SCHEMA_INTROSDATA      ="introsData"
+exports.SCHEMA_INTROSDATAISSUES      ="introsDataIssues"
 exports.SCHEMA_ANALYSEROW      = "analyseRow";
 exports.SCHEMA_SXL             = "sxl";
 
