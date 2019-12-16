@@ -1,4 +1,4 @@
-[
+exports.introsData=[
     {
         "name":"CT_OBJ",
         "full_name":"Intern2020OJT/CT_OBJ",
