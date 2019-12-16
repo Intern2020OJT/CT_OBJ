@@ -21,7 +21,7 @@ const Token = new Schema({
     fork:                   { type: String, description: "fork" },
     url:                    { type: String, description: "url" },
     created_at:             { type: Mixed, description: "created_at" },
-    upMixedd_at:             { type: Mixed, description: "upMixedd_at" },
+    upMixedd_at:            { type: Mixed, description: "upMixedd_at" },
     pushed_at:              { type: Mixed, description: "pushed_at" },
     size:                   { type: Mixed, description: "size" },
     stargazers_count:       { type: Mixed, description: "stargazers_count" },
@@ -45,7 +45,10 @@ const Token = new Schema({
     temp_clone_token:       { type: Mixed, description: "temp_clone_token" },
     network_count:          { type: Mixed, description: "network_count" },
     subscribers_count:      { type: Mixed, description: "subscribers_count" },
-    organization: { type: Mixed, description: "organization" },
+    organization:           { type: Mixed, description: "organization" },
+    labels:                 { type: Mixed, description: "labels" },
+    issues:                 { type: Mixed, description: "issues" },
+    language:               { type: Mixed, description: "language" },
 });
 
 const ModelIntros = new Model(DB_NAME_ISSUE, SCHEMA_INTROSDATA, Token);

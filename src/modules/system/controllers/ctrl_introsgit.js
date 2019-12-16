@@ -119,23 +119,18 @@ const introsDataFromGitLabels = async (url, type) => {
         method,
         url,
     };
-    var saveDataFromLabel = {
-        "name": null
-    }
-    var saveDataFromLabels = [];
+    //var saveDataFromLabels = [];
     try {
         const response = await fetch(options);
         var introsData = response.data;
-        for (var i = 0; introsData[i] != undefined; i++) {
-            var saveDataFromLabel = {
-                "name": introsData[i].name
-            }
-            //saveDataFromLabels[i].name = introsData[i].name
-            //saveDataFromLabels.push();
+        /*for (var i = 0; introsData[i] != undefined; i++) {
+            var saveDataFromLabel
+            saveDataFromLabels[i].name = introsData[i].name
+            saveDataFromLabels.push();
             saveDataFromLabels.push(saveDataFromLabel)
         }
-        console.log("saveDataFromLabels:" + saveDataFromLabels);
-        return saveDataFromLabels;
+        console.log("saveDataFromLabels:" + saveDataFromLabels);*/
+        return introsData;
     }
     catch (err) {
         log.info("getAssignees err")

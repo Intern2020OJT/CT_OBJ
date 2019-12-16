@@ -30,6 +30,8 @@ const introsDataFromGit = async (url, type) => {
 const introsDataFromGitIssues = async (Url, type) => {
 
     var saveDataFromIssues = [];
+    var pageNum=1
+    var method=type
     try {
         do {
             var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=open';//默认只有open，故需二次并指定
@@ -39,9 +41,9 @@ const introsDataFromGitIssues = async (Url, type) => {
                 url,
             };
             var response = await fetch(options);
-            if (response.data.length !== []) {
-                var introsData = response.data;
-                for (var i = 0; introsData[i] != undefined; i++) {
+            if (response.data.length !== 0) {
+                var introsDataOpen = response.data;
+                /*for (var i = 0; introsData[i] != undefined; i++) {
                     var saveDataFromIssue = {
                         "state": null,
                         "created_at": null,
@@ -51,12 +53,13 @@ const introsDataFromGitIssues = async (Url, type) => {
                     saveDataFromIssue.created_at = introsData[i].created_at
                     saveDataFromIssue.closed_at = introsData[i].closed_at
                     saveDataFromIssues.push(saveDataFromIssue)
-                }
+                }*/
             }
             url = '';
             //console.log("saveDataFromIssues" + saveDataFromIssues);
         }
-        while (response.data.length !== [])
+        while (response.data.length !== 0)
+        pageNum=1
         do {
             var url = BASE_URL + Url + '/issues' + '?page=' + pageNum + '&per_page=100&state=closed';//默认只有open，故需二次并指定
             pageNum++
@@ -65,9 +68,9 @@ const introsDataFromGitIssues = async (Url, type) => {
                 url,
             };
             var response = await fetch(options);
-            if (response.data.length !== []) {
-                var introsData = response.data;
-                for (var i = 0; introsData[i] != undefined; i++) {
+            if (response.data.length !== 0) {
+                var introsDataClosed = response.data;
+                /*for (var i = 0; introsData[i] != undefined; i++) {
                     var saveDataFromIssue = {
                         "state": null,
                         "created_at": null,
@@ -77,13 +80,57 @@ const introsDataFromGitIssues = async (Url, type) => {
                     saveDataFromIssue.created_at = introsData[i].created_at
                     saveDataFromIssue.closed_at = introsData[i].closed_at
                     saveDataFromIssues.push(saveDataFromIssue)
-                }
+                }*/
             }
             url = '';
             //console.log("saveDataFromIssues" + saveDataFromIssues);
         }
-        while (response.data.length !== [])
+        while (response.data.length !== 0)
+        saveDataFromIssues=introsDataOpen+introsDataClosed;
         return saveDataFromIssues;
+    }
+    catch (err) {
+        log.info("getAssignees err")
+        log.err(err)
+        throw err
+    }
+}
+const introsDataFromGitLabels = async (url, type) => {
+    var url = BASE_URL + url + '/labels';
+    var method = type;
+    var options = {
+        method,
+        url,
+    };
+    //var saveDataFromLabels = [];
+    try {
+        const response = await fetch(options);
+        var introsData = response.data;
+        /*for (var i = 0; introsData[i] != undefined; i++) {
+            var saveDataFromLabel
+            saveDataFromLabels[i].name = introsData[i].name
+            saveDataFromLabels.push();
+            saveDataFromLabels.push(saveDataFromLabel)
+        }
+        console.log("saveDataFromLabels:" + saveDataFromLabels);*/
+        return introsData;
+    }
+    catch (err) {
+        log.info("getAssignees err")
+        log.err(err)
+        throw err
+    }
+}
+const introsDataFromGitLan = async (url, type) => {
+    var url = BASE_URL + url + '/languages';
+    var method = type;
+    var options = {
+        method,
+        url,
+    };
+    try {
+        const response = await fetch(options);
+        return response.data;
     }
     catch (err) {
         log.info("getAssignees err")
@@ -110,18 +157,26 @@ exports.introsGits = async (req) => {
             var saveDataFromIssues = [];
             var midUrl = pullUrl;
             var saveDatafromIntros = []
-            var midData 
+            var saveDataFromGit 
+            var saveDataFromLabels
+            var saveDataFromIssues
+            var saveDataFromLan
             console.log(midUrl)
 
-            midData = await introsDataFromGit(midUrl, 'get');
-            //saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
+            saveDataFromGit = await introsDataFromGit(midUrl, 'get');
+            saveDataFromLabels = await introsDataFromGitLabels(midUrl, 'get');
+            saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
+            saveDataFromLan = await introsDataFromGitLan(midUrl, 'get');
+            saveDataFromGit[labels]=saveDataFromLabels;
+            saveDataFromGit[issues]=saveDataFromIssues;
+            saveDataFromGit[language]=saveDataFromLan;
             //saveDataFromIssuesData.issues = saveDataFromIssues;
-            //saveDataFromIssuesData.name = midData.name;
-            //saveDataFromIssuesData.openissues = midData.open_issues;
-            //saveDataFromIssuesData.watchers = midData.watchers;
-            saveDatafromIntros.push(midData)
+            //saveDataFromIssuesData.name = saveDataFromGit.name;
+            //saveDataFromIssuesData.openissues = saveDataFromGit.open_issues;
+            //saveDataFromIssuesData.watchers = saveDataFromGit.watchers;
+            saveDatafromIntros.push(saveDataFromGit)
             await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
-            return saveDataFromIssuesData;
+            return saveDatafromIntros;
             //return saveDataFromLabels
         }
     }
