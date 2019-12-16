@@ -188,8 +188,8 @@ exports.introsGits = async (req) => {
             
             await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
             await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
-            return MYNeedData;
-            //return saveDataFromIssues
+            //return MYNeedData;
+            return saveDataFromIssues
         }
     }
     catch (err) {

@@ -174,8 +174,8 @@ module.exports = (app) => {
   });
   app.get(`/${appName}/creatdata`, async (req, res) => {
     try {
-      await ctrlCanalysis.creatcanalysis(test)
-      response.sendSuccess(res, 'ok');
+      const result = await ctrlCanalysis.canalysis(req);
+      response.sendSuccess(res, result);
     } catch (err) {
       response.sendError(res, err);
     }
