@@ -13,6 +13,7 @@ const Test = new BaseSchema({
  issues:            { type: Array, description: "纵坐标" }, 
  openissues:        { type: Number, description: "纵坐标"}, 
  people:            { type: Number, description: "纵坐标"},
+ lanuage:         { type: Array, description: "纵坐标"},
  watchers:          { type: Number, description: "纵坐标"}
 });
 
