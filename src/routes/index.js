@@ -108,27 +108,25 @@ module.exports = (app) => {
   }); 
   //sxl
   app.get(`/${appName}/cardone`, async (req, res) => {
-    try {
-      const result = await ctrlCanalysis.canalysis(req);
+    try {  
+      log.info(1)  
+      a=[{"name":"CT_OBJ"},{"name":"ISE_OBJ"},{"name":"SMD_OBJ"}]
+      for (let d=0; d<1; d++){
+      result = await ctrlCanalysis.canalysis(a[d].name);
       const data = []
-      for (var i = 0; i < result.length; i++) {   
-           
-        for (var d = 0; d < result[i].issues.length; d++) {
-          if (result[i].issues[d].state == "close") {
-            datestart =new Date(result[i].issues[d].create_at).getTime()
-            dateclose =new Date(result[i].issues[d].close_at).getTime()
-            date = (dateclose - datestart) / 3600000
-            
-            time = date / result[i].issues.length   
-          }
-        }
-        
-        var data1 = { "name": result[i].name, "time": time }
-        data.push(data1)
-         
-      }
-      
-      response.sendSuccess(res, data);
+      for (var i = 0; i < result.length; i++) {         
+        if (result[i].state == "close") {
+              datestart =new Date(result[i].create_at).getTime()
+              dateclose =new Date(result[i].close_at).getTime()
+              date = (dateclose - datestart) / 3600000
+              totaldate+=date               
+            }           
+      }   
+      time = totaldate / result.length    
+      var data1 = { "name": result.name, "time": time}
+      data.push(data1)  
+    } 
+      response.sendSuccess(res, result);
     } catch (err) {
       response.sendError(res, err);
     }
@@ -139,7 +137,6 @@ module.exports = (app) => {
       const data1 = {}
       const data2 = {}
       const data = []
-      
       for (let i = 0; i < result.length; i++) {
         data1[result[i].name] = result[i].openissues;
         data2[result[i].name] = result[i].issues.length;
@@ -168,14 +165,6 @@ module.exports = (app) => {
         data.push(odata)
       }
       response.sendSuccess(res, data);
-    } catch (err) {
-      response.sendError(res, err);
-    }
-  });
-  app.get(`/${appName}/creatdata`, async (req, res) => {
-    try {
-      const result = await ctrlCanalysis.canalysis(req);
-      response.sendSuccess(res, result);
     } catch (err) {
       response.sendError(res, err);
     }

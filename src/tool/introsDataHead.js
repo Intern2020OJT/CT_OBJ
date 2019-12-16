@@ -1,4 +1,4 @@
-[{
+exports.introsDataHead =[{
     "id": 223835009,
     "node_id": "MDEwOlJlcG9zaXRvcnkyMjM4MzUwMDk=",
     "name": "CT_OBJ",
