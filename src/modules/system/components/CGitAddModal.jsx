@@ -27,12 +27,27 @@ function CGitAddModal(props) {
             async: false,
             dataType: 'json',
             success: function (data) {
-                IntrosData = data;
+                IntrosData1 = data;
             },
             error: function (err) {
                 console.log(err);
             }
         });
+        var Url2 = BaseUrl + '/introsgits?' + document.getElementById("inputUrl").value
+        $.ajax({
+            url: Url2,
+            type: 'get',
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                IntrosData2 = data;
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+        IntrosData.IntrosData1=IntrosData1
+        IntrosData.IntrosData2=IntrosData2
         console.log(IntrosData)
         props.inAdd(IntrosData);
 
