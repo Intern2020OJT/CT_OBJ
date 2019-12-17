@@ -31,7 +31,7 @@ exports.introsData = [
                 "site_admin": false
             },
             "labels": [],
-            "state": "open",
+            "state": "close",
             "locked": false,
             "assignee": null,
             "assignees": [],
@@ -39,7 +39,7 @@ exports.introsData = [
             "comments": 0,
             "created_at": "2019-12-16T07:12:50Z",
             "updated_at": "2019-12-16T07:12:50Z",
-            "closed_at": null,
+            "closed_at": "2019-12-19T07:12:50Z",
             "author_association": "COLLABORATOR",
             "body": "",
             "name": "CT_OBJ",
@@ -77,7 +77,7 @@ exports.introsData = [
                 "site_admin": false
             },
             "labels": [],
-            "state": "open",
+            "state": "close",
             "locked": false,
             "assignee": null,
             "assignees": [],
@@ -85,10 +85,10 @@ exports.introsData = [
             "comments": 0,
             "created_at": "2019-12-16T06:39:45Z",
             "updated_at": "2019-12-16T06:39:45Z",
-            "closed_at": null,
+            "closed_at": "2019-12-17T06:39:45Z",
             "author_association": "COLLABORATOR",
             "body": "?????issues????5k????postman????mongodb????????",
-            "name": "CT_OBJ",
+            "name": "ISE_OBJ",
             "full_name": "Intern2020OJT/CT_OBJ"
         },
         {
@@ -253,7 +253,7 @@ exports.introsData = [
                     "description": ""
                 }
             ],
-            "state": "open",
+            "state": "close",
             "locked": false,
             "assignee": null,
             "assignees": [],
@@ -261,10 +261,10 @@ exports.introsData = [
             "comments": 0,
             "created_at": "2019-12-11T01:18:32Z",
             "updated_at": "2019-12-11T01:18:32Z",
-            "closed_at": null,
+            "closed_at": "2019-12-13T01:18:32Z",
             "author_association": "COLLABORATOR",
             "body": "#### ???\r\n![image](https://user-images.githubusercontent.com/50037121/70582884-fab08a80-1bf6-11ea-87f6-818b0e6b96be.png)\r\n#### ???\r\n![image](https://user-images.githubusercontent.com/50037121/70582944-2fbcdd00-1bf7-11ea-8d0b-772c41ec90be.png)\r\n",
-            "name": "CT_OBJ",
+            "name": "SMD_OBJ",
             "full_name": "Intern2020OJT/CT_OBJ"
         },
         {
