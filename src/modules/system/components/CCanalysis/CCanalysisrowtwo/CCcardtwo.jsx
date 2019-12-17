@@ -14,7 +14,7 @@ const CCcardtwo = () => {
   return (
     <Card
       style={{ width: '1200px', height: '500px' }}
-      title="多项目issuesOppen分析"
+      title="多项目issues数量分析"
       tabList={tabList}
     >
       <CCbartwo/>

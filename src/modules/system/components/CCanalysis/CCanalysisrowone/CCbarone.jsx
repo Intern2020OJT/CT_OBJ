@@ -12,7 +12,7 @@ const CCbarone = props => {
    console.log(data)
   //定义度量
   const cols = {
-    sold: { alias: 'issueOpen平均时间(/h)' },
+    sold: { alias: '平均时间(/h)' },
     genre: { alias: '项目名称' }
   };
 
