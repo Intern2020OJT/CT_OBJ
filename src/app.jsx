@@ -25,7 +25,7 @@ import localZH from './locales/zh';
 import localEN from './locales/en';
 import localJA from './locales/ja';
 import storage from './utils/storage';
-import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_ERROR, ROUTE_HOMEZC,ROUTE_ANALYSIS } from './utils/constants';
+import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_ERROR, ROUTE_HOMEZC, ROUTE_ANALYSIS } from './utils/constants';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
