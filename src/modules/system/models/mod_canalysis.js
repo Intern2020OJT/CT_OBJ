@@ -10,12 +10,9 @@ const { BaseSchema } = SchemaCommon;
 
 const Test = new BaseSchema({
 
- name:              { type: String, description: "name" },
- issues:            { type: Array, description: "issues" }, 
- openissues:        { type: Number, description: "openissues"}, 
- watchers:          { type: Number, description: "watchers"},
- languages:         { type: Array, description: "language" },
-
+ name:              { type: String, description: "项目名字" },
+ _id:               { type: String, description: "创建人" },
+ number:            { type: String, description: "数量" },
 });
 
 const ModelTest = new Model(DB_NAME_ISSUE, SCHEMA_SXL, Test);
