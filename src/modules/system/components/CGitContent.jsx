@@ -21,7 +21,7 @@ function CGitContent(props) {
   const lastCheckboxState = props.CheckboxState;
   return (
 
-    <div className="divContaner">
+    <div className="divContaner" >
       {
         // props.CheckboxState?(<Checkbox className="radioRight" style={styleVisibilityV}></Checkbox>):(<Checkbox className="radioRight" style={styleVisibilityH}></Checkbox>)
         lastCheckboxState == 'visible' && <Checkbox className="radioRight" style={styleVisibilityV} />

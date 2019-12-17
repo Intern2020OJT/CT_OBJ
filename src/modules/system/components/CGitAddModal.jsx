@@ -16,44 +16,33 @@ function CGitAddModal(props) {
 
   const handleOk = () => {
     // setTimeout(() => {
-
-    let IntrosData;
-    const BaseUrl = `${process.env.REACT_APP_API_URL}`;
-    const Url = `${BaseUrl}/introsgit?${document.getElementById('inputUrl').value}`;
-    $.ajax({
-      url: Url,
-      type: 'get',
-      async: false,
-      dataType: 'json',
-      success: function (data) {
-        IntrosData1 = data;
-      },
-      error: function (err) {
-        console.log(err);
+    if (document.getElementById('inputUrl').value !== null && document.getElementById('inputUrl').value !== '') {
+      let IntrosData;
+      const BaseUrl = `${process.env.REACT_APP_API_URL}`;
+      const Url2 = `${BaseUrl}/introsgits?${document.getElementById('inputUrl').value}`;
+      $.ajax({
+        url: Url2,
+        type: 'get',
+        async: false,
+        dataType: 'json',
+        success: function (data) {
+          IntrosData = data;
+        },
+        error: function (err) {
+          console.log(err);
+        }
+      });
+      console.log(IntrosData);
+      var judge = props.inAdd(IntrosData);
+      if (judge !== '_IS_faile') {
+        setvisible(false);
+        setloading(false);
       }
-    });
-    const Url2 = `${BaseUrl}/introsgits?${document.getElementById('inputUrl').value}`;
-    $.ajax({
-      url: Url2,
-      type: 'get',
-      async: false,
-      dataType: 'json',
-      success: function (data) {
-        IntrosData2 = data;
-      },
-      error: function (err) {
-        console.log(err);
-      }
-    });
-    IntrosData.IntrosData1 = IntrosData1;
-    IntrosData.IntrosData2 = IntrosData2;
-    console.log(IntrosData);
-    props.inAdd(IntrosData);
-
-
+    }
+    //或需加错误提示
     //      }, 1);
-    setloading(false);
-    setvisible(false);
+
+
   };
 
   const handleCancel = () => {
@@ -77,10 +66,10 @@ function CGitAddModal(props) {
           onCancel={handleCancel}
           footer={[
             <Button key="back" onClick={handleCancel}>
-                            返回
+              返回
             </Button>,
             <Button key="submit" type="primary" loading={loading} onClick={function (event) { handleOk(); }}>
-                            导入
+              导入
             </Button>,
           ]}
         >
