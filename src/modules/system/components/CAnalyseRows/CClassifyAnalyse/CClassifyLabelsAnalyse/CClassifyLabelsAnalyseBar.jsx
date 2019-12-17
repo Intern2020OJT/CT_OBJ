@@ -7,7 +7,7 @@ const CClassifyLablesAnalyseBar = props => {
   const ldata = [];
   const odata = {};
   const cdata = {};
-  const addData = {};
+  const addData ={};
   odata.name = 'Open';
   cdata.name = 'Close';
   addData.name = 'All';
@@ -34,16 +34,16 @@ const CClassifyLablesAnalyseBar = props => {
     // key字段
     value: 'count', // value字段
   }).transform({
-    type: 'map',
+    type: "map",
     callback: obj => {
       const key = obj.name;
       let type;
       if (
-        key === 'All'
+        key === "All"
       ) {
-        type = 'a';
-      } else {
-        type = 'b';
+        type = "a";
+      }  else {
+        type = "b";
       }
       obj.type = type;
       return obj;
@@ -53,7 +53,7 @@ const CClassifyLablesAnalyseBar = props => {
   return (
     <div className="barLabels">
       <Chart height={405} data={lablesDataValue} forceFit>
-        <Legend position="bottom" dy={-20} marker="hollowDiamond" textStyle={{ fontSize: '15' }} />
+        <Legend position="bottom" dy={-20} marker="hollowDiamond" textStyle={{fontSize:'15'}}/>
         <Axis name="Lables" label={{ textStyle: { fontSize: 15 } }} />
         <Axis name="count" label={{ textStyle: { fontSize: 15 } }} />
         <Tooltip />
@@ -67,13 +67,13 @@ const CClassifyLablesAnalyseBar = props => {
           }}
           adjust={[
             {
-              type: 'dodge',
-              dodgeBy: 'type',
+              type: "dodge",
+              dodgeBy: "type",
               // 按照 type 字段进行分组
               marginRatio: 0 // 分组中各个柱子之间不留空隙
             },
             {
-              type: 'stack'
+              type: "stack"
             }
           ]}
         >
@@ -91,6 +91,7 @@ const CClassifyLablesAnalyseBar = props => {
               // index 为每条记录的索引
               if (text != '0') return text;
               return undefined;
+
             }}
           />{''}
         </Geom>
