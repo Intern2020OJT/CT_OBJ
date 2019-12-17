@@ -1,6 +1,7 @@
 const log = require("../../../core/logger");
 var CreateIntrosDataDB = require("./ctrl_allDataIntros")
 var CreateIssuesIntrosDataDB = require("./ctrl_issuesDataIntros");
+var HomegetDBData = require("./ctrl_HomegetDBData");
 const fs = require('fs');
 
 var fetch = require("axios");
@@ -129,59 +130,146 @@ const introsDataFromGitLan = async (url, type) => {
     }
 }
 exports.introsGits = async (req) => {
-    var params = req.url.split("/");
-    lastUrl = params;
-    var userName = lastUrl[5];//用户名
-    var recieveRepo = lastUrl[6];//仓库名
-    try {
-        if (lastUrl[5] === undefined || lastUrl[6] === undefined || lastUrl[5] === '' || lastUrl[6] === '')
-            throw Error//防止错误，或需再添超时报错
-        else {
-            var pullUrl = userName + '/' + recieveRepo;//防止链接深入，只取用户与仓库
-            var saveDataFromIssuesData = {
-                "name": null,
-                "issues": null,
-                "openissues": null,
-                "watchers": null,
-            }
-            var saveDataFromIssues = [];
-            var midUrl = pullUrl;
-            var saveDatafromIntros = []
-            var saveDataFromGit
-            var saveDataFromLabels
-            var saveDataFromIssues
-            var saveDataFromLan
-            var MYNeedData
-            console.log(midUrl)
+    var params = req.url.split("?")[1];
+    var lastUrl = params.split("/")
+    if (lastUrl[0] !== 'https:' && lastUrl[0] === 'github.com') {
+        var userName = lastUrl[1];//用户名
+        var recieveRepo = lastUrl[2];//仓库名
+        try {
+            if (lastUrl[1] === undefined || lastUrl[2] === undefined || lastUrl[1] === '' || lastUrl[2] === '')
+                throw Error//防止错误，或需再添超时报错
+            else {
+                var pullUrl = userName + '/' + recieveRepo;//防止链接深入，只取用户与仓库
+                var saveDataFromIssuesData = {
+                    "name": null,
+                    "issues": null,
+                    "openissues": null,
+                    "watchers": null,
+                }
+                var saveDataFromIssues = [];
+                var midUrl = pullUrl;
+                var saveDatafromIntros = []
+                var saveDataFromGit
+                var saveDataFromLabels
+                var saveDataFromIssues
+                var saveDataFromLan
+                var MYNeedData
+                console.log(midUrl)
 
-            saveDataFromGit = await introsDataFromGit(midUrl, 'get');
-            saveDataFromLabels = await introsDataFromGitLabels(midUrl, 'get');
-            saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
-            saveDataFromLan = await introsDataFromGitLan(midUrl, 'get');
-            saveDataFromGit.labels = saveDataFromLabels;
-            saveDataFromGit.language = saveDataFromLan;
-            saveDatafromIntros.push(saveDataFromGit)
-            for (var i = 0; i < saveDataFromIssues.length; i++) {
-                saveDataFromIssues[i].name = saveDataFromGit.name
-                saveDataFromIssues[i].full_name = saveDataFromGit.full_name
-            }
-            MYNeedData = {
-                "name": saveDataFromGit.name,
-                "full_name": saveDataFromGit.full_name,
-                "lan": saveDataFromLan
-            }
-            await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
-            await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
-            //return MYNeedData;
+                saveDataFromGit = await introsDataFromGit(midUrl, 'get');
+                saveDataFromLabels = await introsDataFromGitLabels(midUrl, 'get');
+                saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
+                saveDataFromLan = await introsDataFromGitLan(midUrl, 'get');
+                saveDataFromGit.labels = saveDataFromLabels;
+                saveDataFromGit.language = saveDataFromLan;
+                saveDatafromIntros.push(saveDataFromGit)
+                for (var i = 0; i < saveDataFromIssues.length; i++) {
+                    saveDataFromIssues[i].name = saveDataFromGit.name
+                    saveDataFromIssues[i].full_name = saveDataFromGit.full_name
+                }
+                MYNeedData = {
+                    "name": saveDataFromGit.name,
+                    "full_name": saveDataFromGit.full_name,
+                    "lan": saveDataFromLan
+                }
 
-            return saveDatafromIntros
 
+                //防止添加重复
+                var contentED = HomegetDBData.HomegetDBData().data
+                var flag = 'false';
+                for (var i = 0; contentED[i] !== undefined; i++) {
+                    if (contentED[i].name === MYNeedData.name) {
+                        flag = 'true'
+                        break;//正式数据应该无有重复数据，故新待加入项检测到重复即可退出
+                    }
+                }//去重
+                if (flag === 'false') {
+                    await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
+                    await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
+                }
+                else
+                {
+                    
+                }
+
+                //return MYNeedData;
+
+                return saveDatafromIntros
+
+            }
+        }
+        catch (err) {
+            return '_IS_faile'
+            log.info("getAssignees err")
+            log.err(err)
+            throw err
         }
     }
-    catch (err) {
-        return '_IS_faile'
-        log.info("getAssignees err")
-        log.err(err)
-        throw err
+    else if (lastUrl[0] === 'https:') {
+        var userName = lastUrl[3];//用户名
+        var recieveRepo = lastUrl[4];//仓库名
+        try {
+            if (lastUrl[3] === undefined || lastUrl[4] === undefined || lastUrl[3] === '' || lastUrl[4] === '')
+                throw Error//防止错误，或需再添超时报错
+            else {
+                var pullUrl = userName + '/' + recieveRepo;//防止链接深入，只取用户与仓库
+                var saveDataFromIssuesData = {
+                    "name": null,
+                    "issues": null,
+                    "openissues": null,
+                    "watchers": null,
+                }
+                var saveDataFromIssues = [];
+                var midUrl = pullUrl;
+                var saveDatafromIntros = []
+                var saveDataFromGit
+                var saveDataFromLabels
+                var saveDataFromIssues
+                var saveDataFromLan
+                var MYNeedData
+                console.log(midUrl)
+
+                saveDataFromGit = await introsDataFromGit(midUrl, 'get');
+                saveDataFromLabels = await introsDataFromGitLabels(midUrl, 'get');
+                saveDataFromIssues = await introsDataFromGitIssues(midUrl, 'get');
+                saveDataFromLan = await introsDataFromGitLan(midUrl, 'get');
+                saveDataFromGit.labels = saveDataFromLabels;
+                saveDataFromGit.language = saveDataFromLan;
+                saveDatafromIntros.push(saveDataFromGit)
+                for (var i = 0; i < saveDataFromIssues.length; i++) {
+                    saveDataFromIssues[i].name = saveDataFromGit.name
+                    saveDataFromIssues[i].full_name = saveDataFromGit.full_name
+                }
+                MYNeedData = {
+                    "name": saveDataFromGit.name,
+                    "full_name": saveDataFromGit.full_name,
+                    "lan": saveDataFromLan
+                }
+                await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
+                await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
+                //return MYNeedData;
+
+                return saveDatafromIntros
+
+            }
+        }
+        catch (err) {
+            return '_IS_faile'
+            log.info("getAssignees err")
+            log.err(err)
+            throw err
+        }
+    }//链接多样式预防
+    else {
+        try {
+            throw err
+        }
+        catch (err) {
+            return '_IS_faile'
+            log.info("getAssignees err")
+            log.err(err)
+            throw err
+        }
     }
+
 }
