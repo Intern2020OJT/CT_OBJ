@@ -2,6 +2,7 @@ import fetch from 'axios';
 import { createBrowserHistory as createHistory } from 'history';
 
 import { ROUTE_ERROR } from './constants';
+
 import Storage from './storage';
 
 const history = createHistory({ forceRefresh: true });
