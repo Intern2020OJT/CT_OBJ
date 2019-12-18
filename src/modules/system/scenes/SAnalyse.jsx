@@ -8,13 +8,15 @@ import CTopTenAnalyse from '../components/CAnalyseRows/CTopTenAnalyse/CTopTenAna
 
 const SAnalyse = () => {
   const objName = '2020_Intern_Object';
+  const start = '2019-01-01';
+  const end = '2020-01-01';
   return (
     <div className="Analyse">
       <COverallAnalyse />
       <CSearchCondition />
-      <CClassifyAnalyse objName={objName} />
-      <CEfficiencyAnalyse objName={objName} />
-      <CTopTenAnalyse objName={objName} />
+      <CClassifyAnalyse objName={objName} start={start} end={end} />
+      <CEfficiencyAnalyse objName={objName} start={start} end={end} />
+      <CTopTenAnalyse objName={objName} start={start} end={end} />
     </div>
   );
 };
