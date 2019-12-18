@@ -253,8 +253,8 @@ exports.introsGits = async (req) => {
                     await CreateIssuesIntrosDataDB.UpdateIntrosDataDB(saveDataFromIssues);
                 }
 
-                return MYNeedData;
-                //return saveDatafromIntros
+                //return MYNeedData;
+                return saveDataFromGit
 
             }
         }
