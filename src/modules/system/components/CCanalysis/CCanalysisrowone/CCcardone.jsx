@@ -1,19 +1,26 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from 'antd';
-import CCbarone from './CCbarone'
-import CCpieone from './CCpieone'
+
 import { get } from '../../../../../utils/fetch';
+
 import { API_CARDONE } from '../../../../../utils/constants';
+
+import CCbarone from './CCbarone';
+import CCpieone from './CCpieone';
+
 const CCcardone = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await get(API_CARDONE);
+      const res = [{ name: 'CT_OBJ' }, { name: 'ISE_OBJ' }, { name: 'SMD_OBJ' }];
+      // eslint-disable-next-line no-shadow
+      const data = await get(API_CARDONE, { res });
       setData(data);
-    }
+    };
     fetchData();
   }, []);
-   console.log(data)
+  // eslint-disable-next-line no-console
+  console.log(data);
   const [tabs, setState] = useState('bar');
   const tabList = [
     {
