@@ -6,7 +6,6 @@ const constant        = require("../../../core/constant");
 const { DB_NAME_ISSUE, SCHEMA_ANALYSEROW } = constant;
 
 const { Schema } = mongoose;
-const { Mixed }   = Schema.Types;
 
 const AnalyseRow = new Schema({
   htmlurl:              { type: String, description: "html-url" },
@@ -16,7 +15,7 @@ const AnalyseRow = new Schema({
   assignees:            { type: Array, description: "assignees" },
   comments:             { type: Number, description: "comments" },
   createdat:            { type: String, description: "createdat" },
-  closedat:             { type: String, description: "closedat" }
+  closedat:             { type: String, description: "closedat" },
 });
 
 const ModelAnalyseRows = new Model(DB_NAME_ISSUE, SCHEMA_ANALYSEROW, AnalyseRow);
