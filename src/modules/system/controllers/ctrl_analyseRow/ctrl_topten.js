@@ -10,7 +10,7 @@ const dataDevide = async (analyserows) => {
     dataItem.fullName = analyserows[i].title;// month比实际月份少1
     if (dataItem.fullName.length >= 5) {
       // eslint-disable-next-line max-len
-      dataItem.shortName = `${dataItem.fullName.substr(0, 5)}...`;
+      dataItem.shortName = `${dataItem.fullName.substr(0, 5)}...${dataItem.fullName.substr(dataItem.fullName.length - 1, 1)}`;
     } else {
       dataItem.shortName = dataItem.fullName;
     }
@@ -43,7 +43,7 @@ const dataBeTen = async (data) => {
 exports.getTimeTopTen = async (req) => {
   log.info("getTimeTopTen");
   // 得到客户端传来的参数
-  const objName = req.query.objName.substr(23, req.query.objName.length - 26);
+  const objName = req.query.objName;
   try {
     const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed" });
     const devideData = await dataDevide(analyserows);
@@ -59,7 +59,7 @@ exports.getTimeTopTen = async (req) => {
 exports.getCommentsTopTen = async (req) => {
   log.info("getCommentsTopTen");
   // 得到客户端传来的参数
-  const objName = req.query.objName.substr(23, req.query.objName.length - 26);
+  const objName = req.query.objName;
   try {
     const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed" });
     const devideData = await dataDevide(analyserows);

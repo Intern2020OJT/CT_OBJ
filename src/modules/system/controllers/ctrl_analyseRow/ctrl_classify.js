@@ -81,7 +81,7 @@ const dataCutforAssignees = async (analyserows) => {
 exports.getLabels = async (req) => {
   log.info("get labels");
   // 得到客户端传来的参数
-  const objName = req.query.objName.substr(23, req.query.objName.length - 26);
+  const objName = req.query.objName;
   try {
     const analyserows = await ModelIntrosIssues.getList({ name:objName });
     // eslint-disable-next-line no-console
@@ -98,7 +98,7 @@ exports.getLabels = async (req) => {
 exports.getAssignees = async (req) => {
   log.info("get Assignees");
   // 得到客户端传来的参数
-  const objName = req.query.objName.substr(23, req.query.objName.length - 26);
+  const objName = req.query.objName;
   try {
     const analyserows = await ModelIntrosIssues.getList({ name:objName });
     // eslint-disable-next-line no-console
