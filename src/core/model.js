@@ -12,6 +12,7 @@ class Model {
     const conn = db.createConnection(code);
     this.m = conn.model(name, scheme);
   }
+
   async create(obj) {
     try {
       // eslint-disable-next-line new-cap
@@ -20,7 +21,7 @@ class Model {
       throw new createError.InternalServerError(__(COMMON_DB_C_ERROR));
     }
   }
-   
+
 
   async remove(id, obj = {}) {
     try {

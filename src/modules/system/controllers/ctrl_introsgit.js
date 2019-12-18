@@ -189,7 +189,8 @@ exports.introsGit = async (req) => {
         saveDataFromLabelsAndIssues.name = midData.name;
         saveDataFromLabelsAndIssues.languages = saveDataFromLan;
 
-        return saveDataFromLabelsAndIssues
+        return saveDataFromLabelsAndIssues;
+
         //return saveDataFromLabels
     }
     catch (err) {
