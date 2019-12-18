@@ -1,39 +1,38 @@
 const log = require("../../../../core/logger");
-const ModelIntros = require("../../../../modules/system/models/mod_introsDataIssues");
+const ModelIntrosIssues = require("../../../../modules/system/models/mod_introsDataIssues");
+const ModelIntros = require("../../../../modules/system/models/mod_introsData");
 
 const inIt = async (item, arrays) => {
   for (let i = 0; i < arrays.length; i++) {
+    if (item === arrays[i].name) return true;
+  }
+  for (let i = 0; i < arrays.length; i++) {
     if (item === arrays[i]) return true;
+  }
+  for (let i = 0; i < arrays.length; i++) {
+    if (item === arrays[i].login) return true;
   }
   return false;
 };
-const dataCutforLabels = async (analyserows) => {
-  const labelses = [];
-  for (let i = 1; i < analyserows.length; i++) {
-    for (let j = 0; j < analyserows[i].labels.length; j++) {
-      // eslint-disable-next-line no-await-in-loop
-      const flag = await inIt(analyserows[i].labels[j], labelses);
-      if (!flag) {
-        labelses.push(analyserows[i].labels[j]);
-      }
-    }
-  }
+const dataCutforLabels = async (analyserows, objName) => {
+  const obj = await ModelIntros.getOne({ name:objName });
+  const labelses = obj.labels;
   const data = [];
   for (let i = 0; i < labelses.length; i++) {
     const dataItemOpen = {};
     const dataItemClose = {};
-    dataItemOpen.type = labelses[i];
+    dataItemOpen.type = labelses[i].name;
     dataItemOpen.value = 0;
-    dataItemOpen.name = `${labelses[i]}Open`;
-    dataItemClose.type = labelses[i];
+    dataItemOpen.name = `${labelses[i].name}Open`;
+    dataItemClose.type = labelses[i].name;
     dataItemClose.value = 0;
-    dataItemClose.name = `${labelses[i]}Close`;
+    dataItemClose.name = `${labelses[i].name}Close`;
     for (let j = 1; j < analyserows.length; j++) {
       // eslint-disable-next-line no-await-in-loop
-      const flag = await inIt(labelses[i], analyserows[j].labels);
+      const flag = await inIt(labelses[i].name, analyserows[j].labels);
       if (analyserows[j].state === "open" && flag) {
         dataItemOpen.value++;
-      } else if (analyserows[j].state === "close" && flag) {
+      } else if (analyserows[j].state === "closed" && flag) {
         dataItemClose.value++;
       } else continue;
     }
@@ -48,9 +47,9 @@ const dataCutforAssignees = async (analyserows) => {
   for (let i = 1; i < analyserows.length; i++) {
     for (let j = 0; j < analyserows[i].assignees.length; j++) {
       // eslint-disable-next-line no-await-in-loop
-      const flag = await inIt(analyserows[i].assignees[j], assigneeses);
+      const flag = await inIt(analyserows[i].assignees[j].login, assigneeses);
       if (!flag) {
-        assigneeses.push(analyserows[i].assignees[j]);
+        assigneeses.push(analyserows[i].assignees[j].login);
       }
     }
   }
@@ -69,7 +68,7 @@ const dataCutforAssignees = async (analyserows) => {
       const flag = await inIt(assigneeses[i], analyserows[j].assignees);
       if (analyserows[j].state === "open" && flag) {
         dataItemOpen.value++;
-      } else if (analyserows[j].state === "close" && flag) {
+      } else if (analyserows[j].state === "closed" && flag) {
         dataItemClose.value++;
       } else continue;
     }
@@ -79,15 +78,15 @@ const dataCutforAssignees = async (analyserows) => {
   return data;
 };
 
-exports.getLables = async (req) => {
+exports.getLabels = async (req) => {
   log.info("get labels");
-  // eslint-disable-next-line no-console
-  console.log(req.query);// 得到客户端传来的参数
+  // 得到客户端传来的参数
+  const objName = req.query.objName;
   try {
-    const analyserows = await ModelIntros.getList({});
+    const analyserows = await ModelIntrosIssues.getList({ name:objName });
     // eslint-disable-next-line no-console
-    console.log(analyserows);
-    const data = await dataCutforLabels(analyserows);
+    // console.log(analyserows);
+    const data = await dataCutforLabels(analyserows, objName);
     const res = data;
     return (res);
   } catch (err) {
@@ -98,10 +97,12 @@ exports.getLables = async (req) => {
 };
 exports.getAssignees = async (req) => {
   log.info("get Assignees");
-  // eslint-disable-next-line no-console
-  console.log(req.query);// 得到客户端传来的参数
+  // 得到客户端传来的参数
+  const objName = req.query.objName;
   try {
-    const analyserows = await ModelIntros.getList({});
+    const analyserows = await ModelIntrosIssues.getList({ name:objName });
+    // eslint-disable-next-line no-console
+    // console.log(analyserows);// 得到客户端传来的参数
     const data = await dataCutforAssignees(analyserows);
     const res = data;
     return (res);

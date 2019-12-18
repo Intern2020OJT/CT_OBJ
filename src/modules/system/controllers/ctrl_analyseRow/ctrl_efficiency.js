@@ -1,13 +1,14 @@
 const log = require("../../../../core/logger");
-const ModelAnalyseRows = require("../../models/mod_analyseRows");
+const ModelIntrosIssues = require("../../../../modules/system/models/mod_introsDataIssues");
 // 本文件待编辑,需要时间区间判断
 
 const dataDevide = async (analyserows) => {
+  log.info("dataDevide[]");
   const data = [];
   for (let i = 0; i < analyserows.length; i++) {
     const dataItem = {};
-    const createdat = new Date(analyserows[i].createdat);
-    const closedat = new Date(analyserows[i].closedat);
+    const createdat = new Date(analyserows[i].created_at);
+    const closedat = new Date(analyserows[i].closed_at);
     dataItem.day = createdat.getDate();
     dataItem.month = createdat.getMonth();// month比实际月份少1
     dataItem.time = (closedat.getTime() - createdat.getTime()) / 3600000;
@@ -144,8 +145,9 @@ exports.getEfficiency = async (req) => {
   log.info("getEfficiency");
   // eslint-disable-next-line no-console
   console.log(req.query);// 得到客户端传来的参数
+  const objName = req.query.objName;
   try {
-    const analyserows = await ModelAnalyseRows.getList({ state: "close" });
+    const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed" });
     const devideData = await dataDevide(analyserows);
     // 4这个数字代表月份差
     const data = await dataAddCol(devideData, 4);
