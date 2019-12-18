@@ -22,20 +22,22 @@ const SHomeZC = () => {
       // console.log("1"+ableCheckboxState)
       document.getElementById('selectesA').innerHTML = '取消';
       document.getElementById('submitA').style.display = 'block';
+      document.getElementById('updateA').style.display = 'block';
     } else {
       setableCheckboxState('hidden');
       document.getElementById('selectesA').innerHTML = '多选';
       document.getElementById('submitA').style.display = 'none';
+      document.getElementById('updateA').style.display = 'none';
       // console.log("2"+ableCheckboxState)
     }
   };
   return (
-    <div>
+    <div id="headAndBody">
       <nav>
         <ul>
-          <li><a>更新</a></li>
-          <li><a onClick={ableCheckbox} id="selectesA">多选</a></li>
+          <li><a id="updateA" style={styleVisibility}>更新</a></li>
           <li><a id="submitA" style={styleVisibility}>确认</a></li>
+          <li><a onClick={ableCheckbox} id="selectesA">多选</a></li>
         </ul>
       </nav>
       <div className="contentBody">
