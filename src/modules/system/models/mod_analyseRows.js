@@ -7,6 +7,7 @@ const { DB_NAME_ISSUE, SCHEMA_ANALYSEROW } = constant;
 
 const { Schema } = mongoose;
 
+
 const AnalyseRow = new Schema({
   htmlurl:              { type: String, description: "html-url" },
   title:                { type: String, description: "title" },

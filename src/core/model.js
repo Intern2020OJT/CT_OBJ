@@ -12,7 +12,6 @@ class Model {
     const conn = db.createConnection(code);
     this.m = conn.model(name, scheme);
   }
-
   async create(obj) {
     try {
       // eslint-disable-next-line new-cap
@@ -21,6 +20,7 @@ class Model {
       throw new createError.InternalServerError(__(COMMON_DB_C_ERROR));
     }
   }
+   
 
   async remove(id, obj = {}) {
     try {
@@ -115,7 +115,7 @@ class Model {
 
   async aggregate(m, g) {
     try {
-      return await this.m.aggregate({ $match: m }, { $group: g });
+      return await this.m.aggregate([{ $match: m }, { $group: g }]);
     } catch (err) {
       throw new createError.InternalServerError(__(COMMON_DB_R_ERROR));
     }
