@@ -1,25 +1,25 @@
 const log         = require("../../../core/logger");
 const ModelIntrosIssues = require("../models/mod_introsDataIssues");
 const ModelIntros    = require("../models/mod_introsData");
-// 存数据
-exports.creatcanalysis = async (test) => {
-  try {
-    await Promise.all(test.map(async (record) => {
-      await ModelIntros.create({ ...record });
-    }));
-  } catch (err) {
-    throw err;
-  }
-};
-exports.creat = async (test) => {
-  try {
-    await Promise.all(test.map(async (record) => {
-      await  ModelIntrosIssues.create({ ...record });
-    }));
-  } catch (err) {
-    throw err;
-  }
-};
+// // 存数据
+// exports.creatcanalysis = async (test) => {
+//   try {
+//     await Promise.all(test.map(async (record) => {
+//       await ModelIntros.create({ ...record });
+//     }));
+//   } catch (err) {
+//     throw err;
+//   }
+// };
+// exports.creat = async (test) => {
+//   try {
+//     await Promise.all(test.map(async (record) => {
+//       await  ModelIntrosIssues.create({ ...record });
+//     }));
+//   } catch (err) {
+//     throw err;
+//   }
+// };
 // 取数据
 exports.canalysisissues = async (prop) => {
   log.info("get canalysis start.");
