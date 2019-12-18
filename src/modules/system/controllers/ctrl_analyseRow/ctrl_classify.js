@@ -8,8 +8,8 @@ const inIt = async (item, arrays) => {
   }
   return false;
 };
-const dataCutforLabels = async (analyserows) => {
-  const obj = await ModelIntros.getOne({ name:'CT_OBJ' });
+const dataCutforLabels = async (analyserows, objName) => {
+  const obj = await ModelIntros.getOne({ name:objName });
   const labelses = obj.labels;
   const data = [];
   for (let i = 0; i < labelses.length; i++) {
@@ -41,9 +41,9 @@ const dataCutforAssignees = async (analyserows) => {
   for (let i = 1; i < analyserows.length; i++) {
     for (let j = 0; j < analyserows[i].assignees.length; j++) {
       // eslint-disable-next-line no-await-in-loop
-      const flag = await inIt(analyserows[i].assignees[j], assigneeses);
+      const flag = await inIt(analyserows[i].assignees[j].name, assigneeses);
       if (!flag) {
-        assigneeses.push(analyserows[i].assignees[j]);
+        assigneeses.push(analyserows[i].assignees[j].name);
       }
     }
   }
@@ -76,11 +76,12 @@ exports.getLabels = async (req) => {
   log.info("get labels");
   // eslint-disable-next-line no-console
   console.log(req.query);// 得到客户端传来的参数
+  const objName = 'CT_OBJ';
   try {
-    const analyserows = await ModelIntrosIssues.getList({});
+    const analyserows = await ModelIntrosIssues.getList({ name:objName });
     // eslint-disable-next-line no-console
-    console.log(analyserows);
-    const data = await dataCutforLabels(analyserows);
+    // console.log(analyserows);
+    const data = await dataCutforLabels(analyserows, objName);
     const res = data;
     return (res);
   } catch (err) {
@@ -93,8 +94,9 @@ exports.getAssignees = async (req) => {
   log.info("get Assignees");
   // eslint-disable-next-line no-console
   console.log(req.query);// 得到客户端传来的参数
+  const objName = 'CT_OBJ';
   try {
-    const analyserows = await ModelIntrosIssues.getList({});
+    const analyserows = await ModelIntrosIssues.getList({ name:objName });
     const data = await dataCutforAssignees(analyserows);
     const res = data;
     return (res);

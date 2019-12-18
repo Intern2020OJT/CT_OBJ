@@ -6,8 +6,8 @@ const dataDevide = async (analyserows) => {
   const data = [];
   for (let i = 0; i < analyserows.length; i++) {
     const dataItem = {};
-    const createdat = new Date(analyserows[i].createdat);
-    const closedat = new Date(analyserows[i].closedat);
+    const createdat = new Date(analyserows[i].created_at);
+    const closedat = new Date(analyserows[i].closed_at);
     dataItem.day = createdat.getDate();
     dataItem.month = createdat.getMonth();// month比实际月份少1
     dataItem.time = (closedat.getTime() - createdat.getTime()) / 3600000;
