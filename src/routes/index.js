@@ -10,10 +10,11 @@ const ctrlCanalysis = require("../modules/system/controllers/ctrl_canalysis");
 const ctrlClassify = require("../modules/system/controllers/ctrl_analyseRow/ctrl_classify");
 const ctrlEffiency = require("../modules/system/controllers/ctrl_analyseRow/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_analyseRow/ctrl_topten");
- 
+
+const ctrlOverallAnalyse = require("../modules/system/controllers/ctrl_overallAnalyse");
 const ctrlHomegetDBData = require("../modules/system/controllers/ctrl_HomegetDBData");
 const ctrlIntrosGitS = require("../modules/system/controllers/ctrl_introsgitS");
- 
+
 const appName = config.name;
 
 module.exports = (app) => {
@@ -25,6 +26,20 @@ module.exports = (app) => {
       response.sendError(res, err);
     }
   });
+  /** *************************************** */
+  // 以下由李海庭使用
+  app.get(`/${appName}/overallAnalyse`, async (req, res) => {
+    try {
+      const result = await ctrlOverallAnalyse.overallAnalyse(req);// 数据库取数据
+      response.sendSuccess(res, result);// 返回数据
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+
+  // 以上由李海庭使用
+  /** *************************************** */
+
   // 以下由杨欣禹使用
   /** ************************************************ */
   // Labels分析
