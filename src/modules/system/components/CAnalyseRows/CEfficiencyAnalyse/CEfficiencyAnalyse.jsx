@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card } from 'antd';
@@ -10,16 +12,18 @@ import CEfficiencyAnalyseCurve from './CEfficiencyAnalyseCurve';
 
 const CEfficiencyAnalyse = props => {
   const [data, setData] = useState([]);
-  const start = '2018';
-  const end = '2019';
-  const objName = props;
+  const start = props.start;
+  const end = props.end;
+  const objName = props.objName;
+  // eslint-disable-next-line no-console
+  console.log(props);
   useEffect(() => {
     const fetchData = async () => {
       const data = await get(API_GETEFFICIENCY, { objName, start, end });
       setData(data);
     };
     fetchData();
-  }, [objName]);
+  }, [end, objName, start]);
   return (
     <div style={{ padding: '10px' }}>
       <Row gutter={[10, 15]} type="flex" justify="center">

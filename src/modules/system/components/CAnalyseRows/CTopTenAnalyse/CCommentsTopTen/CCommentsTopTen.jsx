@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
@@ -11,16 +13,16 @@ import CCommentsTopTenBar from './CCommentsTopTenBar';
 
 const CCommentsTopTen = props => {
   const [data, setData] = useState([]);
-  const start = '2018';
-  const end = '2019';
-  const objName = props;
+  const start = props.start;
+  const end = props.end;
+  const objName = props.objName;
   useEffect(() => {
     const fetchData = async () => {
       const data = await get(API_GETCOMMENTSTOPTEN, { objName, start, end });
       setData(data);
     };
     fetchData();
-  }, [objName]);
+  }, [end, objName, start]);
   return (
     <Card
       style={{ width: '600px', height: '500px' }}
