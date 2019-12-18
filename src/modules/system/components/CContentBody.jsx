@@ -25,7 +25,10 @@ function CContentBody(props) {
   });
   var midChar = [];
   for (var num = 0; IntrosData.data[num] != undefined; num++) {
-    midChar.push(IntrosData.data[num])
+    var name={
+      "name":IntrosData.data[num].name
+    }
+    midChar.push(name)
   }
   const [componentArray, setComponentArray] = useState(midChar);
   const receiveComponentArrayChange = (res) => {
@@ -35,9 +38,10 @@ function CContentBody(props) {
     // console.log(j)
     console.log(res);
     if (res.data !== '_IS_faile') {
-      const ProgramName = res.data[0].name;
+      const ProgramName = res.data.name;
       i.push({ name: ProgramName });
       setComponentArray(i);
+      return '_ADD_OK'
     }
     return '_IS_faile'
     // console.log(componentArray)
