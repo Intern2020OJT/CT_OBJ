@@ -9,11 +9,10 @@ const { DB_NAME_ISSUE, SCHEMA_SXL } = constant;
 const { BaseSchema } = SchemaCommon;
 
 const Test = new BaseSchema({
- name:              { type: String, description: "横坐标" },
- issues:            { type: Array, description: "纵坐标" }, 
- openissues:        { type: Number, description: "纵坐标"}, 
- people:            { type: Number, description: "纵坐标"},
- watchers:          { type: Number, description: "纵坐标"}
+
+ name:              { type: String, description: "项目名字" },
+ _id:               { type: String, description: "创建人" },
+ number:            { type: String, description: "数量" },
 });
 
 const ModelTest = new Model(DB_NAME_ISSUE, SCHEMA_SXL, Test);
