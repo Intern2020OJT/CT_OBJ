@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Chart,
@@ -12,7 +14,7 @@ import DataSet from '@antv/data-set';
 const CClassifyAssigneesAnalysePie = props => {
   const { DataView } = DataSet;
   const { data } = props;
-  console.log(props);
+  // console.log(props);
   const dv = new DataView();
   dv.source(data).transform({
     type: 'percent',
@@ -48,6 +50,7 @@ const CClassifyAssigneesAnalysePie = props => {
         <Coord type="theta" radius={0.5} />
         <Tooltip
           showTitle={false}
+          // eslint-disable-next-line max-len
           itemTpl="<li><span style=&quot;background-color:{color};&quot; class=&quot;g2-tooltip-marker&quot;></span>{name}: {value}</li>"
         />
         <Geom

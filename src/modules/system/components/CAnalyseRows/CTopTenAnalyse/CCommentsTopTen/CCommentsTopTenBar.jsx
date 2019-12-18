@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Chart,
@@ -23,10 +24,10 @@ const CCommentsTopTenBar = props => {
     }
   });
 
-  const itemTpl= '<li data-index={index}>'
+  const itemTpl = '<li data-index={index}>'
   + '<div style="float:left;font-size:14px;">{value}<div>'
   + '<div><div style="float:right">{otherMessage}<div><div>'
-  + '</li>'
+  + '</li>';
 
   return (
     <div>
@@ -39,7 +40,7 @@ const CCommentsTopTenBar = props => {
             textStyle: { fontSize: 15 }
           }}
         />
-        <Axis name="comments" label={{ textStyle: { fontSize: 15 } }}/>
+        <Axis name="comments" label={{ textStyle: { fontSize: 15 } }} />
         <Tooltip enterable="true" itemTpl={itemTpl} />
         <Geom
           type="interval"
@@ -47,13 +48,13 @@ const CCommentsTopTenBar = props => {
           tooltip={['fullName*comments', (fullName, comments) => {
             return {
               // 自定义 tooltip 上显示的 title 显示内容等。
-              title:`<div style="font-size:15px;color:#3aa1ff">${fullName}</div>`,
-              value:`Comments数量: ${comments}个`,
-              otherMessage:`<a href="https://www.baidu.com>">详情</a>`
+              title: `<div style="font-size:15px;color:#3aa1ff">${fullName}</div>`,
+              value: `Comments数量: ${comments}个`,
+              otherMessage: '<a href="https://www.baidu.com>">详情</a>'
             };
           }]}
         >
-          <Label offset={3} content={['comments']} fontSize={15}/>{''}
+          <Label offset={3} content={['comments']} fontSize={15} />{''}
         </Geom>
       </Chart>
     </div>

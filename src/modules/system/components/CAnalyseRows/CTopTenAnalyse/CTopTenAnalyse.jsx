@@ -5,7 +5,6 @@ import CTimeTopTen from './CTimeTopTen/CTimeTopTen';
 import CCommentsTopTen from './CCommentsTopTen/CCommentsTopTen';
 
 const CTopTenAnalyse = () => {
-
   return (
     <div style={{ padding: '10px' }}>
       <Row gutter={[20, 15]} type="flex" justify="center">
