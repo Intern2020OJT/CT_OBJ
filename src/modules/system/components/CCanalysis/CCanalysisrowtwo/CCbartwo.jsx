@@ -6,15 +6,13 @@ import DataSet from '@antv/data-set';
 import { get } from '../../../../../utils/fetch';
 import { API_CARDTWO } from '../../../../../utils/constants';
 
-const CCbartwo = () => {
+const CCbartwo = (props) => {
   const [data, setData] = useState([]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     const fetchData = (async () => {
       // eslint-disable-next-line no-shadow
-      const res = [{ name: 'CT_OBJ' }, { name: 'ISE_OBJ' }, { name: 'SMD_OBJ' }];
-      // eslint-disable-next-line no-shadow
-      const data = await get(API_CARDTWO, { res });
+      const data = await get(API_CARDTWO, { props });
       setData(data);
     });
     fetchData();

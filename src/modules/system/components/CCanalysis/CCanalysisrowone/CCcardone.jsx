@@ -8,13 +8,12 @@ import { API_CARDONE } from '../../../../../utils/constants';
 import CCbarone from './CCbarone';
 import CCpieone from './CCpieone';
 
-const CCcardone = () => {
+const CCcardone = (props) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const res = [{ name: 'CT_OBJ' }, { name: 'ISE_OBJ' }, { name: 'SMD_OBJ' }];
       // eslint-disable-next-line no-shadow
-      const data = await get(API_CARDONE, { res });
+      const data = await get(API_CARDONE, { props });
       setData(data);
     };
     fetchData();
