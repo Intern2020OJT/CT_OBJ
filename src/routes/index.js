@@ -10,12 +10,10 @@ const ctrlCanalysis = require("../modules/system/controllers/ctrl_canalysis");
 const ctrlClassify = require("../modules/system/controllers/ctrl_analyseRow/ctrl_classify");
 const ctrlEffiency = require("../modules/system/controllers/ctrl_analyseRow/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_analyseRow/ctrl_topten");
-// const ctrlIntrosGit = require("../modules/system/controllers/ctrl_introsgit");
+ 
 const ctrlHomegetDBData = require("../modules/system/controllers/ctrl_HomegetDBData");
 const ctrlIntrosGitS = require("../modules/system/controllers/ctrl_introsgitS");
-// const { introsData } = require("../tool/introsData");
-// const { introsDataIssues } = require("../tool/introsDataIssues");
-
+ 
 const appName = config.name;
 
 module.exports = (app) => {
@@ -33,7 +31,7 @@ module.exports = (app) => {
   app.get(`/${appName}/getLabels`, async (req, res) => {
     try {
       // console.log(1)
-      const result = await ctrlClassify.getLables(req);// 模拟数据库取数据
+      const result = await ctrlClassify.getLabels(req);// 模拟数据库取数据
       response.sendSuccess(res, result);// 返回数据
     } catch (err) {
       response.sendError(res, err);
@@ -73,7 +71,7 @@ module.exports = (app) => {
   app.get(`/${appName}/getCommentsTopTen`, async (req, res) => {
     try {
       // console.log(1)
-      const result = await ctrlTopTen.getTimeTopTen(req);// 模拟数据库取数据
+      const result = await ctrlTopTen.getCommentsTopTen(req);// 模拟数据库取数据
       response.sendSuccess(res, result);// 返回数据
     } catch (err) {
       response.sendError(res, err);
