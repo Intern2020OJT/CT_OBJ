@@ -145,7 +145,7 @@ exports.getEfficiency = async (req) => {
   log.info("getEfficiency");
   // eslint-disable-next-line no-console
   console.log(req.query);// 得到客户端传来的参数
-  const objName = '2020_Intern_Object';
+  const objName = req.query.objName.substr(12, req.query.objName.length - 14);
   try {
     const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed" });
     const devideData = await dataDevide(analyserows);

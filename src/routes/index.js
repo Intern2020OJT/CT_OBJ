@@ -70,7 +70,7 @@ module.exports = (app) => {
   app.get(`/${appName}/getCommentsTopTen`, async (req, res) => {
     try {
       // console.log(1)
-      const result = await ctrlTopTen.getTimeTopTen(req);// 模拟数据库取数据
+      const result = await ctrlTopTen.getCommentsTopTen(req);// 模拟数据库取数据
       response.sendSuccess(res, result);// 返回数据
     } catch (err) {
       response.sendError(res, err);

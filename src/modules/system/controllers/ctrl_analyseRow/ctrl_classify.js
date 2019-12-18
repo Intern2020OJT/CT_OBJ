@@ -80,9 +80,8 @@ const dataCutforAssignees = async (analyserows) => {
 
 exports.getLabels = async (req) => {
   log.info("get labels");
-  // eslint-disable-next-line no-console
-  console.log(req.query);// 得到客户端传来的参数
-  const objName = '2020_Intern_Object';
+  // 得到客户端传来的参数
+  const objName = req.query.objName.substr(23, req.query.objName.length - 26);
   try {
     const analyserows = await ModelIntrosIssues.getList({ name:objName });
     // eslint-disable-next-line no-console
@@ -98,9 +97,8 @@ exports.getLabels = async (req) => {
 };
 exports.getAssignees = async (req) => {
   log.info("get Assignees");
-  // eslint-disable-next-line no-console
-  console.log(req.query);// 得到客户端传来的参数
-  const objName = '2020_Intern_Object';
+  // 得到客户端传来的参数
+  const objName = req.query.objName.substr(23, req.query.objName.length - 26);
   try {
     const analyserows = await ModelIntrosIssues.getList({ name:objName });
     // eslint-disable-next-line no-console
