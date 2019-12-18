@@ -1,11 +1,12 @@
+/* eslint-disable no-console */
 const helper          = require("../core/helper");
 
-const { introsData }           = require("./introsData");
-const   ModelIntros    = require("../modules/system/models/mod_introsData");
+const { introsDataIssues }           = require("./introsDataIssues");
+const   ModelIntros    = require("../modules/system/models/mod_introsDataIssues");
 
 const importUser = async () => {
   try {
-    await Promise.all(introsData.map(async (record) => {
+    await Promise.all(introsDataIssues.map(async (record) => {
       const newRecord = {
         password:         helper.sha256(record.password),
         valid:            1,
