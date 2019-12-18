@@ -1,29 +1,31 @@
 import React from 'react';
 import { Row, Col } from 'antd';
  
-import CCcardone from '../components/CCanalysis/CCanalysisrowone/CCcardone' 
-import CCcardtwo from '../components/CCanalysis/CCanalysisrowtwo/CCcardtwo'
-import CCcardthree from '../components/CCanalysis/CCanalysisrowthree/CCcardthree'
 
+import CCcardone from '../components/CCanalysis/CCanalysisrowone/CCcardone'; 
+import CCcardtwo from '../components/CCanalysis/CCanalysisrowtwo/CCcardtwo';
+import CCcardthree from '../components/CCanalysis/CCanalysisrowthree/CCcardthree';
+ 
 const SCanalysis = (props) => {
-  const getData=props.location.state.pullData
+  // eslint-disable-next-line react/prop-types
+  const getData = props.location.state.pullDate;
+
   return (
     <div className="body bodyflow padding-bottom">
       <Row gutter={[100, 200]} type="flex" justify="center">
         <Col>
+          { <CCcardone data={getData} />}
  
-         { <CCcardone/>}
-
         </Col>
       </Row>
-      <Row gutter={[100,100]} type="flex" justify="center">
+      <Row gutter={[100, 100]} type="flex" justify="center">
         <Col>
-          <CCcardtwo/>
+          <CCcardtwo data={getData} />
         </Col>
       </Row>
-      <Row gutter={[100,100]} type="flex" justify="center">
+      <Row gutter={[100, 100]} type="flex" justify="center">
         <Col>
-          { <CCcardthree/> }
+          { <CCcardthree data={getData} /> }
         </Col>
       </Row>
     </div>
