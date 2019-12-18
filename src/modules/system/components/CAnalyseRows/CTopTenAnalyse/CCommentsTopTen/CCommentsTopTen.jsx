@@ -9,15 +9,18 @@ import { get } from '../../../../../../utils/fetch';
 
 import CCommentsTopTenBar from './CCommentsTopTenBar';
 
-const CCommentsTopTen = () => {
+const CCommentsTopTen = props => {
   const [data, setData] = useState([]);
+  const start = '2018';
+  const end = '2019';
+  const objName = props;
   useEffect(() => {
     const fetchData = async () => {
-      const data = await get(API_GETCOMMENTSTOPTEN);
+      const data = await get(API_GETCOMMENTSTOPTEN, { objName, start, end });
       setData(data);
     };
     fetchData();
-  }, []);
+  }, [objName]);
   return (
     <Card
       style={{ width: '600px', height: '500px' }}

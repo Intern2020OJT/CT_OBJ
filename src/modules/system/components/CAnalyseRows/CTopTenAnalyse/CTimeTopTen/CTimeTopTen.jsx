@@ -8,17 +8,18 @@ import { get } from '../../../../../../utils/fetch';
 
 import CTimeTopTenBar from './CTimeTopTenBar';
 
-const CTimeTopTen = () => {
+const CTimeTopTen = props => {
   const [data, setData] = useState([]);
   const start = '2018';
   const end = '2019';
+  const objName = props;
   useEffect(() => {
     const fetchData = async () => {
-      const data = await get(API_GETTIMETOPTEN, { start, end });
+      const data = await get(API_GETTIMETOPTEN, { objName, start, end });
       setData(data);
     };
     fetchData();
-  }, []);
+  }, [objName]);
   return (
     <Card
       style={{ width: '600px', height: '500px' }}

@@ -7,13 +7,14 @@ import CEfficiencyAnalyse from '../components/CAnalyseRows/CEfficiencyAnalyse/CE
 import CTopTenAnalyse from '../components/CAnalyseRows/CTopTenAnalyse/CTopTenAnalyse';
 
 const SAnalyse = () => {
+  const objName = '2020_Intern_Object';
   return (
     <div className="Analyse">
       <COverallAnalyse />
       <CSearchCondition />
-      <CClassifyAnalyse />
-      <CEfficiencyAnalyse />
-      <CTopTenAnalyse />
+      <CClassifyAnalyse objName={objName} />
+      <CEfficiencyAnalyse objName={objName} />
+      <CTopTenAnalyse objName={objName} />
     </div>
   );
 };

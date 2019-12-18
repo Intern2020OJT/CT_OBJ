@@ -9,18 +9,20 @@ import CClassifyLablesAnalyseBar from './CClassifyLabelsAnalyseBar';
 import CClassifyLablesAnalysePie from './CClassifyLabelsAnalysePie';
 
 
-const CClassifyLablesAnalyse = () => {
+const CClassifyLablesAnalyse = props => {
   const [tabs, setState] = useState('bar');
 
   const [data, setData] = useState([]);
+  const start = '2018';
+  const end = '2019';
+  const objName = props;
   useEffect(() => {
     const fetchData = async () => {
-      const data = await get(API_GETLABELS);
+      const data = await get(API_GETLABELS, { objName, start, end });
       setData(data);
     };
     fetchData();
-  }, []);
-
+  }, [objName]);
   // console.log(data);
   const tabList = [
     {
