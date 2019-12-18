@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
@@ -8,17 +10,18 @@ import { get } from '../../../../../../utils/fetch';
 
 import CTimeTopTenBar from './CTimeTopTenBar';
 
-const CTimeTopTen = () => {
+const CTimeTopTen = props => {
   const [data, setData] = useState([]);
-  const start = '2018';
-  const end = '2019';
+  const start = props.start;
+  const end = props.end;
+  const objName = props.objName;
   useEffect(() => {
     const fetchData = async () => {
-      const data = await get(API_GETTIMETOPTEN, { start, end });
+      const data = await get(API_GETTIMETOPTEN, { objName, start, end });
       setData(data);
     };
     fetchData();
-  }, []);
+  }, [end, objName, start]);
   return (
     <Card
       style={{ width: '600px', height: '500px' }}
