@@ -16,33 +16,62 @@ function CGitAddModal(props) {
 
   const handleOk = () => {
     // setTimeout(() => {
-    if (document.getElementById('inputUrl').value !== null && document.getElementById('inputUrl').value !== '') {
-      let IntrosData;
-      const BaseUrl = `${process.env.REACT_APP_API_URL}`;
-      const Url2 = `${BaseUrl}/introsgits?${document.getElementById('inputUrl').value}`;
-      $.ajax({
-        url: Url2,
-        type: 'get',
-        async: false,
-        dataType: 'json',
-        success: function (data) {
-          IntrosData = data;
-        },
-        error: function (err) {
-          console.log(err);
+
+    const IntrosData = {
+      IntrosData1, IntrosData1,
+    };
+    let IntrosData1;
+    let IntrosData2;
+    const BaseUrl = `${process.env.REACT_APP_API_URL}`;
+    const Url = `${BaseUrl}/introsgit?${document.getElementById('inputUrl').value}`;
+    var ajaxTimeoutTest = $.ajax({
+      url: Url,
+      type: 'get',
+      timeout: 1000,
+      async: false,
+      dataType: 'json',
+      success: function (data) {
+        IntrosData1 = data;
+      },
+      error: function (err) {
+        console.log(err);
+      },
+      complete: function (XMLHttpRequest, status) { // 请求完成后最终执行参数
+        if (status == 'timeout') { // 超时,status还有success,error等值的情况
+          ajaxTimeoutTest.ajax.abort(); // 取消请求
+          alert('超时');
         }
-      });
-      console.log(IntrosData);
-      var judge = props.inAdd(IntrosData);
-      if (judge !== '_IS_faile') {
-        setvisible(false);
-        setloading(false);
       }
-    }
-    //或需加错误提示
+    });
+    const Url2 = `${BaseUrl}/introsgits?${document.getElementById('inputUrl').value}`;
+    var ajaxTimeoutTest2 = $.ajax({
+      url: Url2,
+      type: 'get',
+      timeout: 1000,
+      async: false,
+      dataType: 'json',
+      success: function (data) {
+        IntrosData2 = data;
+      },
+      error: function (err) {
+        console.log(err);
+      },
+      complete: function (XMLHttpRequest, status) { // 请求完成后最终执行参数
+        if (status == 'timeout') { // 超时,status还有success,error等值的情况
+          ajaxTimeoutTest2.ajax.abort(); // 取消请求
+          alert('超时');
+        }
+      }
+    });
+    IntrosData.IntrosData1 = IntrosData1;
+    IntrosData.IntrosData2 = IntrosData2;
+    console.log(IntrosData);
+    props.inAdd(IntrosData);
+
+
     //      }, 1);
-
-
+    setloading(false);
+    setvisible(false);
   };
 
   const handleCancel = () => {
@@ -66,10 +95,10 @@ function CGitAddModal(props) {
           onCancel={handleCancel}
           footer={[
             <Button key="back" onClick={handleCancel}>
-              返回
+                            返回
             </Button>,
             <Button key="submit" type="primary" loading={loading} onClick={function (event) { handleOk(); }}>
-              导入
+                            导入
             </Button>,
           ]}
         >

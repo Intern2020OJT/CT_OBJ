@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Chart,
@@ -47,6 +49,7 @@ const CClassifyLablesAnalysePie = props => {
         <Coord type="theta" radius={0.5} />
         <Tooltip
           showTitle={false}
+          // eslint-disable-next-line max-len
           itemTpl="<li><span style=&quot;background-color:{color};&quot; class=&quot;g2-tooltip-marker&quot;></span>{name}: {value}</li>"
         />
         <Geom
