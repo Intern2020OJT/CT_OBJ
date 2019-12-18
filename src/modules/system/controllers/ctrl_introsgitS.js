@@ -238,9 +238,6 @@ exports.introsGits = async (req) => {
                     "full_name": saveDataFromGit.full_name,
                     "lan": saveDataFromLan
                 }
-                //await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
-                //await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
-                //return MYNeedData;
                 //防止添加重复
                 var contentED = await HomegetDBData.HomegetDBDataForCheck(MYNeedData.name)
                 
@@ -251,10 +248,10 @@ exports.introsGits = async (req) => {
                 else {
                     await CreateIntrosDataDB.UpdateIntrosDataDB(saveDatafromIntros);
                     await CreateIssuesIntrosDataDB.UpdateIntrosDataDB(saveDataFromIssues);
-                }
+                }// 若有重复则变为更新数据
 
-                //return MYNeedData;
-                return saveDataFromGit
+                return MYNeedData;
+                //return saveDataFromGit
 
             }
         }
