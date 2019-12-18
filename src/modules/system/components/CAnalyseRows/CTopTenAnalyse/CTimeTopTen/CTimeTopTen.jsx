@@ -1,17 +1,22 @@
-import React,{useEffect,useState} from 'react';
+/* eslint-disable no-shadow */
+import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 
-import CTimeTopTenBar from './CTimeTopTenBar';
 import { API_GETTIMETOPTEN } from '../../../../../../utils/constants';
 
 import { get } from '../../../../../../utils/fetch';
+
+import CTimeTopTenBar from './CTimeTopTenBar';
+
 const CTimeTopTen = () => {
   const [data, setData] = useState([]);
+  const start = '2018';
+  const end = '2019';
   useEffect(() => {
     const fetchData = async () => {
-      const data = await get(API_GETTIMETOPTEN);
+      const data = await get(API_GETTIMETOPTEN, { start, end });
       setData(data);
-    }
+    };
     fetchData();
   }, []);
   return (
