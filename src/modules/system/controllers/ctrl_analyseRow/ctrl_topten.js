@@ -1,21 +1,22 @@
 const log = require("../../../../core/logger");
-const ModelAnalyseRows = require("../../models/mod_analyseRows");
+const ModelIntrosIssues = require("../../../../modules/system/models/mod_introsDataIssues");
 
 const dataDevide = async (analyserows) => {
   const data = [];
   for (let i = 0; i < analyserows.length; i++) {
     const dataItem = {};
-    const createdat = new Date(analyserows[i].createdat);
-    const closedat = new Date(analyserows[i].closedat);
+    const createdat = new Date(analyserows[i].created_at);
+    const closedat = new Date(analyserows[i].closed_at);
     dataItem.fullName = analyserows[i].title;// month比实际月份少1
     if (dataItem.fullName.length >= 5) {
       // eslint-disable-next-line max-len
-      dataItem.shortName = `${dataItem.fullName.substr(0, 2)}...${dataItem.fullName.substr(dataItem.fullName.length - 2, 2)}`;
+      dataItem.shortName = `${dataItem.fullName.substr(0, 5)}...`;
     } else {
       dataItem.shortName = dataItem.fullName;
     }
     dataItem.time = +((closedat.getTime() - createdat.getTime()) / 3600000).toFixed(2);
     dataItem.comments = analyserows[i].comments;
+    dataItem.htmlurl = analyserows[i].html_url;
     data.push(dataItem);
   }
   return data;
@@ -43,9 +44,9 @@ exports.getTimeTopTen = async (req) => {
   log.info("getTimeTopTen");
   // eslint-disable-next-line no-console
   console.log(req.query);// 得到客户端传来的参数
-
+  const objName = '2020_Intern_Object';
   try {
-    const analyserows = await ModelAnalyseRows.getList({ state: "close" });
+    const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed" });
     const devideData = await dataDevide(analyserows);
     const data = await dataSort(devideData, 'time');
     const res = await dataBeTen(data);
@@ -60,8 +61,9 @@ exports.getCommentsTopTen = async (req) => {
   log.info("getCommentsTopTen");
   // eslint-disable-next-line no-console
   console.log(req.query);// 得到客户端传来的参数
+  const objName = '2020_Intern_Object';
   try {
-    const analyserows = await ModelAnalyseRows.getList({ state: "close" });
+    const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed" });
     const devideData = await dataDevide(analyserows);
     const data = await dataSort(devideData, 'comments');
     const res = await dataBeTen(data);
