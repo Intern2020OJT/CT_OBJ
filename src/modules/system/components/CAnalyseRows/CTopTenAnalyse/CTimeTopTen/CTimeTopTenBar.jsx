@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Chart,
@@ -24,10 +25,10 @@ const CTimeTopTenBar = props => {
     }
   });
 
-  const itemTpl= '<li data-index={index}>'
+  const itemTpl = '<li data-index={index}>'
   + '<div style="float:left;font-size:14px;">{value}<div>'
   + '<div><div style="float:right">{otherMessage}<div><div>'
-  + '</li>'
+  + '</li>';
 
   return (
     <div>
@@ -40,17 +41,17 @@ const CTimeTopTenBar = props => {
             textStyle: { fontSize: 15 }
           }}
         />
-        <Axis name="time" label={{ textStyle: { fontSize: 15 } }}/>
-        <Tooltip enterable="true" itemTpl={itemTpl}/>
+        <Axis name="time" label={{ textStyle: { fontSize: 15 } }} />
+        <Tooltip enterable="true" itemTpl={itemTpl} />
         <Geom
           type="interval"
           position="shortName*time"
           tooltip={['fullName*time', (fullName, time) => {
             return {
-              //此处baidu可替换为issues的url
-              title:`<div style="font-size:15px;color:#3aa1ff">${fullName}</div>`,
-              value:`对应时间: ${time}小时`,
-              otherMessage:`<a href="https://www.baidu.com>">详情</a>`
+              // 此处baidu可替换为issues的url
+              title: `<div style="font-size:15px;color:#3aa1ff">${fullName}</div>`,
+              value: `对应时间: ${time}小时`,
+              otherMessage: '<a href="https://www.baidu.com>">详情</a>'
             };
           }]}
         >
