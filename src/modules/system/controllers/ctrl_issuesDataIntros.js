@@ -9,4 +9,14 @@ exports.CreateIntrosDataDB = async (introsData) => {
      } catch (err) {
     throw err;
   }
+};// 往数据库新建文件
+exports.UpdateIntrosDataDB = async (introsData) => {
+  try {
+    //log(test)
+    await Promise.all(introsData.map(async (record) => {
+      await ModelIntrosIssues.update({...record});
+    }));
+     } catch (err) {
+    throw err;
+  }
 };
