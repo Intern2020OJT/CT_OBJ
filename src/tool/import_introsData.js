@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const helper          = require("../core/helper");
 
 const { introsData }           = require("./introsData");
