@@ -33,7 +33,7 @@ module.exports = (app) => {
   app.get(`/${appName}/getLabels`, async (req, res) => {
     try {
       // console.log(1)
-      const result = await ctrlClassify.getLables(req);// 模拟数据库取数据
+      const result = await ctrlClassify.getLabels(req);// 模拟数据库取数据
       response.sendSuccess(res, result);// 返回数据
     } catch (err) {
       response.sendError(res, err);
