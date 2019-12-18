@@ -175,26 +175,19 @@ exports.introsGits = async (req) => {
 
 
                 //防止添加重复
-                var contentED = HomegetDBData.HomegetDBData().data
-                var flag = 'false';
-                for (var i = 0; contentED[i] !== undefined; i++) {
-                    if (contentED[i].name === MYNeedData.name) {
-                        flag = 'true'
-                        break;//正式数据应该无有重复数据，故新待加入项检测到重复即可退出
-                    }
-                }//去重
-                if (flag === 'false') {
+                var contentED = await HomegetDBData.HomegetDBDataForCheck(MYNeedData.name)
+                
+                if (contentED===0) {
                     await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
                     await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
-                }
-                else
-                {
-                    
+                }//返回长度为0，无重复
+                else {
+
                 }
 
-                //return MYNeedData;
+                return MYNeedData;
 
-                return saveDatafromIntros
+                //return saveDatafromIntros
 
             }
         }
@@ -245,11 +238,20 @@ exports.introsGits = async (req) => {
                     "full_name": saveDataFromGit.full_name,
                     "lan": saveDataFromLan
                 }
-                await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
-                await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
-                //return MYNeedData;
+                //防止添加重复
+                var contentED = await HomegetDBData.HomegetDBDataForCheck(MYNeedData.name)
+                
+                if (contentED===0) {
+                    await CreateIntrosDataDB.CreateIntrosDataDB(saveDatafromIntros);
+                    await CreateIssuesIntrosDataDB.CreateIntrosDataDB(saveDataFromIssues);//建立双表，一表总体，一表issues
+                }//返回长度为0，无重复
+                else {
+                    await CreateIntrosDataDB.UpdateIntrosDataDB(saveDatafromIntros);
+                    await CreateIssuesIntrosDataDB.UpdateIntrosDataDB(saveDataFromIssues);
+                }// 若有重复则变为更新数据
 
-                return saveDatafromIntros
+                return MYNeedData;
+                //return saveDataFromGit
 
             }
         }
