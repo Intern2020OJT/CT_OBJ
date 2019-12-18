@@ -1,5 +1,5 @@
 const log = require("../../../../core/logger");
-const ModelAnalyseRows = require("../../models/mod_analyseRows");
+const ModelIntros = require("../../../../modules/system/models/mod_introsDataIssues");
 
 const inIt = async (item, arrays) => {
   for (let i = 0; i < arrays.length; i++) {
@@ -84,7 +84,9 @@ exports.getLables = async (req) => {
   // eslint-disable-next-line no-console
   console.log(req.query);// 得到客户端传来的参数
   try {
-    const analyserows = await ModelAnalyseRows.getList({});
+    const analyserows = await ModelIntros.getList({});
+    // eslint-disable-next-line no-console
+    console.log(analyserows);
     const data = await dataCutforLabels(analyserows);
     const res = data;
     return (res);
@@ -99,7 +101,7 @@ exports.getAssignees = async (req) => {
   // eslint-disable-next-line no-console
   console.log(req.query);// 得到客户端传来的参数
   try {
-    const analyserows = await ModelAnalyseRows.getList({});
+    const analyserows = await ModelIntros.getList({});
     const data = await dataCutforAssignees(analyserows);
     const res = data;
     return (res);
