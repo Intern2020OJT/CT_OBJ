@@ -13,10 +13,13 @@ exports.CreateIntrosDataDB = async (introsData) => {
 exports.UpdateIntrosDataDB = async (introsData) => {
   try {
     //log(test)
+    var midName = introsData[0].name;
+    var name={
+      name:introsData[0].name
+    }
     await Promise.all(introsData.map(async (record) => {
-      await ModelIntrosIssues.update({...record});
-    }));
-     } catch (err) {
+      await ModelIntrosIssues.updateByCondition(name, {...record})}));
+  } catch (err) {
     throw err;
   }
-};
+};//更新
