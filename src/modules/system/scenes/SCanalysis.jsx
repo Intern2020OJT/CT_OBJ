@@ -9,6 +9,7 @@ import CCcardthree from '../components/CCanalysis/CCanalysisrowthree/CCcardthree
 const SCanalysis = (props) => {
   // eslint-disable-next-line react/prop-types
   const getData = props.location.state.pullDate;
+
   return (
     <div className="body bodyflow padding-bottom">
       <Row gutter={[100, 200]} type="flex" justify="center">
