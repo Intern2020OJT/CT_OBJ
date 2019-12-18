@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import { Card } from 'antd';
 
@@ -8,17 +9,20 @@ import CClassifyAssigneesAnalyseBar from './CClassifyAssigneesAnalyseBar';
 import CClassifyAssigneesAnalysePie from './CClassifyAssigneesAnalysePie';
 
 
-const CClassifyAssigneesAnalyse = () => {
+const CClassifyAssigneesAnalyse = props => {
   const [tabs, setState] = useState('bar');
+  
   const [data, setData] = useState([]);
+  const start = '2018';
+  const end = '2019';
+  const objName = props;
   useEffect(() => {
     const fetchData = async () => {
-      const fdata = await get(API_GETASSIGNEES);
-      setData(fdata);
+      const data = await get(API_GETASSIGNEES, { objName, start, end });
+      setData(data);
     };
     fetchData();
-  }, []);
-
+  }, [objName]);
 
   const tabList = [
     {

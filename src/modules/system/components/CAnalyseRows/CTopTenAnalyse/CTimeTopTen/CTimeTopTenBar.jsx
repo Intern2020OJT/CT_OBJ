@@ -42,16 +42,17 @@ const CTimeTopTenBar = props => {
           }}
         />
         <Axis name="time" label={{ textStyle: { fontSize: 15 } }} />
+        <Axis name="htmlurl" />
         <Tooltip enterable="true" itemTpl={itemTpl} />
         <Geom
           type="interval"
           position="shortName*time"
-          tooltip={['fullName*time', (fullName, time) => {
+          tooltip={['fullName*time*htmlurl', (fullName, time, htmlurl) => {
             return {
               // 此处baidu可替换为issues的url
               title: `<div style="font-size:15px;color:#3aa1ff">${fullName}</div>`,
               value: `对应时间: ${time}小时`,
-              otherMessage: '<a href="https://www.baidu.com>">详情</a>'
+              otherMessage: `<a href="${htmlurl}">详情</a>`
             };
           }]}
         >

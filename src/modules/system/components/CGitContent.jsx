@@ -1,21 +1,23 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-import { Card, Radio, Checkbox } from 'antd';
+import { Checkbox } from 'antd';
 
 import '../../../static/css/CGitContent.less';
 
 function CGitContent(props) {
   const lastCheckboxState = props.CheckboxState;
-  var 
-  const onChange=(e)=>{
+  const onChange = (e) => {
+    // eslint-disable-next-line no-console
     console.log(`checked = ${e.target.checked}`);
-  }
+  };
 
   return (
 
-    <div className="divContaner" >
+    <div className="divContaner">
       {
-        lastCheckboxState == 'visible' && <Checkbox className="radioRight" onChange={onChange} />
+        lastCheckboxState === 'visible' && <Checkbox className="radioRight" onChange={onChange} />
       }
 
       <div className="divBlock">

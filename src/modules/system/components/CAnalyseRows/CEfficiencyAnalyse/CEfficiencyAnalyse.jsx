@@ -8,15 +8,18 @@ import { get } from '../../../../../utils/fetch';
 
 import CEfficiencyAnalyseCurve from './CEfficiencyAnalyseCurve';
 
-const CEfficiencyAnalyse = () => {
+const CEfficiencyAnalyse = props => {
   const [data, setData] = useState([]);
+  const start = '2018';
+  const end = '2019';
+  const objName = props;
   useEffect(() => {
     const fetchData = async () => {
-      const data = await get(API_GETEFFICIENCY);
+      const data = await get(API_GETEFFICIENCY, { objName, start, end });
       setData(data);
     };
     fetchData();
-  }, []);
+  }, [objName]);
   return (
     <div style={{ padding: '10px' }}>
       <Row gutter={[10, 15]} type="flex" justify="center">
