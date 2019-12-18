@@ -171,23 +171,23 @@ module.exports = (app) => {
       response.sendError(res, err);
     }
   });
-  app.get(`/${appName}/creat`, async (req, res) => {
-    try {
-      await ctrlCanalysis.creat(introsDataIssues);
+  // app.get(`/${appName}/creat`, async (req, res) => {
+  //   try {
+  //     await ctrlCanalysis.creat(introsDataIssues);
 
-      response.sendSuccess(res, 'ok');
-    } catch (err) {
-      response.sendError(res, err);
-    }
-  });
-  app.get(`/${appName}/creatcanalysis`, async (req, res) => {
-    try {
-      await ctrlCanalysis.creatcanalysis(introsData);
-      response.sendSuccess(res, 'ok');
-    } catch (err) {
-      response.sendError(res, err);
-    }
-  });
+  //     response.sendSuccess(res, 'ok');
+  //   } catch (err) {
+  //     response.sendError(res, err);
+  //   }
+  // });
+  // app.get(`/${appName}/creatcanalysis`, async (req, res) => {
+  //   try {
+  //     await ctrlCanalysis.creatcanalysis(introsData);
+  //     response.sendSuccess(res, 'ok');
+  //   } catch (err) {
+  //     response.sendError(res, err);
+  //   }
+  // });
   // 注意位置，若置于最底会报错
   app.use(`/${appName}`, auth.authenticate, system);
 
