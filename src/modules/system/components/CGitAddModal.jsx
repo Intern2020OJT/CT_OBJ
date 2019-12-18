@@ -5,7 +5,7 @@ import { Form, Input, Modal, Button, Spin, Row, Col, Icon, message } from 'antd'
 import '../../../static/css/CGitAddModal.less';
 import '../../../static/css/CGitContent.less';
 
-// import { AddGitContent } from '../../../utils/AddGitContent';
+import { AddGitContent } from '../../../utils/AddGitContent';
 
 function CGitAddModal(props) {
   const [loading, setloading] = useState(false);
