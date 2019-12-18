@@ -15,8 +15,8 @@ const COverallAnalyse = () => {
             <Row gutter={[20, 15]} type="flex" justify="center">
               <Col><CTotal /></Col>
               <Col><CAverageTime /></Col>
-              <Col><CRetentionRate /></Col>
               <Col><COpenNumber /></Col>
+              <Col><CRetentionRate /></Col>
             </Row>
           </div>
         </Card>
