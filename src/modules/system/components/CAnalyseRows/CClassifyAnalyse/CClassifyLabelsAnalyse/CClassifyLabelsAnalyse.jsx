@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import { Card } from 'antd';
@@ -9,18 +11,20 @@ import CClassifyLablesAnalyseBar from './CClassifyLabelsAnalyseBar';
 import CClassifyLablesAnalysePie from './CClassifyLabelsAnalysePie';
 
 
-const CClassifyLablesAnalyse = () => {
+const CClassifyLablesAnalyse = props => {
   const [tabs, setState] = useState('bar');
 
   const [data, setData] = useState([]);
+  const start = props.start;
+  const end = props.end;
+  const objName = props.objName;
   useEffect(() => {
     const fetchData = async () => {
-      const data = await get(API_GETLABELS);
+      const data = await get(API_GETLABELS, { objName, start, end });
       setData(data);
     };
     fetchData();
-  }, []);
-
+  }, [end, objName, start]);
   // console.log(data);
   const tabList = [
     {

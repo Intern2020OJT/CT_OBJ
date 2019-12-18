@@ -2,29 +2,38 @@ import React from 'react';
 
 import { Card, Radio, Checkbox } from 'antd';
 
+import { ROUTE_HOME, API_LOGIN, ROUTE_ANALYSIS, ROUTE_HOMEZC } from '../../../utils/constants';
 import '../../../static/css/CGitContent.less';
 
 function CGitContent(props) {
-  const styleVisibilityH = {
-    visibility: 'hidden'
-    // display:"none"
-  };
-  const styleVisibilityV = {
-    visibility: 'visible'
-    // display:"none"
-  };
-  const setText = () => {
-    // console.log(props.ContentName.name)
-    // document.getElementById("programContext").innerHTML=props.ContentName.name
-    // return props.ContentName.name
-  };
   const lastCheckboxState = props.CheckboxState;
+  var checkState // 圈选状态
+  var returnName // 返回到父部件的数据，暂时确立为此模块所代表项目的名称
+  const onChange=(e)=>{
+    checkState=  e.target.checked
+    returnName=props.ContentName.name
+    var returnData={
+      "checkState":checkState,
+      "returnName":returnName
+    }
+    props.returnData(returnData)
+  }
+  const itemStatis=()=>
+  {
+    if(lastCheckboxState!=="visible")
+    {
+      let midName={
+        "name":props.ContentName.name
+      }
+      props.history.push( ROUTE_HOME,{pullData: midName });
+    }//处于多选时不会执行
+  }
+
   return (
 
-    <div className="divContaner" >
+    <div className="divContaner" onClick={itemStatis} >
       {
-        // props.CheckboxState?(<Checkbox className="radioRight" style={styleVisibilityV}></Checkbox>):(<Checkbox className="radioRight" style={styleVisibilityH}></Checkbox>)
-        lastCheckboxState == 'visible' && <Checkbox className="radioRight" style={styleVisibilityV} />
+        lastCheckboxState == 'visible' && <Checkbox className="radioRight" onChange={onChange} />
       }
 
       <div className="divBlock">

@@ -25,8 +25,8 @@ const CCommentsTopTenBar = props => {
   });
 
   const itemTpl = '<li data-index={index}>'
-  + '<div style="float:left;font-size:14px;">{value}<div>'
-  + '<div><div style="float:right">{otherMessage}<div><div>'
+  + '<div style="float:left;font-size:13px;">{value}</div>'
+  + '<div><div style="float:right">{otherMessage}</div></div>'
   + '</li>';
 
   return (
@@ -41,16 +41,17 @@ const CCommentsTopTenBar = props => {
           }}
         />
         <Axis name="comments" label={{ textStyle: { fontSize: 15 } }} />
+        <Axis name="htmlurl" />
         <Tooltip enterable="true" itemTpl={itemTpl} />
         <Geom
           type="interval"
           position="shortName*comments"
-          tooltip={['fullName*comments', (fullName, comments) => {
+          tooltip={['fullName*comments*htmlurl', (fullName, comments, htmlurl) => {
             return {
               // 自定义 tooltip 上显示的 title 显示内容等。
               title: `<div style="font-size:15px;color:#3aa1ff">${fullName}</div>`,
               value: `Comments数量: ${comments}个`,
-              otherMessage: '<a href="https://www.baidu.com>">详情</a>'
+              otherMessage: `<a href="${htmlurl}">详情</a>`
             };
           }]}
         >
