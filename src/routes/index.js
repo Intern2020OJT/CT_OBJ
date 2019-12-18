@@ -82,15 +82,6 @@ module.exports = (app) => {
   // 以上由杨欣禹使用
   /** *************************************** */
   // zc
-  app.get(`/${appName}/introsgit`, async (req, res) => {
-    try {
-      // console.log(1)
-      const result = await ctrlIntrosGit.introsGit(req);
-      response.sendSuccess(res, result);// 返回数据
-    } catch (err) {
-      response.sendError(res, err);
-    }
-  });
   app.get(`/${appName}/HomegetDBData`, async (req, res) => {
     try {
       // console.log(1)
