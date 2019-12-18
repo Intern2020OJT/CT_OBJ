@@ -5,7 +5,8 @@ import CCcardone from '../components/CCanalysis/CCanalysisrowone/CCcardone'
 import CCcardtwo from '../components/CCanalysis/CCanalysisrowtwo/CCcardtwo'
 import CCcardthree from '../components/CCanalysis/CCanalysisrowthree/CCcardthree'
 
-const SCanalysis = () => {
+const SCanalysis = (props) => {
+  const getData=props.location.state.pullData
   return (
     <div className="body bodyflow padding-bottom">
       <Row gutter={[100, 200]} type="flex" justify="center">
