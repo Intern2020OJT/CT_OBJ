@@ -1,10 +1,9 @@
-import React, { useState,useEffect } from 'react';
+import React from 'react';
 import { Card } from 'antd';
-import CCbartwo from './CCbartwo'
-import { get } from '../../../../../utils/fetch';
-import { API_CARDTWO } from '../../../../../utils/constants';
+
+import CCbartwo from './CCbartwo';
+ 
 const CCcardtwo = () => {
-  console.log('1')
   const tabList = [
     {
       key: 'bar',
@@ -17,7 +16,7 @@ const CCcardtwo = () => {
       title="多项目issues数量分析"
       tabList={tabList}
     >
-      <CCbartwo/>
+      <CCbartwo />
     </Card>
   );
 };
