@@ -47,6 +47,7 @@ class Storage {
       localStorage.removeItem('user');
       localStorage.removeItem('token');
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   }
