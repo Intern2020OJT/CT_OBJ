@@ -6,7 +6,7 @@ const CCpieoneright = props => {
   const data = [];
   for (let i=0;i<odata.length;i++)
   {
-    var Odata={"item":odata[i].genre,"count":odata[i].sold};
+    var Odata={"item":odata[i].name,"count":odata[i].time};
 	  data.push(Odata);
   } 
   const { DataView } = DataSet;
@@ -30,10 +30,10 @@ const CCpieoneright = props => {
     <div>
       <Chart
         height={400}
-        white={400}
+        white={1200}
         data={dv}
         scale={cols}
-        padding={[80, 100, 80, 80]}
+        padding={[0, 0, 0, 0]}
         forceFit
       >
         <Coord type="theta" radius={0.75} />
