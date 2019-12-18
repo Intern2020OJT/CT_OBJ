@@ -10,11 +10,11 @@ const ctrlCanalysis = require("../modules/system/controllers/ctrl_canalysis");
 const ctrlClassify = require("../modules/system/controllers/ctrl_analyseRow/ctrl_classify");
 const ctrlEffiency = require("../modules/system/controllers/ctrl_analyseRow/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_analyseRow/ctrl_topten");
-const ctrlIntrosGit = require("../modules/system/controllers/ctrl_introsgit");
+// const ctrlIntrosGit = require("../modules/system/controllers/ctrl_introsgit");
 const ctrlHomegetDBData = require("../modules/system/controllers/ctrl_HomegetDBData");
 const ctrlIntrosGitS = require("../modules/system/controllers/ctrl_introsgitS");
-const { introsData } = require("../tool/introsData");
-const { introsDataIssues } = require("../tool/introsDataIssues");
+// const { introsData } = require("../tool/introsData");
+// const { introsDataIssues } = require("../tool/introsDataIssues");
 
 const appName = config.name;
 
@@ -104,9 +104,15 @@ module.exports = (app) => {
   app.get(`/${appName}/cardone`, async (req, res) => {
     try {
       const data = [];
-      const a = [{ name: "CT_OBJ" }, { name: "ISE_OBJ" }, { name: "SMD_OBJ" }];
-      for (let d = 0; d < a.length; d++) {
-        const result = await ctrlCanalysis.canalysisissues(a[d].name);
+      const serverdata = [];
+      const clientdata = req.query.res;
+      // eslint-disable-next-line no-empty
+      for (let a = 0; a < clientdata.length; a++) {
+        const serverobj = JSON.parse(clientdata[a]);
+        serverdata.push(serverobj);
+      }
+      for (let d = 0; d < serverdata.length; d++) {
+        const result = await ctrlCanalysis.canalysisissues(serverdata[d].name);
         let Tdate = 0;
         let timedate = 0;
         for (let i = 0; i < result.length; i++) {
@@ -121,6 +127,7 @@ module.exports = (app) => {
         const time = Tdate / timedate;
         const data1 = { name: result[0].name, time };
         data.push(data1);
+        log.info(1);
       }
       response.sendSuccess(res, data);
     } catch (err) {
@@ -129,13 +136,19 @@ module.exports = (app) => {
   });
   app.get(`/${appName}/cardtwo`, async (req, res) => {
     try {
-      const a = [{ name: "CT_OBJ" }, { name: "ISE_OBJ" }, { name: "SMD_OBJ" }];
+      const serverdata = [];
+      const clientdata = req.query.res;
+      // eslint-disable-next-line no-empty
+      for (let a = 0; a < clientdata.length; a++) {
+        const serverobj = JSON.parse(clientdata[a]);
+        serverdata.push(serverobj);
+      }
       const data1 = {};
       const data2 = {};
       const data = [];
-      for (let d = 0; d < a.length; d++) {
-        const resultissues = await ctrlCanalysis.canalysisissues(a[d].name);
-        const result = await ctrlCanalysis.canalysis(a[d].name);
+      for (let d = 0; d < serverdata.length; d++) {
+        const resultissues = await ctrlCanalysis.canalysisissues(serverdata[d].name);
+        const result = await ctrlCanalysis.canalysis(serverdata[d].name);
         for (let i = 0; i < result.length; i++) {
           log.info(result.length);
           data1[result[i].name] = result[i].open_issues_count;// 开的issues
@@ -155,13 +168,18 @@ module.exports = (app) => {
   app.get(`/${appName}/cardthree`, async (req, res) => {
     try {
       const data = [];
-
-      const a = [{ name: "CT_OBJ" }, { name: "ISE_OBJ" }, { name: "SMD_OBJ" }];
-      for (let d = 0; d < a.length; d++) {
+      const serverdata = [];
+      const clientdata = req.query.res;
+      // eslint-disable-next-line no-empty
+      for (let a = 0; a < clientdata.length; a++) {
+        const serverobj = JSON.parse(clientdata[a]);
+        serverdata.push(serverobj);
+      }
+      for (let d = 0; d < serverdata.length; d++) {
         let result = {};
         const ndata = {};
-        result = await ctrlCanalysis.canalysisauth(a[d].name);
-        ndata.name = a[d].name;
+        result = await ctrlCanalysis.canalysisauth(serverdata[d].name);
+        ndata.name = serverdata[d].name;
         ndata.people = result.length;
         data.push(ndata);
       }
@@ -171,23 +189,6 @@ module.exports = (app) => {
       response.sendError(res, err);
     }
   });
-  // app.get(`/${appName}/creat`, async (req, res) => {
-  //   try {
-  //     await ctrlCanalysis.creat(introsDataIssues);
-
-  //     response.sendSuccess(res, 'ok');
-  //   } catch (err) {
-  //     response.sendError(res, err);
-  //   }
-  // });
-  // app.get(`/${appName}/creatcanalysis`, async (req, res) => {
-  //   try {
-  //     await ctrlCanalysis.creatcanalysis(introsData);
-  //     response.sendSuccess(res, 'ok');
-  //   } catch (err) {
-  //     response.sendError(res, err);
-  //   }
-  // });
   // 注意位置，若置于最底会报错
   app.use(`/${appName}`, auth.authenticate, system);
 
