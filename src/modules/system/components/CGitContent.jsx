@@ -5,26 +5,17 @@ import { Card, Radio, Checkbox } from 'antd';
 import '../../../static/css/CGitContent.less';
 
 function CGitContent(props) {
-  const styleVisibilityH = {
-    visibility: 'hidden'
-    // display:"none"
-  };
-  const styleVisibilityV = {
-    visibility: 'visible'
-    // display:"none"
-  };
-  const setText = () => {
-    // console.log(props.ContentName.name)
-    // document.getElementById("programContext").innerHTML=props.ContentName.name
-    // return props.ContentName.name
-  };
   const lastCheckboxState = props.CheckboxState;
+  var 
+  const onChange=(e)=>{
+    console.log(`checked = ${e.target.checked}`);
+  }
+
   return (
 
     <div className="divContaner" >
       {
-        // props.CheckboxState?(<Checkbox className="radioRight" style={styleVisibilityV}></Checkbox>):(<Checkbox className="radioRight" style={styleVisibilityH}></Checkbox>)
-        lastCheckboxState == 'visible' && <Checkbox className="radioRight" style={styleVisibilityV} />
+        lastCheckboxState == 'visible' && <Checkbox className="radioRight" onChange={onChange} />
       }
 
       <div className="divBlock">
