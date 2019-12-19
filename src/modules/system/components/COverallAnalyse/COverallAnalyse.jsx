@@ -23,7 +23,7 @@ const COverallAnalyse = props => {
   return (
     <div style={{ padding: '10px', margin: '10px' }}>
       <Row gutter={[20, 15]} type="flex" justify="center">
-        <Card style={{ width: '1220px', height: '210px' }}>
+        <Card style={{ width: '1420px', height: '210px' }}>
           <div style={{ paddingTop: '20px', paddingBottom: '10px' }}>
             <Row gutter={[20, 15]} type="flex" justify="center">
               <Col><CTotal total={data.total} /></Col>
