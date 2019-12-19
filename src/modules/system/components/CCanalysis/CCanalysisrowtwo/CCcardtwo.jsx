@@ -3,7 +3,8 @@ import { Card } from 'antd';
 
 import CCbartwo from './CCbartwo';
  
-const CCcardtwo = () => {
+const CCcardtwo = (props) => {
+  const data = props;
   const tabList = [
     {
       key: 'bar',
@@ -16,7 +17,7 @@ const CCcardtwo = () => {
       title="多项目issues数量分析"
       tabList={tabList}
     >
-      <CCbartwo />
+      <CCbartwo data={data} />
     </Card>
   );
 };

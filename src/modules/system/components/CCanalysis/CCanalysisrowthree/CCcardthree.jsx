@@ -12,8 +12,10 @@ const CCcardthree = (props) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
+      // eslint-disable-next-line react/prop-types
+      const serverdata = props.data;
       // eslint-disable-next-line no-shadow
-      const data = await get(API_CARDTHREE, { props });
+      const data = await get(API_CARDTHREE, { serverdata });
       setData(data);
     };
     fetchData();
