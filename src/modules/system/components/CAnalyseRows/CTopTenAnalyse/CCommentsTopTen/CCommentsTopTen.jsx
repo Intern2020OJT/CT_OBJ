@@ -25,7 +25,7 @@ const CCommentsTopTen = props => {
   }, [end, objName, start]);
   return (
     <Card
-      style={{ width: '600px', height: '500px' }}
+      style={{ width: '700px', height: '530px' }}
     // title="Comments数量Top10 (个)"
     ><p style={{ fontSize: 18, margin: 20 }}>Comments数量Top10 (个)</p>
       <CCommentsTopTenBar data={data} />
