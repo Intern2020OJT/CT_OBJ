@@ -27,7 +27,7 @@ const dataCutforLabels = async (analyserows, objName) => {
     dataItemClose.type = labelses[i].name;
     dataItemClose.value = 0;
     dataItemClose.name = `${labelses[i].name}Close`;
-    for (let j = 1; j < analyserows.length; j++) {
+    for (let j = 1; j < analyserows.length && analyserows[i].pull_request === undefined; j++) {
       // eslint-disable-next-line no-await-in-loop
       const flag = await inIt(labelses[i].name, analyserows[j].labels);
       if (analyserows[j].state === "open" && flag) {
@@ -44,7 +44,7 @@ const dataCutforLabels = async (analyserows, objName) => {
 
 const dataCutforAssignees = async (analyserows) => {
   const assigneeses = [];
-  for (let i = 1; i < analyserows.length; i++) {
+  for (let i = 1; i < analyserows.length && analyserows[i].pull_request === undefined; i++) {
     for (let j = 0; j < analyserows[i].assignees.length; j++) {
       // eslint-disable-next-line no-await-in-loop
       const flag = await inIt(analyserows[i].assignees[j].login, assigneeses);
