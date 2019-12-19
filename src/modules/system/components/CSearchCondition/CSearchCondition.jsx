@@ -9,7 +9,7 @@ const CSearchCondition = (props) => {
   const [state, setState] = useState();
   const getTime = (date) => {
     props.func(date);
-  }
+  };
   return (
     <div style={{ padding: '10px' }}>
       <Row gutter={[20, 15]} type="flex" justify="center">
