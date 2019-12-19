@@ -7,6 +7,10 @@ const dateFormat = 'YYYY/MM/DD';
 const { RangePicker } = DatePicker;
 
 const CTimeSelecter = (props) => {
+  const defaultStartTime = '2019/01/01';
+  const defaultDoneTime = '2020/01/01';
+  const defaultTime = [defaultStartTime, defaultDoneTime];
+  props.func(defaultTime);
   function onChange(date, dateString) {
     props.func(dateString);
   }
@@ -18,7 +22,7 @@ const CTimeSelecter = (props) => {
         <RangePicker 
           onChange={onChange} 
           placeholder={['开始时间', '结束时间']} 
-          defaultValue={[moment('2019/01/01', dateFormat), moment('2020/01/01', dateFormat)]}
+          defaultValue={[moment(defaultStartTime, dateFormat), moment(defaultDoneTime, dateFormat)]}
         />
       </div>
     </Card>
