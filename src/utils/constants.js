@@ -17,3 +17,4 @@ export const API_CARDONE = '/cardone';
 export const API_CARDTWO = '/cardtwo';
 export const API_CARDTHREE = '/cardthree';
 export const API_OVERALL = '/overallAnalyse';
+export const API_PROJNAME = '/projectName';
