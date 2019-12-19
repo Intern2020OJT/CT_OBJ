@@ -1,6 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
+/* eslint-disable prefer-const */
 import React, { useState } from 'react';
 import $ from 'jquery';
-import { Form, Input, Modal, Button, Spin, Row, Col, Icon, message } from 'antd';
+import { Modal, Button, Spin } from 'antd';
 
 import '../../../static/css/CGitAddModal.less';
 import '../../../static/css/CGitContent.less';
@@ -32,17 +37,14 @@ function CGitAddModal(props) {
           console.log(err);
         }
       });
-      console.log(IntrosData);
-      var judge = props.inAdd(IntrosData);
+      let judge = props.inAdd(IntrosData);
       if (judge !== '_IS_faile') {
         setvisible(false);
         setloading(false);
       }
     }
-    //或需加错误提示
+    // 或需加错误提示
     //      }, 1);
-
-
   };
 
   const handleCancel = () => {

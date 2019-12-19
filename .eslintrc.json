@@ -18,6 +18,7 @@
   },
   "rules": {
     "func-names": ["error", "never"],
+    "linebreak-style": [0 ,"error", "windows"], 
     "max-len": ["error", 120],
     "object-curly-newline": "off",
     "arrow-parens": "off",
