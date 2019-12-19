@@ -27,8 +27,8 @@ const COverallAnalyse = props => {
           <div style={{ paddingTop: '20px', paddingBottom: '10px' }}>
             <Row gutter={[20, 15]} type="flex" justify="center">
               <Col><CTotal total={data.total} /></Col>
-              <Col><CAverageTime averageTime={data.averageTime} /></Col>
               <Col><COpenNumber opening={data.opening} /></Col>
+              <Col><CAverageTime averageTime={data.averageTime} /></Col>
               <Col><CRetentionRate retentionRate={data.retentionRate} /></Col>
             </Row>
           </div>
