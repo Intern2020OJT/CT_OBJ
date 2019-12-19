@@ -16,7 +16,7 @@ const CEfficiencyAnalyse = props => {
   const end = props.end;
   const objName = props.objName;
   // eslint-disable-next-line no-console
-  console.log(props);
+  // console.log(props);
   useEffect(() => {
     const fetchData = async () => {
       const data = await get(API_GETEFFICIENCY, { objName, start, end });
@@ -29,7 +29,7 @@ const CEfficiencyAnalyse = props => {
       <Row gutter={[10, 15]} type="flex" justify="center">
         <Col>
           <Card
-            style={{ width: '1220px', height: '500px' }}
+            style={{ width: '1420px', height: '500px' }}
           ><p style={{ fontSize: 18, margin: 20 }}>平均对应时间分析</p>
             <CEfficiencyAnalyseCurve data={data} />
           </Card>
