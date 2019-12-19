@@ -82,8 +82,10 @@ exports.getLabels = async (req) => {
   log.info("get labels");
   // 得到客户端传来的参数
   const objName = req.query.objName;
+  const start = req.query.start;
+  const end = req.query.end;
   try {
-    const analyserows = await ModelIntrosIssues.getList({ name:objName });
+    const analyserows = await ModelIntrosIssues.getList({ name:objName, created_at:{ $lt:end, $gt:start } });
     // eslint-disable-next-line no-console
     // console.log(analyserows);
     const data = await dataCutforLabels(analyserows, objName);
@@ -99,8 +101,10 @@ exports.getAssignees = async (req) => {
   log.info("get Assignees");
   // 得到客户端传来的参数
   const objName = req.query.objName;
+  const start = req.query.start;
+  const end = req.query.end;
   try {
-    const analyserows = await ModelIntrosIssues.getList({ name:objName });
+    const analyserows = await ModelIntrosIssues.getList({ name:objName, created_at:{ $lt:end, $gt:start } });
     // eslint-disable-next-line no-console
     // console.log(analyserows);// 得到客户端传来的参数
     const data = await dataCutforAssignees(analyserows);
