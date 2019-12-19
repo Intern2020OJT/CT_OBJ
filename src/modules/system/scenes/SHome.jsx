@@ -16,7 +16,7 @@ const SHome = (props) => {
   };
   return (
     <div className="home">
-      <SAnalyseHeader func={getTime} />
+      <SAnalyseHeader func={getTime} projectName={projectName} />
       <SAnalyse />
     </div>
   );

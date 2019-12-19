@@ -12,7 +12,7 @@ const SAnalyseHeader = props => {
   };
   return (
     <div className="AnalyseHeader">
-      <COverallAnalyse />
+      <COverallAnalyse projectName={props.projectName} />
       <CSearchCondition func={getTime} />
     </div>
   );
