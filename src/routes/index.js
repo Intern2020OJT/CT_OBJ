@@ -28,6 +28,14 @@ module.exports = (app) => {
   });
   /** *************************************** */
   // 以下由李海庭使用
+  app.get(`/${appName}/projectName`, async (req, res) => {
+    try {
+      console.log(req.query);
+      response.sendSuccess(res);// 返回数据
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
   app.get(`/${appName}/overallAnalyse`, async (req, res) => {
     try {
       const result = await ctrlOverallAnalyse.overallAnalyse(req);// 数据库取数据
@@ -36,7 +44,6 @@ module.exports = (app) => {
       response.sendError(res, err);
     }
   });
-
   // 以上由李海庭使用
   /** *************************************** */
 
