@@ -1,11 +1,13 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Card, DatePicker } from 'antd';
 
 const { RangePicker } = DatePicker;
-function onChange(date, dateString) {
-  console.log(dateString); // 给杨
-}
-const CTimeSelecter = () => {
+
+const CTimeSelecter = (props) => {
+  function onChange(date, dateString) {
+    props.func(dateString);
+  }
   return (
     <Card style={{ width: '1220px', height: '150px' }}>
       <p style={{ fontSize: 18, margin: 20 }}>期间检索</p>

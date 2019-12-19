@@ -1,7 +1,5 @@
 import React from 'react';
 
-import COverallAnalyse from '../components/COverallAnalyse/COverallAnalyse';
-import CSearchCondition from '../components/CSearchCondition/CSearchCondition';
 import CClassifyAnalyse from '../components/CAnalyseRows/CClassifyAnalyse/CClassifyAnalyse';
 import CEfficiencyAnalyse from '../components/CAnalyseRows/CEfficiencyAnalyse/CEfficiencyAnalyse';
 import CTopTenAnalyse from '../components/CAnalyseRows/CTopTenAnalyse/CTopTenAnalyse';
@@ -12,8 +10,6 @@ const SAnalyse = () => {
   const end = '2020-01-01';
   return (
     <div className="Analyse">
-      <COverallAnalyse />
-      <CSearchCondition />
       <CClassifyAnalyse objName={objName} start={start} end={end} />
       <CEfficiencyAnalyse objName={objName} start={start} end={end} />
       <CTopTenAnalyse objName={objName} start={start} end={end} />
