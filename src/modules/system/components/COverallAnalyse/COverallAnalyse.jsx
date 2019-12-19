@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Card } from 'antd';
 
@@ -9,16 +10,16 @@ import CAverageTime from './CAverageTime/CAverageTime';
 import CRetentionRate from './CRetentionRate/CRetentionRate';
 import COpenNumber from './COpenNumber/COpenNumber';
 
-const COverallAnalyse = () => {
+const COverallAnalyse = props => {
   const [data, setData] = useState([]);
+  const prjName = props.projectName.name;
   useEffect(() => {
     const fetchData = async () => {
-      const fdata = await get(API_OVERALL);
-      console.log(fdata);
+      const fdata = await get(API_OVERALL, { prjName });
       setData(fdata);
     };
     fetchData();
-  }, []);
+  }, [prjName]);
   return (
     <div style={{ padding: '10px', margin: '10px' }}>
       <Row gutter={[20, 15]} type="flex" justify="center">
