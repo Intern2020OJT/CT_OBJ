@@ -10,11 +10,10 @@ const ctrlCanalysis = require("../modules/system/controllers/ctrl_canalysis");
 const ctrlClassify = require("../modules/system/controllers/ctrl_analyseRow/ctrl_classify");
 const ctrlEffiency = require("../modules/system/controllers/ctrl_analyseRow/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_analyseRow/ctrl_topten");
-const ctrlIntrosGit = require("../modules/system/controllers/ctrl_introsgit");
 const ctrlHomegetDBData = require("../modules/system/controllers/ctrl_HomegetDBData");
 const ctrlIntrosGitS = require("../modules/system/controllers/ctrl_introsgitS");
-const { introsData } = require("../tool/introsData");
-const { introsDataIssues } = require("../tool/introsDataIssues");
+const ctrlUpdateData = require("../modules/system/controllers/ctrl_updateData");
+const ctrldeleteData = require("../modules/system/controllers/ctrl_deleteData");
 
 const appName = config.name;
 
@@ -95,6 +94,24 @@ module.exports = (app) => {
     try {
       // console.log(1)
       const result = await ctrlIntrosGitS.introsGits(req);
+      response.sendSuccess(res, result);// 返回数据
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+  app.post(`/${appName}/updateData`, async (req, res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlUpdateData.updateData(req);
+      response.sendSuccess(res, result);// 返回数据
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+  app.post(`/${appName}/deleteData`, async (req, res) => {
+    try {
+      // console.log(1)
+      const result = await ctrldeleteData.deleteData(req);
       response.sendSuccess(res, result);// 返回数据
     } catch (err) {
       response.sendError(res, err);
