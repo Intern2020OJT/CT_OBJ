@@ -9,15 +9,10 @@ import SAnalyseHeader from './SAnalyseHeader';
 
 const SHome = (props) => {
   const projectName = props.location.state.pullData;
-  const [time, setTime] = useState([]);
-  const getTime = (res) => {
-    console.log(projectName.name);
-    console.log(res);
-  };
-
+  const [time, setTime] = useState(['2019-01-01', '2020-01-01']);
   return (
     <div className="home">
-      <SAnalyseHeader func={getTime} />
+      <SAnalyseHeader func={setTime} />
       <SAnalyse time={time} objName={projectName.name} />
     </div>
   );

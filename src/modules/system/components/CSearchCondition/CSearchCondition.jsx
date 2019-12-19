@@ -6,14 +6,10 @@ import { Row, Col } from 'antd';
 import CTimeSelecter from './CTimeSelecter/CTimeSelecter';
 
 const CSearchCondition = (props) => {
-  const [state, setState] = useState();
-  const getTime = (date) => {
-    props.func(date);
-  };
   return (
     <div style={{ padding: '10px' }}>
       <Row gutter={[20, 15]} type="flex" justify="center">
-        <Col><CTimeSelecter func={getTime} /></Col>
+        <Col><CTimeSelecter func={props.func} /></Col>
       </Row>
     </div>
   );

@@ -6,14 +6,10 @@ import COverallAnalyse from '../components/COverallAnalyse/COverallAnalyse';
 import CSearchCondition from '../components/CSearchCondition/CSearchCondition';
 
 const SAnalyseHeader = props => {
-  const [state, setState] = useState();
-  const getTime = (date) => {
-    props.func(date);
-  };
   return (
     <div className="AnalyseHeader">
       <COverallAnalyse />
-      <CSearchCondition func={getTime} />
+      <CSearchCondition func={props.func} />
     </div>
   );
 };
