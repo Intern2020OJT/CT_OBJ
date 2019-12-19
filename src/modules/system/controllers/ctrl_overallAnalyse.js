@@ -6,7 +6,7 @@ exports.overallAnalyse = async (req) => {
   log.info("get issues start.");
   try {
     const overallDatas = {};
-    const condition = { name: req.query.prjName }; 
+    const condition = { name: req.query.prjName }; // 项目名
     const projection = {};
     const project = await ModelIntros.getList(condition, projection); // 项目
     const issues = await ModelIntrosIssues.getList(condition, projection); // 项目的issues
@@ -14,7 +14,7 @@ exports.overallAnalyse = async (req) => {
     overallDatas.opening = project[0].open_issues_count;  // open的issue数
     let totalTime = 0;
     for (let i = 0; i < issues.length; i++) {
-      if (issues[i].state === "closed") {
+      if (issues[i].state === "closed" && issues[i].pull_request === undefined) {
         const closedAt = new Date(issues[i].closed_at);
         const createdAt = new Date(issues[i].created_at);
         totalTime += closedAt.getTime() - createdAt.getTime();
