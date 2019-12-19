@@ -11,7 +11,7 @@ const SHome = (props) => {
   const projectName = props.location.state.pullData;
   const [state, setState] = useState();
   const getTime = (res) => {
-    console.log(projectName);
+    console.log(projectName.name);
     console.log(res);
   };
   return (
