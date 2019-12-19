@@ -43,7 +43,7 @@ const CCcardone = (props) => {
   return (
     <Card
       style={{ width: '1200px', height: '500px' }}
-      title="多项目issues打开时长分析"
+      title="多项目issues对应时长分析"
       tabList={tabList}
       activeTabKey={tabs}
       onTabChange={key => {
