@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 // ???????????
 import React, { useState } from 'react';
-import { ROUTE_HOME, API_LOGIN, ROUTE_ANALYSIS, ROUTE_HOMEZC } from '../../../utils/constants';
+
+import { ROUTE_ANALYSIS } from '../../../utils/constants';
 
 import CContentBody from '../components/CContentBody';
 
@@ -12,7 +14,7 @@ const SHomeZC = (props) => {
     // visibility:"hidden"
     display: 'none'
   };
-  var pullData
+  let pullData;
   const [ableCheckboxState, setableCheckboxState] = useState('hidden');
 
   const ableCheckbox = () => {
@@ -32,11 +34,10 @@ const SHomeZC = (props) => {
   };
   const getSonComponentsData = (res) => {
     pullData = res;
-  }
+  };
   const itemsStatis = () => {
-    if (pullData.length > 1)
-      props.history.push( ROUTE_ANALYSIS,{pullData: pullData });
-  }//跳转到多个统计页面并传值
+    if (pullData.length > 1) props.history.push(ROUTE_ANALYSIS, { pullData: pullData });
+  };// 跳转到多个统计页面并传值
 
   return (
     <div id="headAndBody">
@@ -49,7 +50,7 @@ const SHomeZC = (props) => {
       </nav>
       <div className="contentBody">
         <div>
-          <CContentBody CheckboxState={ableCheckboxState} toFather={getSonComponentsData} history={props.history}/>
+          <CContentBody CheckboxState={ableCheckboxState} toFather={getSonComponentsData} history={props.history} />
 
         </div>
       </div>
