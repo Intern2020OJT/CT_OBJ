@@ -5,7 +5,7 @@ const ModelIntrosIssues = require("../../../../modules/system/models/mod_introsD
 const dataDevide = async (analyserows) => {
   log.info("dataDevide[]");
   const data = [];
-  for (let i = 0; i < analyserows.length; i++) {
+  for (let i = 0; i < analyserows.length && analyserows[i].pull_request === undefined; i++) {
     const dataItem = {};
     const createdat = new Date(analyserows[i].created_at);
     const closedat = new Date(analyserows[i].closed_at);
