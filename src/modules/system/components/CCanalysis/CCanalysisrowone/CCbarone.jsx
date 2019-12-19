@@ -20,7 +20,6 @@ const CCbarone = props => {
   };
 
   return (
-
     <Chart width={1200} height={400} data={data} forceFit scale={cols}>
       <Legend position="bottom" dy={-20} />
       <Tooltip />
@@ -51,7 +50,17 @@ const CCbarone = props => {
           };
         }]}
       >
-        <Label content={['sold']} />{' '}
+        <Label
+          position="middle"
+          content={['sold']}
+          offset={0} // 设置坐标轴文本 lamiddlebel 距离坐标轴线的距离
+          textStyle={{
+            textAlign: 'center', // 文本对齐center方向，可取值为： start middle end
+            fill: '#404040', // 文本的颜色
+            fontSize: '18', // 文本大小
+            textBaseline: 'middle' // 文本基准线，可取 top middle bottom，默认为middle
+          }}
+        />
       </Geom>
     </Chart>
 
