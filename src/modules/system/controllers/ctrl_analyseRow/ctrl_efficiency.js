@@ -18,7 +18,7 @@ const dataDevide = async (analyserows) => {
 };
 
 const dataAddCol = async (devideData, monthSpace) => {
-  if (monthSpace > 3) {
+  if (monthSpace > 2160) {
     const colculate = [];
     for (let i = 0; i < 12; i++) {
       const colItem = { time: 0, count: 0 };
@@ -144,13 +144,18 @@ const dataAddCol = async (devideData, monthSpace) => {
 exports.getEfficiency = async (req) => {
   log.info("getEfficiency");
   // eslint-disable-next-line no-console
-  console.log(req.query);// 得到客户端传来的参数
+  // console.log(req.query);// 得到客户端传来的参数
   const objName = req.query.objName;
+  const start = req.query.start;
+  const end = req.query.end;
+  const startMon = new Date(start).getTime();
+  const endMon = new Date(end).getTime();
   try {
-    const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed" });
+    // eslint-disable-next-line max-len
+    const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed", created_at:{ $lt:end, $gt:start } });
     const devideData = await dataDevide(analyserows);
     // 4这个数字代表月份差
-    const data = await dataAddCol(devideData, 4);
+    const data = await dataAddCol(devideData, ((endMon - startMon) / 3600000));
     const res = data;
     return (res);
   } catch (err) {
