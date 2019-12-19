@@ -8,14 +8,14 @@ import { API_CARDTHREE } from '../../../../../utils/constants';
 import CCpolythree from './CCpolythree';
 
 
-const CCcardthree = () => {
+const CCcardthree = (props) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
+      // eslint-disable-next-line react/prop-types
+      const serverdata = props.data;
       // eslint-disable-next-line no-shadow
-      const res = [{ name: 'CT_OBJ' }, { name: 'ISE_OBJ' }, { name: 'SMD_OBJ' }];
-      // eslint-disable-next-line no-shadow
-      const data = await get(API_CARDTHREE, { res });
+      const data = await get(API_CARDTHREE, { serverdata });
       setData(data);
     };
     fetchData();
