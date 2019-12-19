@@ -141,7 +141,8 @@ module.exports = (app) => {
             timedate += 1;
           }
         }
-        const tim = Tdate / timedate;
+        // 此处由杨欣禹添加,数据处理放到后端才是正确操作
+        const tim = parseFloat((Tdate / timedate).toFixed(2));
         const data1 = { name: result[0].name, time: tim };
         data.push(data1);
       }
