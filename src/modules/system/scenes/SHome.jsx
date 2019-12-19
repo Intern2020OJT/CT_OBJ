@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 import SAnalyse from './SAnalyse';
@@ -9,15 +9,11 @@ import SAnalyseHeader from './SAnalyseHeader';
 
 const SHome = (props) => {
   const projectName = props.location.state.pullData;
-  const [state, setState] = useState();
-  const getTime = (res) => {
-    console.log(projectName.name);
-    console.log(res);
-  };
+  const [time, setTime] = useState(['2019-01-01', '2020-01-01']);
   return (
     <div className="home">
-      <SAnalyseHeader func={getTime} projectName={projectName} />
-      <SAnalyse />
+      <SAnalyseHeader func={setTime} />
+      <SAnalyse time={time} objName={projectName.name} />
     </div>
   );
 };
