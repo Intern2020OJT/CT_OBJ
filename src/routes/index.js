@@ -11,11 +11,12 @@ const ctrlClassify = require("../modules/system/controllers/ctrl_analyseRow/ctrl
 const ctrlEffiency = require("../modules/system/controllers/ctrl_analyseRow/ctrl_efficiency");
 const ctrlTopTen = require("../modules/system/controllers/ctrl_analyseRow/ctrl_topten");
 
- 
-const ctrlOverallAnalyse = require("../modules/system/controllers/ctrl_overallAnalyse");
- 
 const ctrlHomegetDBData = require("../modules/system/controllers/ctrl_HomegetDBData");
 const ctrlIntrosGitS = require("../modules/system/controllers/ctrl_introsgitS");
+const ctrlUpdateData = require("../modules/system/controllers/ctrl_updateData");
+const ctrldeleteData = require("../modules/system/controllers/ctrl_deleteData");
+const ctrlOverallAnalyse = require("../modules/system/controllers/ctrl_overallAnalyse");
+
 
 const appName = config.name;
 
@@ -38,7 +39,6 @@ module.exports = (app) => {
       response.sendError(res, err);
     }
   });
-
   // 以上由李海庭使用
   /** *************************************** */
 
@@ -115,6 +115,24 @@ module.exports = (app) => {
       response.sendError(res, err);
     }
   });
+  app.post(`/${appName}/updateData`, async (req, res) => {
+    try {
+      // console.log(1)
+      const result = await ctrlUpdateData.updateData(req);
+      response.sendSuccess(res, result);// 返回数据
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
+  app.post(`/${appName}/deleteData`, async (req, res) => {
+    try {
+      // console.log(1)
+      const result = await ctrldeleteData.deleteData(req);
+      response.sendSuccess(res, result);// 返回数据
+    } catch (err) {
+      response.sendError(res, err);
+    }
+  });
   // sxl
   app.get(`/${appName}/cardone`, async (req, res) => {
     try {
@@ -144,7 +162,8 @@ module.exports = (app) => {
             timedate += 1;
           }
         }
-        const tim = Tdate / timedate;
+        // 此处由杨欣禹添加,数据处理放到后端才是正确操作
+        const tim = parseFloat((Tdate / timedate).toFixed(2));
         const data1 = { name: result[0].name, time: tim };
         data.push(data1);
       }

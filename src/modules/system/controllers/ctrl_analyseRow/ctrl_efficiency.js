@@ -6,19 +6,23 @@ const dataDevide = async (analyserows) => {
   log.info("dataDevide[]");
   const data = [];
   for (let i = 0; i < analyserows.length; i++) {
-    const dataItem = {};
-    const createdat = new Date(analyserows[i].created_at);
-    const closedat = new Date(analyserows[i].closed_at);
-    dataItem.day = createdat.getDate();
-    dataItem.month = createdat.getMonth();// month比实际月份少1
-    dataItem.time = (closedat.getTime() - createdat.getTime()) / 3600000;
-    data.push(dataItem);
+    if (analyserows[i].pull_request === undefined) {
+      const dataItem = {};
+      const createdat = new Date(analyserows[i].created_at);
+      const closedat = new Date(analyserows[i].closed_at);
+      dataItem.day = createdat.getDate();
+      dataItem.month = createdat.getMonth();// month比实际月份少1
+      dataItem.time = (closedat.getTime() - createdat.getTime()) / 3600000;
+      data.push(dataItem);
+    } else {
+      continue;
+    }
   }
   return data;
 };
 
 const dataAddCol = async (devideData, monthSpace) => {
-  if (monthSpace > 3) {
+  if (monthSpace > 2160) {
     const colculate = [];
     for (let i = 0; i < 12; i++) {
       const colItem = { time: 0, count: 0 };
@@ -105,7 +109,7 @@ const dataAddCol = async (devideData, monthSpace) => {
     ];
     for (let i = 0; i < 12; i++) {
       if (colculate[i].time !== 0) {
-        data[i].time = (colculate[i].time / colculate[i].count).toFixed(2);
+        data[i].time = parseFloat((colculate[i].time / colculate[i].count).toFixed(2));
       }
     }
     return data;
@@ -113,7 +117,7 @@ const dataAddCol = async (devideData, monthSpace) => {
     const daydata = [];
     for (let i = 0; i < devideData.length; i++) {
       const daydataItem = {};
-      daydataItem.month = `${devideData[i].month + 1}/${devideData[i].day}`;
+      daydataItem.month = `${devideData[i].month + 1}月${devideData[i].day}日`;
       daydataItem.item = "平均对应时长";
       daydataItem.time = devideData[i].time;
       daydataItem.count = 1;
@@ -129,11 +133,11 @@ const dataAddCol = async (devideData, monthSpace) => {
       daydata.push(daydataItem);
     }
     const data = [];
-    for (let i = 0; i < daydata.length; i++) {
+    for (let i = daydata.length - 1; i > 0; i--) {
       const dataItem = {};
       dataItem.month = daydata[i].month;
       dataItem.item = daydata[i].item;
-      dataItem.time = (daydata[i].time / daydata[i].count).toFixed(2);
+      dataItem.time = parseFloat((daydata[i].time / daydata[i].count).toFixed(2));
       data.push(dataItem);
     }
     return data;
@@ -144,13 +148,18 @@ const dataAddCol = async (devideData, monthSpace) => {
 exports.getEfficiency = async (req) => {
   log.info("getEfficiency");
   // eslint-disable-next-line no-console
-  console.log(req.query);// 得到客户端传来的参数
+  // console.log(req.query);// 得到客户端传来的参数
   const objName = req.query.objName;
+  const start = req.query.start;
+  const end = req.query.end;
+  const startMon = new Date(start).getTime();
+  const endMon = new Date(end).getTime();
   try {
-    const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed" });
+    // eslint-disable-next-line max-len
+    const analyserows = await ModelIntrosIssues.getList({ name:objName, state: "closed", created_at:{ $lt:end, $gt:start } });
     const devideData = await dataDevide(analyserows);
     // 4这个数字代表月份差
-    const data = await dataAddCol(devideData, 4);
+    const data = await dataAddCol(devideData, ((endMon - startMon) / 3600000));
     const res = data;
     return (res);
   } catch (err) {

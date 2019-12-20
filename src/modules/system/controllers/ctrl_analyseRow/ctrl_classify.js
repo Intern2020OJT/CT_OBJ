@@ -28,13 +28,15 @@ const dataCutforLabels = async (analyserows, objName) => {
     dataItemClose.value = 0;
     dataItemClose.name = `${labelses[i].name}Close`;
     for (let j = 1; j < analyserows.length; j++) {
+      if (analyserows[i].pull_request === undefined) {
       // eslint-disable-next-line no-await-in-loop
-      const flag = await inIt(labelses[i].name, analyserows[j].labels);
-      if (analyserows[j].state === "open" && flag) {
-        dataItemOpen.value++;
-      } else if (analyserows[j].state === "closed" && flag) {
-        dataItemClose.value++;
-      } else continue;
+        const flag = await inIt(labelses[i].name, analyserows[j].labels);
+        if (analyserows[j].state === "open" && flag) {
+          dataItemOpen.value++;
+        } else if (analyserows[j].state === "closed" && flag) {
+          dataItemClose.value++;
+        } else continue;
+      } else { continue; }
     }
     data.push(dataItemOpen);
     data.push(dataItemClose);
@@ -45,13 +47,15 @@ const dataCutforLabels = async (analyserows, objName) => {
 const dataCutforAssignees = async (analyserows) => {
   const assigneeses = [];
   for (let i = 1; i < analyserows.length; i++) {
-    for (let j = 0; j < analyserows[i].assignees.length; j++) {
+    if (analyserows[i].pull_request === undefined) {
+      for (let j = 0; j < analyserows[i].assignees.length; j++) {
       // eslint-disable-next-line no-await-in-loop
-      const flag = await inIt(analyserows[i].assignees[j].login, assigneeses);
-      if (!flag) {
-        assigneeses.push(analyserows[i].assignees[j].login);
+        const flag = await inIt(analyserows[i].assignees[j].login, assigneeses);
+        if (!flag) {
+          assigneeses.push(analyserows[i].assignees[j].login);
+        }
       }
-    }
+    } else { continue; }
   }
   const data = [];
   for (let i = 0; i < assigneeses.length; i++) {
@@ -82,8 +86,10 @@ exports.getLabels = async (req) => {
   log.info("get labels");
   // 得到客户端传来的参数
   const objName = req.query.objName;
+  const start = req.query.start;
+  const end = req.query.end;
   try {
-    const analyserows = await ModelIntrosIssues.getList({ name:objName });
+    const analyserows = await ModelIntrosIssues.getList({ name:objName, created_at:{ $lt:end, $gt:start } });
     // eslint-disable-next-line no-console
     // console.log(analyserows);
     const data = await dataCutforLabels(analyserows, objName);
@@ -99,8 +105,10 @@ exports.getAssignees = async (req) => {
   log.info("get Assignees");
   // 得到客户端传来的参数
   const objName = req.query.objName;
+  const start = req.query.start;
+  const end = req.query.end;
   try {
-    const analyserows = await ModelIntrosIssues.getList({ name:objName });
+    const analyserows = await ModelIntrosIssues.getList({ name:objName, created_at:{ $lt:end, $gt:start } });
     // eslint-disable-next-line no-console
     // console.log(analyserows);// 得到客户端传来的参数
     const data = await dataCutforAssignees(analyserows);
