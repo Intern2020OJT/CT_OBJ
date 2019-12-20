@@ -12,7 +12,7 @@ const SHome = (props) => {
   const [time, setTime] = useState(['2019-01-01', '2020-01-01']);
   return (
     <div className="home">
-      <SAnalyseHeader func={setTime} />
+      <SAnalyseHeader func={setTime} projectName={projectName} />
       <SAnalyse time={time} objName={projectName.name} />
     </div>
   );
