@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 /* eslint-disable max-len */
 /* eslint-disable no-var */
 /* eslint-disable no-unused-vars */
@@ -5,6 +7,7 @@
 // ???????????
 import React, { useState } from 'react';
 import $ from 'jquery';
+
 
 import { ROUTE_ANALYSIS } from '../../../utils/constants';
 
@@ -18,8 +21,11 @@ const SHomeZC = (props) => {
     // visibility:"hidden"
     display: 'none'
   };
+
   let pullData = null;
+
   let pullFun;
+
   const [ableCheckboxState, setableCheckboxState] = useState('hidden');
   const [buttonPut, setButtonPut] = useState();
   const ableCheckbox = () => {
@@ -92,6 +98,7 @@ const SHomeZC = (props) => {
     }
     pullFun(returnFlag);
   };// 删除
+
   return (
     <div id="headAndBody">
       <nav>
@@ -104,7 +111,9 @@ const SHomeZC = (props) => {
       </nav>
       <div className="contentBody">
         <div>
+
           <CContentBody CheckboxState={ableCheckboxState} toFather={getSonComponentsData} history={props.history} buttonPut={buttonPut} />
+
 
         </div>
       </div>

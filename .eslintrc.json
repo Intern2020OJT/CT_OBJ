@@ -18,12 +18,15 @@
   },
   "rules": {
     "func-names": ["error", "never"],
+
     "linebreak-style": [0 ,"error", "windows"], 
+
     "max-len": ["error", 120],
     "object-curly-newline": "off",
     "arrow-parens": "off",
     "comma-dangle": "off",
     "operator-linebreak": "off",
+    "no-console": "off",
     "no-underscore-dangle": ["off", { "allowAfterSuper": true }],
     "no-useless-constructor": ["off"],
     "no-plusplus": ["off"],

@@ -1,14 +1,19 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from 'react';
 
 
 import SAnalyse from './SAnalyse';
+import SAnalyseHeader from './SAnalyseHeader';
 
 
 const SHome = (props) => {
-  const getData=props.location.state.pullData
+  const projectName = props.location.state.pullData;
+  const [time, setTime] = useState(['2019-01-01', '2020-01-01']);
   return (
     <div className="home">
-      <SAnalyse />
+      <SAnalyseHeader func={setTime} projectName={projectName} />
+      <SAnalyse time={time} objName={projectName.name} />
     </div>
   );
 };

@@ -15,16 +15,19 @@ const CClassifyAssigneesAnalyse = props => {
   const [tabs, setState] = useState('bar');
   
   const [data, setData] = useState([]);
-  const start = props.start;
-  const end = props.end;
-  const objName = props.objName;
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+  const [objName, setObjName] = useState('');
   useEffect(() => {
     const fetchData = async () => {
       const data = await get(API_GETASSIGNEES, { objName, start, end });
       setData(data);
+      setStart(props.start);
+      setEnd(props.end);
+      setObjName(props.objName);
     };
     fetchData();
-  }, [end, objName, start]);
+  }, [end, objName, props, start]);
 
   const tabList = [
     {
@@ -45,7 +48,7 @@ const CClassifyAssigneesAnalyse = props => {
 
   return (
     <Card
-      style={{ width: '600px', height: '500px' }}
+      style={{ width: '700px', height: '530px' }}
       // title="担当者分析"
       tabList={tabList}
       activeTabKey={tabs}

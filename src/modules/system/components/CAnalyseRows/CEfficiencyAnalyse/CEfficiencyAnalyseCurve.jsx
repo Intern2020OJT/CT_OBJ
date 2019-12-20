@@ -8,6 +8,7 @@ import {
   Legend
 } from 'bizcharts';
 
+
 const CEfficiencyAnalyseCurve = props => {
   const { data } = props;
   const cols = {
