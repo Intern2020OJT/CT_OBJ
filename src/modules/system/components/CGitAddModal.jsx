@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable max-len */
@@ -9,8 +10,6 @@ import { Modal, Button, Spin } from 'antd';
 
 import '../../../static/css/CGitAddModal.less';
 import '../../../static/css/CGitContent.less';
-
-import { AddGitContent } from '../../../utils/AddGitContent';
 
 function CGitAddModal(props) {
   const [loading, setloading] = useState(false);
