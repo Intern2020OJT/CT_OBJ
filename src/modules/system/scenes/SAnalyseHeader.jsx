@@ -8,7 +8,7 @@ import CSearchCondition from '../components/CSearchCondition/CSearchCondition';
 const SAnalyseHeader = props => {
   return (
     <div className="AnalyseHeader">
-      <COverallAnalyse />
+      <COverallAnalyse projectName={props.projectName} />
       <CSearchCondition func={props.func} />
     </div>
   );

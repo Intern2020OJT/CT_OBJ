@@ -44,7 +44,7 @@ const CClassifyLablesAnalyse = props => {
 
   return (
     <Card
-      style={{ width: '600px', height: '500px' }}
+      style={{ width: '700px', height: '530px' }}
       // title="Lables分析"
       tabList={tabList}
       activeTabKey={tabs}
