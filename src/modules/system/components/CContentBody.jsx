@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-continue */
 /* eslint-disable no-var */
 /* eslint-disable prefer-const */
