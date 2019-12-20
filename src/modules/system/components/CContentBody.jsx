@@ -1,3 +1,5 @@
+/* eslint-disable no-continue */
+/* eslint-disable no-var */
 /* eslint-disable prefer-const */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable max-len */
@@ -15,7 +17,7 @@ import '../../../static/css/homeZC.less';
 function CContentBody(props) {
   const Url = 'http://localhost:3000/issues/HomegetDBData';
   let IntrosData = null;
-  const selectSItem = []; // 多选数块时使用
+  var selectSItem = []; // 多选数块时使用
   // eslint-disable-next-line no-unused-vars
   let selectItem; // 单选一个块时使用
   $.ajax({
@@ -40,13 +42,27 @@ function CContentBody(props) {
     midChar.push(nameAndurl);
   }
   const [componentArray, setComponentArray] = useState(midChar);
+  const toCheck = (res) => {
+    if (res.data === '_DELETE_OK') {
+      let stateData = [...componentArray];
+      for (let i = 0; i < selectSItem.length; i++) {
+        for (let j = 0; j < stateData.length; j++) {
+          if (selectSItem[i].name === stateData[j].name) {
+            selectSItem[i].html_url = stateData[j].html_url;
+            stateData.splice(j, 1);
+          }
+        }
+      }
+      setComponentArray(stateData);
+    } // 确认父页面所按按钮来操作此部件相关事务
+  };
   const receiveComponentArrayChange = (res) => {
     const i = [...componentArray];
     // var j= componentArray //为什么不能达到效果
     if (res.data !== '_IS_faile') {
       if (res.data !== '_HAD_DATA') {
         const ProgramName = res.data.name;
-        i.push({ name: ProgramName });
+        i.push({ name: ProgramName, html_url: res.data.html_url });
         setComponentArray(i);
         return '_ADD_OK';
       }
@@ -79,8 +95,9 @@ function CContentBody(props) {
         }
       }
     }
-    props.toFather(selectSItem);
+    props.toFather(selectSItem, toCheck);
   };// 主要用于多选时，单选时直接跳转，不走此路
+
 
   const componentList = componentArray;
 
