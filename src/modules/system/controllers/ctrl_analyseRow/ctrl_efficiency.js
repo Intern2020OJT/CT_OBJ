@@ -5,14 +5,18 @@ const ModelIntrosIssues = require("../../../../modules/system/models/mod_introsD
 const dataDevide = async (analyserows) => {
   log.info("dataDevide[]");
   const data = [];
-  for (let i = 0; i < analyserows.length && analyserows[i].pull_request === undefined; i++) {
-    const dataItem = {};
-    const createdat = new Date(analyserows[i].created_at);
-    const closedat = new Date(analyserows[i].closed_at);
-    dataItem.day = createdat.getDate();
-    dataItem.month = createdat.getMonth();// month比实际月份少1
-    dataItem.time = (closedat.getTime() - createdat.getTime()) / 3600000;
-    data.push(dataItem);
+  for (let i = 0; i < analyserows.length; i++) {
+    if (analyserows[i].pull_request === undefined) {
+      const dataItem = {};
+      const createdat = new Date(analyserows[i].created_at);
+      const closedat = new Date(analyserows[i].closed_at);
+      dataItem.day = createdat.getDate();
+      dataItem.month = createdat.getMonth();// month比实际月份少1
+      dataItem.time = (closedat.getTime() - createdat.getTime()) / 3600000;
+      data.push(dataItem);
+    } else {
+      continue;
+    }
   }
   return data;
 };
