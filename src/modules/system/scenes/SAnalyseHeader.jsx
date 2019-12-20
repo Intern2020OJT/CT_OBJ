@@ -1,11 +1,15 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 
 import COverallAnalyse from '../components/COverallAnalyse/COverallAnalyse';
+import CSearchCondition from '../components/CSearchCondition/CSearchCondition';
 
-const SAnalyseHeader = () => {
+const SAnalyseHeader = props => {
   return (
     <div className="AnalyseHeader">
-      <COverallAnalyse />
+      <COverallAnalyse projectName={props.projectName} />
+      <CSearchCondition func={props.func} />
     </div>
   );
 };
