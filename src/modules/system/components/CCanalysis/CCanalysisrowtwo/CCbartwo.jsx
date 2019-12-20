@@ -74,8 +74,7 @@ const CCbartwo = (props) => {
           textStyle={{
             textAlign: 'center', // 文本对齐center方向，可取值为： start middle end
             fill: '#404040', // 文本的颜色
-            fontSize: '14', // 文本大小
-            fontWeight: 'bold', // 文本粗细
+            fontSize: '18', // 文本大小
             textBaseline: 'middle' // 文本基准线，可取 top middle bottom，默认为middle
           }}
         />

@@ -24,7 +24,7 @@ const CTimeTopTen = props => {
   }, [end, objName, start]);
   return (
     <Card
-      style={{ width: '600px', height: '500px' }}
+      style={{ width: '700px', height: '530px' }}
       // title="平均对应时间Top10 (小时)"
     ><p style={{ fontSize: 18, margin: 20 }}>平均对应时间Top10 (小时)</p>
       <CTimeTopTenBar data={data} />

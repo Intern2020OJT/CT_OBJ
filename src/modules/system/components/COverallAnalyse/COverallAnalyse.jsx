@@ -23,8 +23,9 @@ const COverallAnalyse = props => {
   return (
     <div style={{ padding: '10px', margin: '10px' }}>
       <Row gutter={[20, 15]} type="flex" justify="center">
-        <Card style={{ width: '1220px', height: '210px' }}>
-          <div style={{ paddingTop: '20px', paddingBottom: '10px' }}>
+        <Card style={{ width: '1420px', height: '270px' }}>
+          <p style={{ fontSize: 18, margin: 20 }}>{prjName}</p>
+          <div style={{ paddingTop: '0px', paddingBottom: '10px' }}>
             <Row gutter={[20, 15]} type="flex" justify="center">
               <Col><CTotal total={data.total} /></Col>
               <Col><COpenNumber opening={data.opening} /></Col>
