@@ -44,7 +44,7 @@ exports.updateData = async (req) => {
             await CreateIssuesIntrosDataDB.UpdateIntrosDataDB(saveDataFromIssues);
 
         }
-        return "_ADD_OK";
+        return "_UPDATE_OK"; // 确认结果
     } catch (err) {
         return '_IS_faile';
     }
