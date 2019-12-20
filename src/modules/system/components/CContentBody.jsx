@@ -18,7 +18,7 @@ import CGitAddModal from './CGitAddModal';
 import '../../../static/css/homeZC.less';
 
 function CContentBody(props) {
-  const Url = 'http://localhost:3000/issues/HomegetDBData';
+  const Url = `${process.env.REACT_APP_API_URL}/HomegetDBData`;
   let IntrosData = null;
   var selectSItem = []; // 多选数块时使用
   // eslint-disable-next-line no-unused-vars
