@@ -1,3 +1,5 @@
+/* eslint-disable no-else-return */
+/* eslint-disable brace-style */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-continue */
 /* eslint-disable no-var */
@@ -8,7 +10,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import $ from 'jquery';
-import { Row, Col } from 'antd';
+import { Row, Col, notification } from 'antd';
 
 import CGitContent from './CGitContent';
 import CGitAddModal from './CGitAddModal';
@@ -43,6 +45,45 @@ function CContentBody(props) {
     midChar.push(nameAndurl);
   }
   const [componentArray, setComponentArray] = useState(midChar);
+  const openNotification = (res) => {
+    if (res === '_DELETE_OK') {
+      notification.open({
+        message: '提醒',
+        description:
+          '删除成功',
+        onClick: () => {
+          console.log('Notification Clicked!');
+        },
+      });
+    } else if (res === '_UPDATE_OK') {
+      notification.open({
+        message: '提醒',
+        description:
+          '更新成功',
+        onClick: () => {
+          console.log('Notification Clicked!');
+        },
+      });
+    } else if (res === '_HAD_DATA') {
+      notification.open({
+        message: '提醒',
+        description:
+          '已有项目，更新成功',
+        onClick: () => {
+          console.log('Notification Clicked!');
+        },
+      });
+    } else if (res === '_IS_fail') {
+      notification.open({
+        message: '提醒',
+        description:
+          '操作失败，请检查输入的链接或者网络连接',
+        onClick: () => {
+          console.log('Notification Clicked!');
+        },
+      });
+    }
+  }; // 操作提示
   const toCheck = (res) => {
     if (res.data === '_DELETE_OK') {
       let stateData = [...componentArray];
@@ -55,7 +96,11 @@ function CContentBody(props) {
         }
       }
       setComponentArray(stateData);
+      openNotification(res.data);
     } // 确认父页面所按按钮来操作此部件相关事务
+    else if (res.data === '_UPDATE_OK') {
+      openNotification(res.data);
+    }
   };
   const receiveComponentArrayChange = (res) => {
     const i = [...componentArray];
@@ -67,8 +112,12 @@ function CContentBody(props) {
         setComponentArray(i);
         return '_ADD_OK';
       }
-      return '_HAD_DATA';
+      else {
+        openNotification(res.data);
+        return '_HAD_DATA';
+      }
     }
+    openNotification(res.data);
     return '_IS_faile';
   };// 子向父传值，父当设一state一接收函数，于子使用处添设属性，将接收函数之名作为props传入，此处为接收函数
   const receiveCheckStateAndName = (res) => {

@@ -33,7 +33,7 @@ function CGitAddModal(props) {
           IntrosData = data;
         },
         error: function (err) {
-          console.log(err);
+          IntrosData.data = '_IS_faile';
         }
       });
       let judge = props.inAdd(IntrosData);
