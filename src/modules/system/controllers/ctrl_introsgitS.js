@@ -311,6 +311,7 @@ exports.introsGits = async (req) => {
           name: saveDataFromGit.name,
           full_name: saveDataFromGit.full_name,
           lan: saveDataFromLan,
+          html_url:saveDataFromGit.html_url,
         };
         // 防止添加重复
         const contentED = await HomegetDBData.HomegetDBDataForCheck(MYNeedData.name);

@@ -3,7 +3,6 @@ const ModelIntros = require("../models/mod_introsData");
 
 exports.CreateIntrosDataDB = async (introsData) => {
   try {
-
     await Promise.all(introsData.map(async (record) => {
       await ModelIntros.create({ ...record });
     }));
@@ -13,14 +12,11 @@ exports.CreateIntrosDataDB = async (introsData) => {
 };// 插入
 exports.UpdateIntrosDataDB = async (introsData) => {
   try {
-
     const name = {
       name: introsData[0].name,
     };
     await Promise.all(introsData.map(async (record) => {
-
       await ModelIntros.updateByCondition(name, { ...record }, { multi: true, upsert:true });
-
     }));
   } catch (err) {
     throw err;
@@ -37,4 +33,3 @@ exports.deleteIntrosDataDB = async (introsData) => {
     throw err;
   }
 };// 删除
-
