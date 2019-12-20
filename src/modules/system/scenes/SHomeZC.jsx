@@ -75,10 +75,11 @@ const SHomeZC = (props) => {
           }
         }
       );
+      pullFun(returnFlag);
     }
   };// 更新
   const itemDelete = () => {
-    setButtonPut('_DELETE');
+    setButtonPut('_DELETE_OK');
     const BaseUrl = `${process.env.REACT_APP_API_URL}`;
     let returnFlag;
     if (pullData !== null) {
@@ -95,8 +96,8 @@ const SHomeZC = (props) => {
           }
         }
       );
+      pullFun(returnFlag);
     }
-    pullFun(returnFlag);
   };// 删除
 
   return (
