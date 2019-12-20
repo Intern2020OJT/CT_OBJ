@@ -4,36 +4,40 @@ const ModelIntrosIssues = require("../../../../modules/system/models/mod_introsD
 const dataDevide = async (analyserows, type) => {
   if (type === 'time') {
     const data = [];
-    for (let i = 0; i < analyserows.length && analyserows[i].pull_request === undefined; i++) {
-      const dataItem = {};
-      const createdat = new Date(analyserows[i].created_at);
-      const closedat = new Date(analyserows[i].closed_at);
-      dataItem.fullName = analyserows[i].title;// month比实际月份少1
-      if (dataItem.fullName.length >= 5) {
-      // eslint-disable-next-line max-len
-        dataItem.shortName = `${dataItem.fullName.substr(0, 5)}...${dataItem.fullName.substr(dataItem.fullName.length - 1, 1)}`;
-      } else {
-        dataItem.shortName = dataItem.fullName;
-      }
-      dataItem.time = +((closedat.getTime() - createdat.getTime()) / 3600000).toFixed(2);
-      dataItem.htmlurl = analyserows[i].html_url;
-      data.push(dataItem);
+    for (let i = 0; i < analyserows.length; i++) {
+      if (analyserows[i].pull_request === undefined) {
+        const dataItem = {};
+        const createdat = new Date(analyserows[i].created_at);
+        const closedat = new Date(analyserows[i].closed_at);
+        dataItem.fullName = analyserows[i].title;// month比实际月份少1
+        if (dataItem.fullName.length >= 5) {
+          // eslint-disable-next-line max-len
+          dataItem.shortName = `${dataItem.fullName.substr(0, 5)}...${dataItem.fullName.substr(dataItem.fullName.length - 1, 1)}`;
+        } else {
+          dataItem.shortName = dataItem.fullName;
+        }
+        dataItem.time = +((closedat.getTime() - createdat.getTime()) / 3600000).toFixed(2);
+        dataItem.htmlurl = analyserows[i].html_url;
+        data.push(dataItem);
+      } else { continue; }
     }
     return data;
   } else if (type === 'comments') {
     const data = [];
-    for (let i = 0; i < analyserows.length && analyserows[i].pull_request === undefined; i++) {
-      const dataItem = {};
-      dataItem.fullName = analyserows[i].title;
-      if (dataItem.fullName.length >= 5) {
+    for (let i = 0; i < analyserows.length; i++) {
+      if (analyserows[i].pull_request === undefined) {
+        const dataItem = {};
+        dataItem.fullName = analyserows[i].title;
+        if (dataItem.fullName.length >= 5) {
         // eslint-disable-next-line max-len
-        dataItem.shortName = `${dataItem.fullName.substr(0, 5)}...${dataItem.fullName.substr(dataItem.fullName.length - 1, 1)}`;
-      } else {
-        dataItem.shortName = dataItem.fullName;
-      }
-      dataItem.comments = analyserows[i].comments;
-      dataItem.htmlurl = analyserows[i].html_url;
-      data.push(dataItem);
+          dataItem.shortName = `${dataItem.fullName.substr(0, 5)}...${dataItem.fullName.substr(dataItem.fullName.length - 1, 1)}`;
+        } else {
+          dataItem.shortName = dataItem.fullName;
+        }
+        dataItem.comments = analyserows[i].comments;
+        dataItem.htmlurl = analyserows[i].html_url;
+        data.push(dataItem);
+      } else { continue; }
     }
     return data;
   }
