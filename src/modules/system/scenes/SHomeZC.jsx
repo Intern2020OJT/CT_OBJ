@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 
 /* eslint-disable max-len */
 /* eslint-disable no-var */
@@ -23,6 +24,8 @@ const SHomeZC = (props) => {
 
   let pullData = null;
 
+  let pullFun;
+
   const [ableCheckboxState, setableCheckboxState] = useState('hidden');
   const [buttonPut, setButtonPut] = useState();
   const ableCheckbox = () => {
@@ -42,11 +45,11 @@ const SHomeZC = (props) => {
       // console.log("2"+ableCheckboxState)
     }
   };
-  const getSonComponentsData = (res) => {
+  const getSonComponentsData = (res, fun) => {
     pullData = res;
+    pullFun = fun; // 子组件向父组件传递了一个函数
   };
   const itemsStatis = () => {
-
     if (pullData !== null) {
       if (pullData.length > 1) {
         props.history.push(ROUTE_ANALYSIS, { pullData: pullData });
@@ -55,6 +58,7 @@ const SHomeZC = (props) => {
   };
   // 跳转到多个统计页面并传值
   const itemUpdate = () => {
+    setButtonPut('_UPDATE');
     const BaseUrl = `${process.env.REACT_APP_API_URL}`;
     let returnFlag;
     if (pullData !== null) {
@@ -92,6 +96,7 @@ const SHomeZC = (props) => {
         }
       );
     }
+    pullFun(returnFlag);
   };// 删除
 
   return (
